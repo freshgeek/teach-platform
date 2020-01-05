@@ -1,0 +1,236 @@
+#x_header_contain{
+	height:57px;
+	width:100%;
+	background-color:#484a4a;
+}
+.q_ud_shuck{
+	background:#eee;
+	padding-bottom:150px;
+}
+.q_ud_updataPass,.q_ud_checkEmail{
+	display:none;
+	padding-top:45px;
+}
+.q_ud_content{
+	width:1177px;
+	padding-top:20px;
+	margin:0 auto 0;
+}
+.q_ud_nav{
+	background:#fff;
+	border:1px solid #e8e8e8;
+	border-bottom:1px solid #d0d0d0;
+}
+.q_ud_nav table{
+	border:none;
+}
+.q_ud_nav td{
+	width:160px;
+	height:52px;
+	font-family:Microsoft YaHei;
+	font-size:18px;
+	color:#484a4a;
+	line-height:52px;
+	text-align:center;
+	border-right:1px solid #d0d0d0;
+	cursor:pointer;
+}
+td.clickNav{
+	background:url(../images/userDatum_2.png) repeat-x;
+}
+.q_ud_main{
+	margin-top:20px;
+	min-height:830px;
+	position:relative;
+	background:#fff;
+	border:1px solid #e6e6e6;
+}
+.q_ud_substance{
+	padding:38px 47px 100px;
+
+}
+.q_ud_explain span{
+	display:inline-block;
+	width:100px;
+	font-family:Microsoft YaHei;
+	font-size:16px;
+	color:#484a4a;	
+}
+.q_ud_explain strong{
+	display:inline-block;
+	width:973px;
+	height:1px;
+	background:#e7e7e8;
+	margin-bottom:5px;
+}
+.q_ud_picture{
+	margin:40px 0px;
+}
+.q_ud_img{
+	width:120px;
+	height:120px;
+	float:left;
+	margin-right:25px;
+	cursor:inherit;
+}
+.q_ud_uploading{
+	float:left;
+	position:relative;
+}
+.q_ud_uploading p{
+	font-family:Microsoft YaHei;
+	font-size:14px;
+	color:#8d8d8d;
+	line-height:20px;	
+	margin-bottom:20px;	
+}
+.q_ud_uploading  span{
+	font-family:Microsoft YaHei;
+	font-size:12px;
+	color:#424242;
+	line-height:18px;	
+	position:absolute;
+	top:44px;
+	left:90px;	
+}
+.z_su_body_file_input{
+	position:relative;
+}
+.q_ud_btSelect{
+	display:inline-block;
+	width:80px;
+	height:27px;
+	line-height:27px;
+	text-align:center;
+	font-family:Microsoft YaHei;
+	font-size:12px;
+	color:#000;
+	background:url(../images/userDatum_06.png) no-repeat;
+	cursor:pointer;
+	margin-right:5px;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+.q_ud_btUploading{
+	display:none;
+	width:91px;
+	height:31px;
+	line-height:30px;
+	text-align:center;
+	font-family:Microsoft YaHei;
+	font-size:14px;
+	color:#4d4d4d;
+	background:url(../images/userDatum_09.png) no-repeat;
+	cursor:pointer;
+	margin-top:22px;
+}
+.q_ud_data{
+	margin-top:20px;
+}
+.q_ud_data td{
+	font-family:Microsoft YaHei;
+	font-size:14px;
+	color:#636363;
+	line-height:60px;
+}
+.q_ud_tdLeft{
+	width:103px;
+	text-align:right;
+}
+.q_ud_tdRight{
+	padding-left:42px;
+}
+.q_ud_tdRight a{
+	display:inline-block;
+	height:20px;
+	line-height:20px;
+	padding-left:20px;
+	font-family:Microsoft YaHei;
+	font-size:14px;
+	color:#636363;	
+	background:url(../images/userDatum_14.png) no-repeat 0 center;
+	cursor:pointer;
+	margin-right:15px;
+}
+a.clickSex{
+	background:url(../images/userDatum_16.png) no-repeat 0 center;
+}
+.q_ud_tdInput input{
+	width:250px;
+	height:28px;
+	line-height:30px;
+	padding-left:10px;
+	font-family:Microsoft YaHei;
+	font-size:14px;
+	background:url(../images/userDatum_21.png) no-repeat;
+	border:none;
+	color:#636363;
+}
+.q_ud_tdRight textarea{
+	width:891px;
+	height:125px;
+	font-family:Microsoft YaHei;
+	font-size:14px;
+	color: #636363;
+	resize: none;
+	padding:10px;
+}
+.save{
+	display:block;
+	width:84px;
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	background:#a873b9;
+	font-family:Microsoft YaHei;
+	font-size:14px;
+	color:#fff;	
+	-webkit-border-radius: 5px;
+ 	-moz-border-radius: 5px;
+	border-radius:5px;
+	position:relative;
+	behavior:url(/style/steam_front/PIE.htc);
+	cursor:pointer;
+	letter-spacing:4px;
+	padding-left:2px;
+	position:absolute;
+	top:800px;
+	left:195px;
+}
+
+.save:hover{
+	background:#764387;
+}
+.q_ud_btSelect:active,.q_ud_btUploading:active{
+	position: relative;
+	top:1px;
+} 
+#file_upload-queue{
+	display:none;
+}
+
+.q_updata span{
+	display:inline-block;
+	width:160px;
+	text-align:right;
+	font-family:Microsoft YaHei;
+	font-size:14px;
+	color:#636363;
+	margin-right:20px;
+	*margin-bottom:6px;
+}
+.q_updata p{
+	margin-bottom: 20px;
+}
+.q_updata input{
+	width:260px;
+	height:28px;
+	line-height:28px;
+	font-family:Microsoft YaHei;
+	font-size:14px;
+	color:#636363;
+	margin-right:20px;
+	padding-left:10px;
+}

@@ -1,0 +1,87 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.p_title{
+    margin-top:20px;
+    margin-bottom:20px;
+    width:1120px;
+    height:20px;
+    float:left;
+}
+.p_title span{
+    font-size:20px;
+    letter-spacing:2px;
+    font-weight:bold;
+    float:left;
+
+}
+
+.p_course_contain{
+    width:1120px;
+    margin:0 auto;
+    position:relative;
+    overflow:hidden;
+}
+
+.p_course_contain ul{
+    text-align: left;
+}
+
+.f_select_file{
+    width:1120px;
+    height:auto;
+    position:relative;
+    overflow:hidden;
+}
+.f_select_file ul li{
+    width:1080px;
+    height:50px;
+    float:left;
+    padding-left:30px;
+    background:url(../images/a_07.png) left no-repeat;
+    border-bottom:1px solid #ccc;
+}
+.f_select_file ul li a{
+    float:left;
+    line-height:50px;
+    font-size:16px;
+    color:#4d4d4d;
+}
+.f_select_file ul li a:hover{
+    color:#a873b9;
+}
+
+.f_select_file .editinput {
+    height: 30px;
+    width: 350px;
+    margin-top: 10px;
+}
+
+.p_span{
+    float:right;
+    width:170px;
+    height:40px;
+    margin-top: 10px;
+}
+.p_span span{
+    display:block;
+    float:left;
+    width:auto;
+    height:40px;
+    margin-left:20px;
+    font-size:14px;
+    color:#b2b2b2;
+}
+.p_span span:hover{
+    cursor:pointer;
+    color:#a873b9;
+}
+.p_span span.p_span1{
+    background:url(../images/down.png)  0 12px no-repeat;
+    padding-left:30px;
+    line-height: 40px;
+}
+.p_span span.p_span1:hover{
+    background:url(../images/downh.png) 0 12px no-repeat;
+}

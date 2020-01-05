@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>信息</title>
+    <link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="/style/findSchool/css/xuexiao.css"/>
+    <link href="/style/steam_front/user_datum/css/user_datum.css" rel="stylesheet" type="text/css"/>
+    <style>
+
+        .headImg {
+            margin-right: 10px;
+        }
+
+        .headImg img {
+            width: 4.6rem;
+            box-shadow: 0 0 0 4px rgba(0, 0, 0, .1);
+            border-radius: 50%;
+        }
+
+        .padding25 {
+            padding: 25px;
+        }
+
+        .padding15 {
+            padding: 15px;
+        }
+
+        .head {
+            text-align: center;
+        }
+
+        .head > div {
+            margin-bottom: 20px;
+        }
+
+        .head > .name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2b425b;
+        }
+
+        .head > h2 {
+            font-size: 1rem;
+            text-align: left;
+            padding: 15px 0px;
+            font-weight: 600;
+            color: #2b425b;
+            line-height: 24px;
+        }
+
+        .head .tag {
+            text-align: left;
+        }
+
+        .head .info {
+            text-indent: 20px;
+        }
+
+        .lay-blank {
+            margin: 12px 0;
+            color: inherit;
+            border: 0 !important;
+            height: 0;
+            box-sizing: content-box;
+        }
+
+        .user-create {
+            padding: 20px 10px;
+        }
+
+        .user-create > span {
+            margin-left: 30px;
+            width: 15%;
+            font-size: 24px;
+            color: #2b425b;
+            /* font-size: 30px; */
+            display: inline-block;
+        }
+
+        .user-create .i {
+            font-size: 20px;
+        }
+
+        .user-dt {
+            padding: 5px;
+            border-bottom: 1px solid #EEE;
+        }
+
+        .user-dt h2 {
+            font-size: 20px;
+            color: #2b425b;
+        }
+
+        .user-dt span {
+            color: #999;
+        }
+
+        .achv-list img {
+            width: 100%;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+            background-color: #fff;
+            border-radius: 0;
+            border: 1px solid #e7ecf3;
+        }
+
+        #dt-list .layui-card {
+            min-height: 400px;
+        }
+    </style>
+</head>
+
+<body style="    background-color: #f2f2f2;
+    color: #666;">
+
+<link href="/webjars/layui/2.5.5/css/layui.css" rel="stylesheet" type="text/css"/>
+<script src="/webjars/layui/2.5.5/layui.js"></script>
+<!--/*@thymesVar id="login_user" type="org.ck.teach.teachplatform.entity.User"*/-->
+<link href="/style/jw/css/base.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
+<link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css"/>
+
+<div class="layui-fluid" style="padding-top: 20px;">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md2">
+            <div class="layui-card">
+                <div class="layui-card-body ">
+                    <div class="head">
+                        <div class="headImg">
+                            <img src="/style/back/image/tou_c.jpg">
+                        </div>
+                        <div class="name">cc</div>
+                        <div>
+                            <span class="layui-badge">暂露头角</span>
+                            200积分
+                        </div>
+                        <hr/>
+                        <h2>我的标签</h2>
+                        <div class="tag">
+                            <span class="layui-badge-rim">大佬</span>
+                            <span class="layui-badge-rim">leader</span>
+                            <span class="layui-badge-rim">Hot</span>
+                            <span id="add-tag-btn" style="cursor: pointer" class="layui-badge-rim" title="你眼中的我">
+                                <i class="layui-icon layui-icon-add1">&#xe654;
+                                </i></span>
+                        </div>
+                        <h2>个性签名</h2>
+                        <div class="info">
+                            快来一起参加xxxx项目吧~~~~
+                            快来一起参加xxxx项目吧~~~~
+                            快来一起参加xxxx项目吧~~~~
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-col-md10 layui-fluid">
+            <div class="layui-row ">
+                <hr class="lay-blank">
+                <div class="padding15">
+                    <div class="user-create">
+                        <span>
+                            200
+                            <small>作品</small>
+                        </span>
+                        <span>
+                            <i class="layui-icon layui-icon-praise"></i>22
+                        </span>
+                        <span>
+                            <i class="layui-icon layui-icon-star"></i> 2000
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md9" id="dt-list">
+                    <div class="layui-card">
+                        <div class="layui-card-body user-dt">
+                            <h2>他的动态</h2>
+                            <p>你觉得对就是对咯,你觉得对就是对咯你觉得对就是对咯你觉得对就是对咯你觉得对就是对咯你觉得对就是对咯</p>
+                            <span>2019-22-11</span>
+                        </div>
+                        <div class="layui-card-body user-dt">
+                            <h2>他的动态</h2>
+                            <p>你觉得对就是对咯,你觉得对就是对咯你觉得对就是对咯你觉得对就是对咯你觉得对就是对咯你觉得对就是对咯</p>
+                            <span>2019-22-11</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-md3">
+                    <div class="layui-card">
+                        <div class="layui-card-header">作品列表</div>
+                        <div class="layui-card-body">
+                            <div class="layui-row layui-col-space10 achv-list">
+                                <div class="layui-card layui-col-md6">
+                                    <div class="layui-card-body">
+                                        <a href="/achv/detail/1">
+                                            <img src="/files/diyworks/2016-07-07/1467884208486077455.jpg">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="layui-card layui-col-md6">
+                                    <div class="layui-card-body">
+                                        <a href="/achv/detail/1">
+                                            <img src="/files/diyworks/2016-07-07/1467884208486077455.jpg">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="layui-card layui-col-md6">
+                                    <div class="layui-card-body">
+                                        <a href="/achv/detail/1">
+                                            <img src="/files/diyworks/2016-07-07/1467884208486077455.jpg">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="layui-card layui-col-md6">
+                                    <div class="layui-card-body">
+                                        <a href="/achv/detail/1">
+                                            <img src="/files/diyworks/2016-07-07/1467884208486077455.jpg">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="layui-card layui-col-md6">
+                                    <div class="layui-card-body">
+                                        <a href="/achv/detail/1">
+                                            <img src="/files/diyworks/2016-07-07/1467884208486077455.jpg">
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="layui-card-footer">
+                            <button class="layui-btn layui-btn-primary layui-btn-fluid">查看更多</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    layui.use(['js_tools', 'upload', 'layedit', 'form', 'jquery'], function () {
+        var upload = layui.upload;
+        var $ = layui.jquery;
+        var js_tools = layui.js_tools;
+        var form = layui.form;
+        var layedit = layui.layedit;
+
+    })
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>-详情</title>
+    <link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css">
+    <link href="/style/steam_front/diyWorks/css/diyWorksDetail.css" rel="stylesheet" type="text/css">
+    <link href="/style/steam_front/common/css/common.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/style/steam_front/common/js/common.js"></script>
+    <link href="/style/steam_front/resourceLibrary/css/vote.css" rel="stylesheet" type="text/css">
+    <style>
+        .weixin {
+            display: inline-block;
+            position: absolute;
+            right: 50px;
+            top: 0;
+            width: 100px;
+            height: 34px;
+            line-height: 34px;
+            color: #fff;
+        }
+
+        .p_main_content img {
+            width: 65%;
+        }
+    </style>
+    <link href="http://static.steamaker.cn/style/jw/css/base.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="http://static.steamaker.cn/style/blackbox/css/blackbox.css"
+          media="screen">
+    <link href="http://static.steamaker.cn/style/basic/loadmask.css" rel="stylesheet" type="text/css">
+</head>
+
+<link href="/style/jw/css/base.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
+<link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css"/>
+<body>
+<div th:replace="view/frame/head :: head-div"  ></div>
+<!--/*@thymesVar id="detail" type="org.ck.teach.teachplatform.entity.SysInfo"*/-->
+<div id="p_link" th:include="view/frame/links :: p_links(l1='/sys-notify-list.html',name1=${detail.getSysInfoType().getName()}
+,l2='/sys/detail/'+${detail.getId()},name2=${detail.getTitle()})" >
+
+</div>
+
+<div class="p_worksdetail">
+    <div class="p_title" th:text="${detail.getTitle()}">照顾盲人眼镜</div>
+    <div class="p_author">
+        作者：<th:block th:text="${detail.getUpUser()}"></th:block>
+        <span>时间：<th:block th:text="${#dates.format(detail.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}"></th:block> </span>
+
+    <!--    <div class="q_works_dianzhan" data="1">0</div>
+    -->    <!-- <div style="float:right;margin-right:120px"><span class="p_worksdetail_main_look" style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>228</span> </div>-->
+        <!--
+        <a class="p_linkCourse" data="" dataid="586">进入课程</a>
+        -->
+        <div class="clear"></div>
+    </div>
+    <div class="p_fenge"></div>
+    <div class="p_main_content" th:utext="${detail.getContent()}">
+
+    </div>
+
+</div>
+</body>
+</html>

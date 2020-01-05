@@ -1,0 +1,353 @@
+*{
+	margin:0;
+	padding:0;
+}
+
+a, a:hover{
+	text-decoration: none;
+	color: #fff;
+}
+
+li{
+  list-style:none;
+}
+
+body{
+	background-image: url(../images/nocbg.png);
+	background-repeat: repeat-x;
+	background-color: #0197f6;
+}
+
+
+/*导航栏 start*/
+.ds-navbar{
+  background-color: transparent;
+  height: 80px;
+}
+
+.nav-container{
+  width: 1200px;
+  margin:0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brandbox{
+  width: 240px;
+  height: 80px;
+  padding: 15px 0 5px 0;
+}
+
+
+
+.navBoxRight{
+  width: 120px;
+  height: 50px;
+
+}
+
+.loginBtn{
+  width: 70px;
+  height: 38px;
+  font-size: 18px;
+  line-height: 36px;
+  background: #0197f6;
+  color: #fff;
+  text-align: center;
+  border-radius: 16px;
+
+}
+/*导航栏 end*/
+
+
+/*banner图 start*/
+.banner-container{
+	width: 1200px;
+	margin:30px auto 50px;
+	display: flex;
+	flex-direction: row;
+	/*border: 1px solid black;*/s
+}
+
+.banner{
+  width: 960px;
+  height: 360px;
+  background: #eee;
+  margin-right: 20px;
+  border-radius: 5px;
+}
+
+.banner img{
+  border-radius: 5px;
+}
+
+.workinfo{
+  width: 220px;
+  height: 360px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.workbox{
+  width: 220px;
+  height: 280px;
+  background: #fff;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.avator{
+  margin:30px auto 10px;
+  width: 113px;
+  height: 113px;
+  border-radius: 60px;
+  border: 2px solid rgb(255,234,53);
+}
+
+.avator img{
+  margin:5px;
+  width: 103px;
+  height: 103px;
+  border-radius: 51px;
+
+}
+
+.myWork, .modifyWork{
+  margin:10px auto 0;
+  width: 160px;
+  height: 40px;
+  /*border: 1px solid black;*/
+}
+
+
+
+
+.submitoWork{
+  margin-top: 20px;
+  width: 220px;
+  height: 60px;
+  background: rgb(255,234,53);
+  border-radius: 5px;
+}
+
+.submitoWork img {
+    width: 165px;
+    height: 29px;
+    margin: 15px 10px 10px 30px;
+}
+
+.icon{
+  display: inline-block;
+  margin:8px 0 8px 0;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.icon-mywork{
+  background-image: url(../images/nocworksoff.png);
+}
+
+.icon-myworkhover{
+  background-image: url(../images/nocworksoff.png);
+}
+
+.icon-modifywork{
+  background-image: url(../images/nocmodifyoff.png);
+}
+
+.icon-modifyworkhover{
+  background-image: url(../images/nocmodifyon.png);
+}
+
+.text{
+  display: inline-block;
+  width: 80px;
+  height: 40px;
+/*  padding: 7px;*/
+  vertical-align: middle;
+  font-size: 20px;
+  line-height: 40px;
+  color: #888;
+}
+.textss{
+  display: inline-block;
+  width: 80px;
+  height: 40px;
+/*  padding: 7px;*/
+  vertical-align: middle;
+  font-size: 20px;
+  line-height: 40px;
+  color: #888;
+}
+.texts{
+  display: inline-block;
+  width: 80px;
+  height: 40px;
+/*  padding: 7px;*/
+  vertical-align: middle;
+  font-size: 20px;
+  line-height: 40px;
+  color: #888;
+}
+
+.text:hover{
+  color: #0197f6;
+}
+.texts:hover{
+  color: #0197f6;
+}
+.textss:hover{
+  color: #0197f6;
+}
+
+
+
+/*banner图 end*/
+
+
+/*作品栏 start*/
+.workspace{
+  width: 1200px;
+  margin:0 auto 50px;
+}
+
+.titlebox{
+  width: 1200px;
+  height: 40px;
+  margin:0 auto 48px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /*border: 1px solid black;*/
+}
+
+.bestwork{
+  width: 164px;
+  height: 32px;
+  margin-top: 4px;
+}
+
+.classlevel{
+  width: 360px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+}
+
+.primary, .middle, .senior{
+  height: 40px;
+  color: #fff;
+  font-size: 18px;
+  line-height: 36px;
+  text-align: center;
+  border: 1px solid #6fd5ff;
+  padding:0 20px;
+  border-radius: 25px;
+}
+
+.school{
+  cursor: pointer;
+}
+.primary, .middle{
+  margin-right: 20px;
+}
+
+.active{
+  background: #ffea35;
+  color: rgb(27,158,230);
+  font-weight: 700;
+}
+
+
+.item-container{
+  width: 1200px;
+  height: auto;
+  margin: 0 auto;
+  padding: 80px 0px;
+  background: #fff;
+  border-radius: 5px;
+  position: relative;
+}
+
+.viewmore{
+  width: 120px;
+  height: 40px;
+  font-size: 16px;
+  line-height: 36px;
+  color: #888;
+  text-align: center;
+  position: absolute;
+  right: 40px;
+  top:18px;
+  background: #ffea35;
+  border-radius: 25px;
+}
+
+.itemwrap{
+  width: 1200px;
+  display: flex;
+  flex-direction: row;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.work-item{
+  width: 250px;
+  height: 260px;
+  margin-left: 40px;
+  margin-bottom: 20px;
+}
+
+.imgbox{
+  width: 250px;
+  height: 200px;
+  border-radius: 5px;
+  background: #eee;
+}
+
+.imgtitle{
+  width: 250px;
+  height: 40px;
+  font-size: 18px;
+  line-height: 36px;
+  text-align: left;
+}
+
+.imginfo{
+  width: 250px;
+  height: 20px;
+  font-size: 15px;
+}
+
+.name, .view, .like{
+  display: inline-block;
+/*  width: 78px;*/
+}
+
+
+.view, .like{
+  margin-left: 55px;
+}
+
+.icon-view{
+  display: inline-block;
+  width: 19px;
+  height: 14px;
+  background: url(../images/nocwatch.png);
+}
+
+.icon-like{
+  display: inline-block;
+  width: 15px;
+  height: 14px;
+  background: url(../images/noclike.png);
+}
+
+/*作品栏 end*/

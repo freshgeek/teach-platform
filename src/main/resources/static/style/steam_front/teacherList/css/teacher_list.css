@@ -1,0 +1,75 @@
+@charset "utf-8";
+/* CSS Document */
+.q_datalist{
+	margin: 0 auto;
+    width: 1200px;
+}
+.q_datalist li{
+	border:2px solid #ddd;
+	padding:20px;
+	margin-bottom:20px;
+	background:#fff;
+	cursor: pointer;
+}
+li.clickLi{
+    position:relative;
+  	-moz-box-shadow: 0px 5px 7px #bfc3c7; /* Firefox */
+ 	-webkit-box-shadow: 0px 5px 7px #bfc3c7; /* Safari 和 Chrome */
+  	box-shadow: 0px 5px 7px #bfc3c7; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */
+    behavior: url(/style/steam_front/PIE.htc); /* 通知IE浏览器调用脚本作用于'box'类 */
+    position: relative;
+}
+
+li.hoverLi{
+    position:relative;
+  	-moz-box-shadow: 0px 5px 7px #bfc3c7; /* Firefox */
+ 	-webkit-box-shadow: 0px 5px 7px #bfc3c7; /* Safari 和 Chrome */
+  	box-shadow: 0px 5px 7px #bfc3c7; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */
+    behavior: url(/style/steam_front/PIE.htc); /* 通知IE浏览器调用脚本作用于'box'类 */
+    position: relative;
+}
+
+li.clickLi img{
+	width:200px;
+	padding: 0;
+}
+li.hoverLi img{
+	width:200px;
+	padding: 0;
+}
+.q_framList{
+	width: 200px;
+	float:left;
+}
+.q_framList img{
+	width: 180px;
+	padding-bottom:10px;
+	padding-top:11px;
+}
+.q_framRight{
+	width:925px;
+	float:left;
+	padding-left:20px;
+	padding-top:10px;
+	min-height:200px;
+}
+.q_framRight h1{
+	font-family:Microsoft YaHei;
+	font-size:24px;
+	line-height: 24px;
+	color:#000;
+	margin-bottom:20px;
+}
+.q_framRight .q_content{
+	font-family: Microsoft YaHei;
+    font-size: 12px;
+    line-height:18px;
+    color: #999;
+    font-weight: 100;
+}
+li.clickLi .q_content{
+	color: #000;
+}
+li.hoverLi .q_content{
+	color: #000;
+}

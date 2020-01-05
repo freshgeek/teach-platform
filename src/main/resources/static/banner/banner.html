@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="banner.css">
+</head>
+
+<body>
+    <div class="banner" id="banner1">
+        <div class="banner-view"></div>
+        <div class="banner-btn"></div>
+        <div class="banner-number"></div>
+        <div class="banner-progres"></div>
+    </div>
+    <div class="banner" id="banner2">
+        <div class="banner-view"></div>
+        <div class="banner-btn"></div>
+        <div class="banner-number"></div>
+        <div class="banner-progres"></div>
+    </div>
+    <script type="text/javascript" src="banner.js"></script>
+    <script type="text/javascript">
+    var banner = new FragmentBanner({
+        container: "#banner1", //选择容器 必选
+        imgs:['./a1.png', './a2.png'], //图片集合 必选
+        size: {
+            width: 1000,
+            height: 560
+        }, //容器的大小 可选
+        //行数与列数 可选
+        grid: {
+            line: 1,
+            list: 2
+        },
+        index: 0, //图片集合的索引位置 可选
+        type: 2, //切换类型 1 ， 2 可选
+        boxTime: 5000, //小方块来回运动的时长 可选
+        fnTime: 10000 //banner切换的时长 可选
+    });
+
+    /*
+     ** 只填两个必要参数也是可以的
+     */
+    var banenr2 = new FragmentBanner({
+    	  type: 1, //切换类型 1 ， 2 可选
+        container: "#banner2", //选择容器 必选
+        imgs: ['./a1.png', './a2.png'] //图片集合 
+    });
+    </script>
+</body>
+
+</html>

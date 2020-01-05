@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>赛事</title>
+<link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css" />
+<link href="/style/steam_front/index.html/css/loginPage.css" rel="stylesheet" type="text/css" />
+<script src="/style/steam_front/jquery-1.7.1.min.js" type="text/javascript"></script>
+<style>
+
+			#rollwarp {
+			  width: 1200px;
+			  height: 600px;
+			  position: relative;
+			  margin:auto;
+			  margin-top:30px;
+			  margin-bottom:58px;
+			  overflow: hidden;
+			}
+			#rollwarp #rollbox {
+			  width: 1200px;
+			  height: 600px;
+			}
+			#rollwarp #rollbox .roll {
+			  width: 1200px;
+			  height: 600px;
+			  display: none;
+			}
+			#rollwarp #rollbox .roll img {
+			  width: 1200px;
+			  height: 600px;
+			}
+			#rollwarp #rollbox .select {
+			  display: block;
+			}
+			#rollwarp ul {
+			  width: 120px;
+			  height: 6px;
+			  position: absolute;
+			  bottom: 32px;
+			  left: 0;
+			  right: 0;
+			  margin: auto;
+			  list-style: none;
+			}
+			#rollwarp ul li {
+			  width: 53px;
+			  height: 6px;
+			  background: grey;
+			  -webkit-border-radius: 6px;
+			  -moz-border-radius: 6px;
+			  border-radius: 6px;
+			  float: left;
+			  text-align: center;
+			  line-height: 30px;
+			  color: white;
+			  cursor: pointer;
+			}
+			#rollwarp ul li:nth-of-type(2){
+				float: right;
+			}
+			#rollwarp ul li div{
+				width: 0;
+				height: 6px;
+				background-color: white;
+				-webkit-border-radius: 3px;
+				-moz-border-radius: 3px;
+				border-radius: 3px;
+			}
+			#rollwarp ul .select div{
+			  width: 100%;
+			  -webkit-transition: 4s;
+			  -moz-transition: 4s;
+			  -ms-transition: 4s;
+			  -o-transition: 4s;
+			  transition: 4s;
+			}
+			.gamesWrap{
+				width: 1200px;
+				height: auto;
+				margin: 0px auto;
+				margin-top: -30px;
+			}
+			.gameBox{
+				width: 100%;
+				height: auto;
+				margin-top:-8px;
+			}
+			.games{
+				width: 580px;
+				height: 363px;
+				float: left;
+				margin-bottom: 57px;
+			}
+			.games a{
+				color: #4d4d4d;
+				text-decoration: none;
+			}
+			.games:nth-child(2n){
+				float: right;
+			}
+			.game_Bg{
+				width: 580px;
+				height: 300px;
+				background-repeat: no-repeat;
+				background-position: center center;
+				
+			}
+			.games p{
+				text-align:left;
+			}
+			.game_Name{
+				line-height: 45px !important;
+				font-size: 18px !important;
+			}
+			.game_Time{
+				font-size: 16px !important;
+			}
+			.game_Bg img{
+			width:580px;
+			height:300px;
+			}
+</style>
+</head>
+
+<link href="/style/jw/css/base.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
+<link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css" />
+<script src="/static-res/sea-modules/seajs/sea-2.3.0.js"></script>
+
+ 
+
+<body>
+<link href="/style/steam_front/head/css/header.css" rel="stylesheet" type="text/css">
+
+
+<div id="x_bg" style="background-color:black">
+ 	<div id="x_header_contain">
+ 		<div id="x_logo"><a href="/index.html"></a></div>
+    		<div id="x_nav">
+     		<ul>
+         		<li id="x_shouye"><a  href="/index.html">首页</a></li>
+         		<li id="x_find"><a  href="/creativeprogramming.html">发现</a></li>
+         		
+         		 <li id="x_newProgramming"><a   href="/goProgramming.html">编程</a></li>
+         		 
+         		 <li id="x_diyzuopin"><a  href="/diyworks.html">造物</a></li>
+             	<li id="x_luntan"><a  href="/resourcelibrary.html">课程</a></li>
+             	 <li id="x_contest"><a  href="/school.html">学校</a></li>
+      <!--             <li id="x_homeworkss"><a  href="/student/view/index.html/homework.html">作业</a></li>
+ -->
+             	<li id="x_contest"><a  href="/competition.html">赛事</a></li>
+             	<li id="x_gongzuoshi"><a class="personal_p">个人中心</a></li>
+         	</ul>
+     	</div>
+     
+     		<div id="x_search_l" style="width:189px;height:30px;position:relative;">
+     		   <input id="x_search"  type="text" value=""/>
+     		   <a style="position:absolute;right:0;">
+     		      <div id="x_search_r"></div>
+    		   </a>
+     		</div>
+     		
+     		
+     	
+     	<!-- <div>
+     		<a><div class="x_unknow" id="x_unknow1"></div></a>
+         	<a><div class="x_unknow" id="x_unknow2"></div></a>
+     	</div> -->
+     	<div class="p_head_self_photo">
+     	 	<a class="q_headPortrait"><img src="/style/back/image/tou_c.jpg" width=30 height=30/></a>
+     	</div>
+     	 <div id="wn" class="q_option">
+       		<strong></strong>
+       		<ul>
+       			<li><a href="/student/view/userdatum.html">个人资料</a></li>
+       			<li><a href="/logout.html">退&nbsp;&nbsp;出</a></li>
+       		</ul>
+   		</div>
+     	 <div id="personalCenter" class="q_option" style="right:350px">
+       		<strong></strong>
+       		<ul>
+					<li><a href="/student/view/userworks/userworks.html">我的作品</a></li>
+					<li><a href="/student/view/index.html/homework.html">我的作业</a></li>
+					<li><a href="/student/view/userdatum.html">个人信息</a></li>
+       		</ul>
+   		</div>
+		
+		<div id="fenlei" class="q_option" style="right:130px">
+       		<strong></strong>
+       		<ul>
+       		
+       			<li><a id="kc">课程</a></li>
+       	
+       			<li><a id="bc">编程</a></li>
+       		
+       			<li><a id="diy">造物</a></li>
+				
+				<li><a id="cpt">赛事</a></li>
+       		</ul>
+   		</div>
+		
+<link href="/style/steam_front/small_login/css/small_login.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="/style/signin.css">
+	<script src="/style/steam_front/cpt/js/js/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="/style/login.js"></script>
+
+
+    <div id="rollwarp">
+			<div id="rollbox">
+				<div class="roll select">
+					<a target="_blank" href="/robocom.html"><img src="/style/steam_front/cpt/images/banner1.png"/></a>
+				</div>
+				<div class="roll">
+<!-- 					<a target="_blank" href="http://www.steamaker.cn/files/noc.html/%E7%AC%AC%E5%8D%81%E5%85%AD%E5%B1%8ANOC%E6%B4%BB%E5%8A%A8%E5%8F%82%E8%B5%9B%E6%89%8B%E5%86%8C.pdf"><img src="/style/steam_front/cpt/images/banner2.png"/></a>
+ -->					<a target="_blank" href="/noc.html"><img src="/style/steam_front/cpt/images/banner2.png"/></a>
+				</div>
+			</div>
+			<ul>
+				<li class="select"><div></div></li>
+				<li><div></div></li>
+			</ul>
+		</div>
+		<div class="gamesWrap">
+			 <div style="line-height: 100px;color: #4d4d4d;text-align:left;font-size:20px;font-weight:600;">历届赛事</div>
+			 <div class="gameBox">
+			 
+	        	<div class="games">
+	        		<a href="/competition.htmlitem?cptid=45">
+	        			<div class="game_Bg" ><p><img src="/files/cpt/2018-01-22/1516610715233068373.png" title="1516610715233068373.png" alt="xlq.png"/></p></div>
+	        			<p class="game_Name">西陵区首届创客节-Scratch创意互动编程大赛</p>
+	        			<p class="game_Time" >2018.01.09</p>
+	        			
+        			</a>
+       			</div>
+       			
+	        	<div class="games">
+	        		<a href="/competition.htmlitem?cptid=42">
+	        			<div class="game_Bg" ><p><img src="/files/cpt/2018-01-22/1516610737541068492.png" title="1516610737541068492.png" alt="ty.png"/></p></div>
+	        			<p class="game_Name">寿光市2017年干部教师集中培训创客培训班</p>
+	        			<p class="game_Time" >2017.07.24</p>
+	        			
+        			</a>
+       			</div>
+       			
+	        	<div class="games">
+	        		<a href="/competition.htmlitem?cptid=41">
+	        			<div class="game_Bg" ><p><img src="/files/cpt/2018-01-22/1516610756047001545.png" title="1516610756047001545.png" alt="ty.png"/></p><p><br/></p></div>
+	        			<p class="game_Name">中莘教育烟台开发区创意智造师资培训二期</p>
+	        			<p class="game_Time" >2017.07.27</p>
+	        			
+        			</a>
+       			</div>
+       			
+	        	<div class="games">
+	        		<a href="/competition.htmlitem?cptid=40">
+	        			<div class="game_Bg" ><p><img src="/files/cpt/2018-01-22/1516610776120093063.png" title="1516610776120093063.png" alt="ty.png"/></p></div>
+	        			<p class="game_Name">中莘教育烟台开发区创意智造师资培训</p>
+	        			<p class="game_Time" >2017.07.17</p>
+	        			
+        			</a>
+       			</div>
+       			
+	        	<div class="games">
+	        		<a href="/competition.htmlitem?cptid=39.html">
+	        			<div class="game_Bg" ><p><img src="/files/cpt/2018-01-22/1516610831296035301.png" title="1516610831296035301.png" alt="wfs.png"/></p></div>
+	        			<p class="game_Name">潍坊市中小学创新教育课程体验活动</p>
+	        			<p class="game_Time" >2017.07.20</p>
+	        			
+        			</a>
+       			</div>
+       			
+	        	<div class="games">
+	        		<a href="/competition.htmlitem?cptid=37.html">
+	        			<div class="game_Bg" ><p><img src="/files/cpt/2018-01-22/1516610866333080256.png" title="1516610866333080256.png" alt="sly.png"/></p></div>
+	        			<p class="game_Name">首届《盛思杯·森林运动会》之《甲壳虫足球赛》！</p>
+	        			<p class="game_Time" >2017.06.01</p>
+	        			
+        			</a>
+       			</div>
+       			
+	        	<div class="games">
+	        		<a href="/competition.htmlitem?cptid=34.html">
+	        			<div class="game_Bg" ><p><img src="/files/cpt/2018-01-22/1516610932578095823.png" title="1516610932578095823.png" alt="zw.png"/></p></div>
+	        			<p class="game_Name">造物总动员</p>
+	        			<p class="game_Time" >2016.10.14</p>
+	        			
+        			</a>
+       			</div>
+       			
+	   			
+			 </div>
+			 <div style='clear:both'></div>
+		</div>
+	
+
+<link href="/style/steam_front/foot/css/foot.css" rel="stylesheet" type="text/css">
+<div class="p_foot" style="height:70px;background-color:black;">
+	<div class="p_foot_title"> 佛山市创意设计与创客教育工程中心开发|| <span style="color:#E4DAB4">联系我们:0755 - 26698678</span>|| <span style="color:#E4DAB4">版权所有:华南智能教育研究中心，佛山创客教育联盟</span> || <a style="color:#E4DAB4" href='index.html' target='_blank'>粤ICP备16049812号</a> || <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1262118875'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/z_stat.php%3Fid%3D1262118875%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script></div>
+</div>
+
+</body>
+<script type="text/javascript">
+			//轮播图
+			var index=0;
+			var timer=null;
+			var length=$("#rollwarp ul li").length;
+			start();
+			function start()
+			{
+				clearInterval(timer);
+				timer=setInterval(function(){
+					index++;
+					if (index==length)
+					{
+						index=0;
+					}
+					show();
+				},4000);
+			}
+			$("#rollwarp ul li").mouseover(function(){
+				index=$(this).index();
+				show();
+				clearInterval(timer);
+			}).mouseout(function(){
+				start();
+			});
+			function show()
+			{
+				$("#rollwarp ul li").eq(index).addClass("select").siblings().removeClass("select");
+				//$(".roll:eq("+index+")").fadeIn().siblings().fadeOut();
+				$(".roll:eq("+index+")").addClass("select").siblings().removeClass("select");
+			}
+	
+		
+		</script>
+</html>

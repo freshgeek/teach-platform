@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>创意项目详情</title>
+    <link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="/style/steam_front/common/css/common.css" rel="stylesheet" type="text/css"/>
+    <script src="/style/steam_front/jquery-1.7.1.min.js" type="text/javascript"></script>
+</head>
+
+<link href="/style/jw/css/base.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
+<link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css"/>
+
+<body>
+<div th:replace="view/frame/head :: head-div(index=3)"></div>
+<div th:replace="view/frame/userBLHead :: subHead(index=1)"></div>
+<div id="p_link" th:include="view/frame/links::p_links(l1='#',name1='创客部落',l2='#',name2='创意项目')">
+</div>
+<div class="clear"></div>
+<style>
+    .layui-text h3 time {
+        color: #999;
+        line-height: 24px;
+        font-size: 14px;
+        margin-left: 10px;
+    }
+
+    .layui-timeline-axis {
+        z-index: 0;
+    }
+
+    .layui-timeline-content button {
+        position: absolute;
+        top: 30px;
+        right: 20px;
+    }
+
+    .layui-timeline-content .layui-timeline-content-sub {
+        border-top: 1px solid #e9e9e9;
+        margin-top: 10px;
+        padding-top: 10px;
+    }
+
+    .p_title {
+        width: 1198px;
+        height: 90px;
+        font-size: 28px;
+        line-height: 90px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+    }
+
+    .p_author {
+        width: 1198px;
+        height: 34px;
+        font-size: 14px;
+        line-height: 34px;
+        letter-spacing: 1px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+    }
+
+    .p_author span {
+        margin-left: 10px;
+    }
+
+    .intro {
+        margin: 10px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #e3e3e3;
+    }
+</style>
+<!--/*@thymesVar id="login_user" type="org.ck.teach.teachplatform.entity.User"*/-->
+<div class="layui-container" th:with="userId = ${login_user?.getId()}">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <h2 class="p_title" th:text="${detail.getName()}"> 项目标题</h2>
+            <div class="p_author">
+                教师:[[${detail.getUserId()}]]
+                <th:block th:each="ul : ${user_list}">
+                    组员:[[${ul.getId()}]]
+                </th:block>
+            </div>
+            <div class="intro" th:utext="${detail.getContent()}">
+                内容
+            </div>
+        </div>
+        <div class="layui-card-body">
+            <ul class="layui-timeline">
+                <li th:each="log : ${log_list}" class="layui-timeline-item">
+                    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                    <div class="layui-timeline-content layui-text">
+                        <h3 class="layui-timeline-title">
+                            <a href="#" th:attr="data-id=${log.getUserId()}" th:text="${log.getUserId()}">陈踩踩</a>
+                            <time th:text="${#dates.format(log.getCreateTime(),'yyyy-MM-dd hh:mm:ss')}">2018-22-11</time>
+                        </h3>
+                        <div class="content" th:utext="${log.getContent()}">
+                            <p>
+                                layui 2.0 的一切准备工作似乎都已到位。发布之弦，一触即发。
+                                <br>不枉近百个日日夜夜与之为伴。因小而大，因弱而强。
+                                <br>无论它能走多远，抑或如何支撑？至少我曾倾注全心，无怨无悔 <i class="layui-icon"></i>
+                            </p>
+
+                        </div>
+                        <button th:attr="data-id=${log.getId()}" class="layui-btn layui-btn-primary"
+                                th:if="${userId==detail.getUserId()}">教师批复
+                        </button>
+                        <div class="layui-timeline-content-sub"
+                             th:if="${!#strings.isEmpty(log.getComment())}"
+                             th:utext="${log.getComment()}">
+                            <p>杜甫的思想核心是儒家的仁政思想，他有“<em>致君尧舜上，再使风俗淳</em>”的宏伟抱负。</p>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="layui-timeline-item">
+                    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                    <div class="layui-timeline-content layui-text">
+                        <div class="layui-timeline-title">创建项目
+                            <time th:text="${#dates.format(detail.getCreateTime(),'yyyy-MM-dd hh:mm:ss')}">2019-22-22
+                            </time>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <h2 style="font-size: 20px;margin-bottom: 20px;">记录项目:</h2>
+            <div class="log-cmt layui-form">
+                <input id="atvId" name="atvId" type="hidden" th:value="${detail.getId()}">
+                <input name="userId" type="hidden" th:value="${login_user.getId()}">
+                <textarea class="layui-textarea layui-hide" name="content" lay-verify="content"
+                          id="LAY_demo_editor"></textarea>
+                <button class="layui-btn btn-primary" style="margin-top: 10px;" lay-submit lay-filter="log-btn">
+                    提交我的记录
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="model" type="text/html" th:inline="none">
+    <div class="list-item layui-col-sm12 ">
+        <div class="layui-col-sm3 item-cover">
+            <img src="/style/steam_front/cpt/images/banner2.png">
+        </div>
+        <div class="layui-row layui-col-sm8 item-content">
+            <div class="layui-col-sm12 ">
+                <h1 class="title">活动项目名</h1>
+                <p class="intro">
+                    创意项目简介,,要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介要求创意项目简介,,要求创意项目简介,,要求创意项目简介,,要求创意项目简介,,要求创意项目简介,,要求</p>
+                <p class="info">
+                    <span class="teach"><i class="layui-badge user-point">黄金大师</i> cc1123</span>
+                </p>
+            </div>
+            <div class="badge">
+                <button class="layui-btn layui-btn-primary">加入项目</button>
+            </div>
+        </div>
+    </div>
+</script>
+<script th:inline="none">
+    layui.use(['form', 'layedit', 'js_tools'], function () {
+        var js_tools = layui.js_tools;
+        var form = layui.form;
+        var layedit = layui.layedit;
+        layedit.set({
+            uploadImage: {
+                url: '/uploadEditor',
+                type: 'post'
+            }
+        })
+
+        var editIndex = layedit.build('LAY_demo_editor');
+        form.verify({
+            content: function (value) {
+                layedit.sync(editIndex);
+            }
+        });
+
+        form.on('submit(log-btn)', function (data) {
+            delete data.field.file;
+            console.log(data.field);
+            js_tools.quick_post('/admin/api/activityLog/add',data.field,function (res) {
+               if (js_tools.isSucc(res)){
+                   layer.alert('成功!',function () {
+                       location.reload();
+                   });
+               }
+            });
+        });
+    });
+</script>
+<div th:include="view/frame/footer::p_foot"></div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

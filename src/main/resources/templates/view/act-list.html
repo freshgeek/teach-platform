@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>创意项目</title>
+    <link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="/style/steam_front/common/css/common.css" rel="stylesheet" type="text/css"/>
+    <link href="/style/steam_front/creativeProgramming/css/creativeProgramming.css" rel="stylesheet" type="text/css"/>
+    <script src="/style/steam_front/jquery-1.7.1.min.js" type="text/javascript"></script>
+</head>
+
+<link href="/style/jw/css/base.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
+<link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css"/>
+
+<body>
+<div th:replace="view/frame/head :: head-div(index=3)"></div>
+<div th:replace="view/frame/userBLHead :: subHead(index=1)"></div>
+<div id="p_link" th:include="view/frame/links::p_links(l1='#',name1='创客部落',l2='#',name2='创意项目')">
+</div>
+<div class="clear"></div>
+
+<div class="p_course_page">
+    <div class="p_course_paixu"><span>排序：</span>
+        <ul id="search_list">
+            <li data=""><a>时间</a></li>
+            <li data="1"><a>推荐</a></li>
+            <li data="2"><a>点赞数</a></li>
+            <li data="3"><a>浏览量</a></li>
+        </ul>
+        <a class="p_play" href="/course">边玩边学</a>
+    </div>
+    <div class="clear"></div>
+</div>
+<style>
+    .list-item {
+        position: relative;cursor: pointer;
+        padding: 15px 15px 15px 75px;
+        border-bottom: 1px dotted #e2e2e2;
+    }
+
+    .item-cover img {
+        width: 100%;
+    }
+
+    .item-content {
+        text-align: left;
+        margin-left: 20px;
+    }
+
+    .user-point {
+        height: 16px;
+        line-height: 16px;
+        padding: 0 3px;
+        background-color: #FF5722;
+        color: #fff;
+        border-radius: 2px;
+    }
+
+    .item-content .title {
+        font-size: 20px;
+    }
+
+    .item-content .info > * {
+        margin-left: 5px;
+    }
+
+    .item-content .info {
+
+    }
+
+    .item-content .badge {
+        position: absolute;
+        right: 35px;
+        bottom: 20px;
+    }
+
+    .item-content .intro {
+        height: 50px;
+        width: 80%;
+        overflow-wrap: break-word;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 20px 0px;
+    }
+
+</style>
+<div class="q_content" style="height:auto;min-height:550px;">
+
+    <div class="q_bg_white">
+        <div class="q_works">
+            <div class="p_bag1">
+                <div class=" layui-card layui-row">
+                    <div class="layui-card-body" id="list">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="h_pp_page">
+            <div id="page"></div>
+
+        </div>
+    </div><!-- q_bg_white end -->
+
+</div>
+<script id="model" type="text/html" th:inline="none">
+    {{#  layui.each(d.body,function(i,e){ }}
+    <div class="list-item layui-col-sm12 ">
+        <div class="layui-col-sm3 item-cover">
+            <img src="{{e.coverUrl}}">
+        </div>
+        <div class="layui-row layui-col-sm8 item-content">
+            <div class="layui-col-sm12 " onclick="location.href='/activity/detail/{{e.id}}'">
+                <h1 class="title">{{e.name}}</h1>
+                <p class="intro">
+                    {{e.intro}}
+                </p>
+                <p class="info">
+                    <span class="teach"><i class="layui-badge user-point">黄金大师{{e.userId}}</i> {{e.userId}}</span>
+                </p>
+            </div>
+            <div class="badge">
+                <button class="layui-btn layui-btn-primary" data-id="{{e.id}}">加入项目</button>
+            </div>
+        </div>
+    </div>
+    {{#   }) ;  }}
+
+</script>
+<script th:inline="none">
+
+    layui.use(['laypage', 'js_tools', 'laytpl'], function () {
+        var js_tools = layui.js_tools;
+        var laypage = layui.laypage;
+        var laytpl = layui.laytpl;
+        var param = js_tools.getParam();
+        param.pageSize=5;
+        js_tools.loadData({
+            url:'/admin/api/activity/page',
+            param:param,
+            page:'page'
+        });
+       /* var page = {
+            elem: 'page'
+            , count: 10 //数据总数，从服务端得到
+            , limit: 12
+            , jump: function (obj, first) {
+                //obj包含了当前分页的所有参数，比如：
+                console.log(obj);
+                //首次不执行
+                if (!first) {
+                    param.pageIndex = obj.curr;
+                    js_tools.quick_get('/admin/api/activity/page', param, function (res) {
+                        // 模板
+                        laytpl(js_tools.get('#model').html()).render(res, function (html) {
+                            js_tools.get('#list').html(html);
+                        });
+                        //分页
+                        page.count = res.total;
+                        laypage.render(page);
+                    });
+                }
+            }
+        };
+
+        js_tools.quick_get('/admin/api/activity/page', param, function (res) {
+            // 模板
+            laytpl(js_tools.get('#model').html()).render(res, function (html) {
+                js_tools.get('#list').html(html);
+            });
+            //分页
+            page.count = res.total;
+            laypage.render(page);
+        });*/
+
+    });
+</script>
+<div th:include="view/frame/footer::p_foot"></div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

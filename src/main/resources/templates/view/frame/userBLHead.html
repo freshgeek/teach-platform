@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body th:fragment="subHead">
+<!--/*@thymesVar id="index" type="java.lang.Integer"*/-->
+<link href="/style/steam_front/student_space/css/header.css" rel="stylesheet" type="text/css">
+<div id="p_bg">
+    <div class="p_header_contain">
+        <div id="p_nav">
+            <ul>
+                <li><a th:classappend="${index}==1?'active':''" href="/act-list.html">创意项目</a></li>
+                <li><a th:classappend="${index}==2?'active':''" href="/contest-list">创客擂台</a></li>
+                <li><a th:classappend="${index}==3?'active':''" href="javascript:alert('模块开发中,后续开放');">Scratch创意编程</a>
+                </li>
+                <li><a th:classappend="${index}==4?'active':''" href="javascript:alert('模块开发中,后续开放');">Python创意编程</a>
+                </li>
+                <li><a th:classappend="${index}==5?'active':''" href="javascript:alert('模块开发中,后续开放');">3D设计编程</a></li>
+                <li class="last">
+                    <a class="p_fav" th:classappend="${index}==6?'active':''"
+                       href="javascript:alert('模块开发中,后续开放');">我是大主播</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="x_header_contain"></div>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+.p_worksdetail_vote{
+	height:auto;
+	background:#ffffff;
+	border-top:1px solid #e6e6e6;
+	border-bottom:1px solid #e6e6e6;
+	border-left:0px;
+	border-right:0px;
+	margin:0 auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.p_worksdetail_vote_line{
+}
+
+.p_worksdetail_vote_title{
+	float:left;
+	width:60px;
+	padding-left:38px;
+	font-size:14px;
+	line-height:26px;
+	color: #818181;
+}
+
+.p_worksdetail_vote_title div {
+	height:26px;
+}
+
+.p_worksdetail_vote_option{
+	float:left;
+	width:360px;
+	font-size:14px;
+	line-height:26px;
+	color: #818181;
+}
+
+.p_worksdetail_vote_option div {
+	height:26px;
+	border-bottom:1px solid #e6e6e6;
+}
+
+.p_worksdetail_vote_button{
+	float:left;
+	width:100px;
+	height:100px;
+	font-size:28px;
+	line-height:100px;
+	color: #818181;
+	border:1px solid #e6e6e6;
+	margin-left:10px;
+	text-align:center;
+}
+
+.p_worksdetail_vote_button:hover{
+	background:#cccccc;
+}

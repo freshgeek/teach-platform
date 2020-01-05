@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="/style/steam_front/resourceLibrary/css/course_details.css" rel="stylesheet" type="text/css"/>
+    <title>课程详情</title>
+    <link href="/style/jw/css/base.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
+    <link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body>
+<div th:replace="view/frame/head :: head-div(index=2)"></div>
+
+<div id="p_link" th:include="view/frame/links :: p_links(l1='/course/'+${course.typeId},name1='课程列表'
+,l2='/courseDetail/'+${course.getName()},name2=${course.getName()})">
+    <div class="p_fuhao"></div>
+    <div class="p_link_a"><a href="/index">创客教育</a>&gt;
+        <a></a>&gt;
+        <a id="f_course_name"></a></div>
+</div>
+<div class="clear"></div>
+<input id="courseId" type="hidden" th:value="${course.getId()}">
+<div id="x_class_container">
+    <div id="x_class_sum"><!--课程基本信息-->
+        <div id="x_class_head">
+            <span id="x_class_title" th:text="${course.name}">课程名</span>
+            <br/><br/>
+            <span id="x_class_class">分类： <span>
+                <a th:href="'/course/'+${course_type.id}" th:text="${course_type?.name}"></a>
+            </span>
+            </span>
+        </div>
+        <img id="x_class_cover"
+             src="/files/courseCover/2017-06-05/2a303148-994a-41dc-b90c-b2ecaac5306b.png"
+             th:src="${course.coverUrl}"
+             alt="封面"/>
+        <div id="x_class_main">
+            <div id="x_descrip">
+                <p id="x_des_tltle">课程简介</p>
+                <p id="x_des_del" th:text="${course.intro}"></p>
+            </div>
+            <div id="x_class_join">
+                <div class="x_join" id="x_join1"><span class="x_join_text">课时：</span>
+                    <span class="x_join_text"
+                          id="releaseTime" th:text="${course.getLessonNum()}"></span>
+                </div>
+                <div class="x_join" id="x_join4"><span class="x_join_text">学习人数：</span>
+                    <span class="x_join_text"
+                          th:text="${course.getLearnNum()}+'人'"
+                          id="x_join_num">17322人</span>
+                </div>
+
+                <!--
+                                <div class="x_join" id="x_join3"><span class="x_join_text">课程进度：</span>
+                                    <span class="x_join_text" id="q_updateText">连载至第4讲</span>
+                                </div>
+                -->
+
+                <div class="x_join" style="padding-left:0px;">
+                    <p><img id="x_teach_tou" src="/style/back/image/tou_e.jpg"
+                            th:src="${course.getCreateUser()?.getHeadUrl()}">
+                        <span style="margin-left:-11px;" id="x_teach_name"
+                              th:text="${course.getCreateUser()?.getNickName()}">林康生</span>
+                        <span class="layui-badge" style="height: 24px;"
+                              th:text="${course.getCreateUser()?.getPointLevel()}"></span>
+                    </p>
+                </div>
+                <div class="x_join" style="padding-left:0px;">
+                    <p>
+                        <button class="layui-btn layui-btn-primary" id="add-course-btn" title="加入到我的课程中">学习</button>
+                    </p>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div><!--课程基本信息结束-->
+    <!--相关课程开始-->
+    <!--<div id="x_relate">
+        <span class="x_left_title">相关课程</span>
+        <ul>
+        </ul>
+    </div>
+    --><!--相关课程结束-->
+    <div id="x_relate_model" style="display:none;"><!--相关课程开始-->
+        <span class="x_left_title">相关课程</span>
+        <ul>
+            <!--  <li data="{id}">
+                  <a href="/courseDetails/{id}.html">
+                      <img class="x_relate_pic" src="{imgUrl}.html"/>
+                      <p></p>
+                      <span class="x_relate_title">{name}</span>
+                  </a><br/>
+              </li>-->
+        </ul>
+    </div><!--相关课程结束-->
+    <div class="x_left" id="x_chapter">
+        <span class="x_left_title" id="q_courseTitle">课程章节</span><br>
+        <div class="reinfoList_list">
+            <ol class="rounded-list">
+                <li th:if="${#lists.isEmpty(lessons)}"><a><p>暂时还没有添加课程</p></a></li>
+                <li th:each="item : ${lessons}">
+                    <a class="videoA" th:href="'/course/study/'+${course.id}">
+                        <p style="font-size:14px;" th:attr="data=${item.id}" th:text="${item.name}">1scratch第一课自我介绍</p>
+                    </a>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="x_left" id="" style="border-bottom:1px #d7d7d8 solid;">
+        <span class="x_left_title">介绍视频</span><br/>
+        <div class="fileList_model">
+            <div class="q_reinfoList"><p data="{id}" style="margin-bottom:10px;" th:text="${course.videoUrl}">
+                {reinfoList}</p></div>
+        </div>
+        <div class="fileList_list">
+            <div class="q_reinfoList">
+                <p data="{id}" style="margin-bottom:10px;" th:if="${course.videoUrl}==null">
+                </p>
+
+                <video th:if="${course.videoUrl}!=null" width="960px" controls>
+                    <source th:src="${course.videoUrl}" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </div>
+    <div class="x_left" id="f_chapter" style="border-bottom:1px #d7d7d8 solid;">
+        <span class="x_left_title">介绍ppt</span><br/>
+        <div class="fileList_model">
+            <div class="q_reinfoList">
+                <p data="{id}" style="margin-bottom:10px;" th:text="${course.pptUrl}"></p>
+            </div>
+        </div>
+        <div class="fileList_list">
+            <div class="q_reinfoList">
+                <p th:if="${course.pptUrl}==null">暂无资料</p>
+                <iframe th:if="${course.pptUrl}!=null"
+                        th:src="'/PPT2HTML.html?url='+${course.pptUrl}"
+                        width="960px;" height="720px;"></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+<div style="width:100%;height:70px;" th:include="view/frame/footer :: p_foot">
+</div>
+<script th:inline="none">
+    layui.use(['js_tools'], function () {
+        var js = layui.js_tools;
+        js.get('#add-course-btn').on('click', function () {
+            if (js.get('#user_id').val()) {
+
+                js.quick_post("/admin/api/courseUser/add", {
+                    userId: js.get('#user_id').val(),
+                    courseId:js.get('#courseId').val()
+                }, function (res) {
+                    if (js.isSucc(res)) {
+                        layer.alert('添加成功');
+                    } else {
+                        layer.alert('已经添加过了');
+                    }
+                });
+            } else {
+                layer.alert('请先登录后再添加');
+                js.get('.q_login').toggle();
+            }
+        });
+    })
+</script>
+
+</body>
+</html>

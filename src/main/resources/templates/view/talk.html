@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>创客论坛</title>
+    <link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="/style/steam_front/resourceLibrary/css/taolunqu2.css" rel="stylesheet" type="text/css"/>
+    <link href="/style/steam_front/resourceLibrary/css/video_study.css" rel="stylesheet" type="text/css"/>
+    <link href="/style/steam_front/resourceLibrary/css/file_download.css" rel="stylesheet" type="text/css"/>
+    <link href="/style/jw/css/base.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
+    <link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .new_question {
+            background: #f5bb0b;
+            padding-left: 15px;
+            text-align: center;
+            position: absolute;
+            right: 0;
+            display: block;
+            border-radius: 0 5px 5px 0;
+            -moz-border-radius: 0 5px 5px 0;
+            -webkit-border-radius: 0 5px 5px 0;
+        }
+
+        .new_question a {
+            display: block;
+            width: 144px;
+            height: 41px;
+            line-height: 41px;
+            font-size: 15px;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        textarea {
+            width: 827px;
+            columns: auto 20;
+            border: 1px solid rgb(212, 212, 212);
+            background-color: white;
+            position: relative;
+            overflow: visible;
+            margin: 0px;
+            height: 190px;
+        }
+    </style>
+</head>
+
+<body>
+<div th:replace="view/frame/head :: head-div(index=4)"></div>
+<div id="p_link" th:include="view/frame/links :: p_links(l1='#',name1='创客论坛',l2='#',name2='讨论区')">
+</div>
+
+
+<div id="x_container">
+    <div class="layui-tab layui-tab-card">
+
+        <ul class="layui-tab-title">
+            <li class="layui-this">创客活动交流区</li>
+            <li>答疑专区</li>
+        </ul>
+
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <li class="q_mainli">
+                    <div id="q_discuss" style="display: block;">
+                        <!-- 讨论 -->
+                        <div class="p_taolun_left">
+                            <div class="p_taolun_left_head">
+                                <a>活动交流</a>
+                            </div>
+
+                            <div class="p_taolun_left_list">
+                                <div class="q_discuss_Ul">
+                                    <ul id="tie_list">
+
+                                    </ul>
+                                </div>
+                                <div class="p_taolun_left_more" id="tie_p_taolun_left_more">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p_taolun_right" style="">
+                            <div class="p_taolun_rightContent" style="">
+                                <div class="new_question"><a>我要发贴</a></div>
+                                <div class="p_wentiqu" id="tie_detail">
+                                    <div class="p_wentiqu_title"></div>
+                                    <div class="p_wentiqu_intro">
+                                    </div>
+                                    <div class="p_wentiqu_huifu">
+                                        <a href="#C4">我来回复</a>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="p_wentiqu_p"></div>
+                                </div>
+                                <!--评论列表-->
+                                <div class="q_hf">
+                                    <ul id="tie_cmt_page">
+
+                                    </ul>
+                                    <div class="clear"></div>
+                                </div>
+                                 <!--评论分页-->
+                                <div class="p_taolun_yema" id="cmt_pages">
+
+                                </div>
+
+                                <a name="C4"></a>
+                                <div class="p_ueditor layui-form">
+                                    <p>参与讨论：</p>
+                                    <div class="p_ueditor_p">
+                                        <div>
+                                            <div style="padding: 0px; margin: 0px auto;">
+                                                <input type="hidden"
+                                                        th:value="${login_user?.getId()}"
+                                                        name="userId"  lay-verify="required"  lay-reqtext="请登录后再提交">
+                                                <textarea id="cmt_content" name="content"  lay-verify="required"
+                                                          placeholder="注意友好言论哦-.-."></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a lay-submit lay-filter="tie-cmt-btn">提交</a>
+                                    <div class="clear"></div>
+                                </div>
+
+                            </div><!-- p_taolun_rightContent end -->
+                        </div>
+
+                        <div class="q_ask" style="display: none;">
+                            <div id="p_editor_c" style="" class="layui-form">
+                                <div class="p_editor_title">
+                                    <p>标题:</p>
+                                    <input placeholder="填写标题" class="noticTitle" name="title" type="text">
+                                </div>
+                                <div id="p_editor" style="">
+                                    <p>问题:</p>
+                                    <div style="padding: 0px; margin: 0px auto;">
+                                        <textarea name="content" placeholder="描述一下你的问题吧-.-"></textarea>
+                                    </div>
+                                </div>
+                                <a class="p_fawen" lay-submit lay-filter="ask-btn">发问</a>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <!-- q_ask end  -->
+                        <div class="clear"></div>
+                    </div>
+                </li>
+                <div class="clear"></div>
+            </div>
+            <div class="layui-tab-item">
+                <li class="q_mainli">
+                    <div id="q_dy" style="display: block;">
+                        <!-- 讨论 -->
+                        <div class="p_taolun_left">
+                            <div class="p_taolun_left_head">
+                                <a>答疑专区</a>
+                            </div>
+                            <div class="p_taolun_left_list">
+                                <div class="q_discuss_Ul">
+                                    <ul id="dy_list">
+
+                                    </ul>
+                                </div>
+                                <div class="p_taolun_left_more" id="dy_p_taolun_left_more">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p_taolun_right" style="">
+                            <div class="p_taolun_rightContent" style="">
+                                <div class="p_wentiqu" id="dy_detail">
+                                    <div class="p_wentiqu_title"></div>
+                                    <div class="p_wentiqu_intro">
+                                    </div>
+                                    <div class="p_wentiqu_huifu">
+                                        <a href="#C4">我来回复</a>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="p_wentiqu_p"></div>
+                                </div>
+                                <div class="q_hf">
+                                    <ul id="dy_cmt_page">
+
+                                    </ul>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="p_taolun_yema" id="dy_cmt_pages">
+
+                                </div>
+
+                                <a name="C5"></a>
+
+                                <div class="p_ueditor layui-form">
+                                    <p>参与讨论：</p>
+                                    <div class="p_ueditor_p">
+                                        <div>
+                                            <div style="padding: 0px; margin: 0px auto;">
+                                                <input type="hidden"
+                                                       th:value="${login_user?.getId()}"
+                                                       name="userId"  lay-verify="required"  lay-reqtext="请登录后再提交">
+                                                <textarea id="dy_cmt_content" name="content"  lay-verify="required"
+                                                          placeholder="注意友好言论哦-.-."></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a lay-submit lay-filter="tie-cmt-btn">提交</a>
+                                    <div class="clear"></div>
+                                </div>
+                            </div><!-- p_taolun_rightContent end -->
+                        </div>
+                        <!-- q_ask end  -->
+                        <div class="clear"></div>
+                    </div>
+                </li>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--主要内容结束-->
+</div>
+
+<!--内容模板-->
+<script type="text/html" th:inline="none" id="tie_model">
+    {{# layui.each(d.body, function(index, item){ }}
+    <li><a value='{{escape(JSON.stringify(item))}}' title="{{item.title}}">{{item.title}}</a>
+        <div class="p_floater">
+            <span>{{item.cmtNum}}</span>
+        </div>
+    </li>
+    {{# }); }}
+</script>
+
+<script type="text/html" id="tie_cmt_page_model">
+    {{#  layui.each(d.body, function(index, item){ }}
+    <li id="{{item.id}}">
+        <div class="p_huifuqu" data="{{item.id}}">
+            <div class="p_huifuqu_person">
+                <div class="p_huifuqu_person_img">
+                    <img src="{{item.user.headUrl}}"
+                         style="width:83px;height:83px;">
+                </div>
+                <span>{{item.user.nickName}}</span>
+                <!-- <p>经济学&nbsp;{position}</p> -->
+            </div>
+<!--
+            <div style="position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 10px;
+    width: 70px;
+    font-size: 20px;">
+                <span>序号</span>
+                <span class="layui-badge layui-bg-green">{{item.id}}</span>
+            </div>
+-->
+            <div class="p_huifuqu_contain">
+                <p>{{addTargetLink(item.content)}}</p>
+            </div>
+            <div class="clear"></div>
+            <div class="p_huifuqu_time">
+                <font>{{item.createTime}}</font>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <a data="{{item.id}}" userId="{{item.userId}}" href="#C4">回复</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </li>
+    {{# }); }}
+</script>
+
+<script type="text/html" id="dy_cmt_page_model">
+    {{#  layui.each(d.body, function(index, item){ }}
+    <li id="{{item.id}}">
+        <div class="p_huifuqu" data="{{item.id}}">
+            <div class="p_huifuqu_person">
+                <div class="p_huifuqu_person_img">
+                    <img src="{{item.user.headUrl}}"
+                         style="width:83px;height:83px;">
+                </div>
+                <span>{{item.user.nickName}}</span>
+                <!-- <p>经济学&nbsp;{position}</p> -->
+            </div>
+            <!--
+                        <div style="position: absolute;
+                top: 10px;
+                right: 10px;
+                height: 10px;
+                width: 70px;
+                font-size: 20px;">
+                            <span>序号</span>
+                            <span class="layui-badge layui-bg-green">{{item.id}}</span>
+                        </div>
+            -->
+            <div class="p_huifuqu_contain">
+                <p>{{addTargetLink(item.content)}}</p>
+            </div>
+            <div class="clear"></div>
+            <div class="p_huifuqu_time">
+                <font>{{item.createTime}}</font>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <a data="{{item.id}}" userId="{{item.userId}}" href="#C5">回复</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </li>
+    {{# }); }}
+</script>
+
+
+<script id="tie_detail_model" type="text/html">
+    <div class="p_wentiqu_title" title="{{d.title}}" data="{{d.id}}">{{d.title}}
+    </div>
+    <div class="p_wentiqu_intro">
+        讨论&nbsp;于<font>{{d.createTime}}</font>被<span data="{{d.userId}}">{{d.userId}}</span>
+        发布&nbsp;共<strong>{{d.cmtNum}}</strong>条回复
+    </div>
+    <div class="p_wentiqu_huifu">
+        {{# if(d.role=='1'){  }}
+        <a href="#C5">我来回复</a>
+        {{# }else{  }}
+        <a href="#C4">我来回复</a>
+        {{# }  }}
+    </div>
+    <div class="clear"></div>
+    <div class="p_wentiqu_p"><p>{{d.content}}<br></p></div>
+</script>
+
+
+<script src="/style/talk.js"></script>
+<div th:include="view/frame/footer::p_foot"></div>
+
+</body>
+</html>

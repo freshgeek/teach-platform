@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="/style/steam_front/student_space/css/myCourse.css" rel="stylesheet" type="text/css"/>
+    <title>我的课程</title>
+    <link href="/style/jw/css/base.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
+    <link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body>
+
+
+<div th:replace="view/frame/head :: head-div(index=5)"></div>
+<div th:include="view/frame/userHead::subHead(index=2)"></div>
+
+<div id="p_link" th:include="view/frame/links::p_links(l1='',name1='学生空间',l2='',name2='我的课程')">
+    <div class="p_fuhao"></div>
+    <div class="p_link_a"><a href="/index.html">steam创客教育</a>&gt;
+        <a href="/student/view/index.html.html"></a>&gt;<a
+                href="/student/view/myCourse.html"></a></div>
+</div>
+<div class="clear"></div>
+
+<!--/*@thymesVar id="course" type="org.ck.teach.teachplatform.entity.Course"*/-->
+<div class="layui-container">
+    <div class="layui-tab-card  ">
+        <ul class="layui-tab-title">
+            <li class="layui-this">我的课程</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="p_course_list">
+                <div th:if="${user_course_page.getTotal()<=0}"> 暂时还没有添加课程,<a style="color:#FFB800;" href="/course">去找找喜欢的课程吧</a></div>
+                <div class="p_course_list_contain" th:each="item : ${user_course_page.getRecords() } "
+                     th:with="course=${item.getCourse()}">
+                    <div class="p_course_list_contain_img">
+                        <img
+                                th:src="${course.getCoverUrl()}"
+                                src="/files/courseCover/2017-06-05/2a303148-994a-41dc-b90c-b2ecaac5306b.png"></div>
+                    <div class="p_course_list_contain_title">
+                        <span th:text="${course.getTitle()}">scratch教学</span>
+                        <p class="x_course_libSort" th:text="${course.getCourseType().getName()}">Labplus编程</p></div>
+                    <div class="p_course_list_contain_intro"><p th:text="${course.getIntro()}"></p></div>
+                    <div class="p_course_list_contain_renshu">
+                        <div class="q_property">
+                            <font th:text="'报名人数：'+${course.getLearnNum()}+'人'">报名人数：10364人</font><span>|</span>
+                            <font th:text="'上传日期：'+${#dates.format(course.getCreateTime(),'yyyy-MM-dd')}">上传日期：2017-05-17</font>
+                        </div>
+                        <div class="p_continue">
+                            <a th:attr="data=${item.getId()}" th:onclick="|backCourse(${item.getId()});|" >放弃课程</a>
+                            <a th:attr="data=${item.getId()}"
+                               th:href="@{/course/study/{id}(id=${course.getId()})}">继续学习</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: right">
+                <div id="page">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+    <input type="hidden" id="current" th:value="${user_course_page.getCurrent()}" >
+    <input type="hidden" id="total" th:value="${user_course_page.getTotal()}" >
+    <script th:inline="none">
+        layui.use(['laypage','js_tools','jquery'],function () {
+            var laypage = layui.laypage;
+            var js_tools = layui.js_tools;
+            var $ = layui.jquery;
+            var cur = $('#current').val();
+            window.backCourse = function(i){
+                js_tools.quick_post('/admin/api/courseUser/delete',{id:i},function (res) {
+                    if (js_tools.isSucc(res)){
+                        layer.alert('成功退出',function () {
+                           location.reload();
+                        });
+                    }
+                })
+            }
+            laypage.render({
+                elem: 'page'
+                ,count: $('#total').val() //数据总数，从服务端得到
+                ,jump: function(obj, first){
+                    //obj包含了当前分页的所有参数，比如：
+                    console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                    console.log(obj.limit); //得到每页显示的条数
+
+                    //首次不执行
+                    if(!first&&cur!=obj.curr){
+                        //do something
+                        location.href = '/user/course?pageIndex='+obj.curr;
+                    }
+                }
+            });
+        });
+
+    </script>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

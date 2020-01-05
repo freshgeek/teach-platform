@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>创建作品</title>
+    <link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="/style/steam_front/student_space/css/userWorks.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="/style/common/common.js"></script>
+</head>
+<link href="/style/jw/css/base.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
+<link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css"/>
+<link href="/layui/css/steps.css" rel="stylesheet" type="text/css"/>
+
+
+<body>
+
+<div th:replace="view/frame/head :: head-div(index=6)"></div>
+<div th:include="view/frame/userHead::subHead(index=4)"></div>
+<div id="p_link" th:include="view/frame/links :: p_links(l1='',name1='个人中心',l2='',name2='创意创作')">
+</div>
+<style>
+    thead {
+        display: none;
+    }
+
+    .layui-tab-card > .layui-tab-title .layui-this {
+        color: white;
+        /*
+                background: url(/style/steam_front/student_space/images/55.gif) 100px 12px no-repeat;
+        */
+        background-color: #f5bb0b;
+    }
+
+    .layui-laypage .layui-laypage-curr .layui-laypage-em {
+        background-color: #808080;
+    }
+</style>
+<div class="p_wrap">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    <div class="layui-row layui-col-space15">
+                        <div class="layui-col-sm8 ">
+                            未命名
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-card-body">
+
+                    <form class="layui-form" action="">
+                        <input type="hidden" name="id" autocomplete="off" class="layui-input">
+                        <input type="hidden" name="userId" autocomplete="off" class="layui-input" lay-reqtext="请先登录噢">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">作品名:</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="name" lay-verify="required" autocomplete="off"
+                                           class="layui-input" lay-reqtext="为制作的作品取个好名字吧~">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">作品类别:</label>
+                                <div class="layui-input-inline">
+                                    <select name="typeId" lay-filter="typeId" id="typeId" lay-verify="required">
+                                        <option value=""></option>
+                                        <option value="0">写作</option>
+                                        <option value="1" selected="">阅读</option>
+                                        <option value="2">游戏</option>
+                                        <option value="3">音乐</option>
+                                        <option value="4">旅行</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">是否竞赛作品</label>
+                            <div class="layui-input-block">
+                                <input type="checkbox" name="contest" lay-verify="required" lay-skin="switch" value="1"
+                                       lay-text="ON|OFF">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">作品封面</label>
+                            <div class="layui-input-block">
+                                <input type="hidden" name="coverUrl" id="coverUrl">
+                                <div class="layui-upload-drag" id="test10">
+                                    <i class="layui-icon">&#xe64a;
+                                    </i>
+                                    <p>点击上传，或将文件拖拽到此处</p>
+                                </div>
+                                <div>
+                                    <img src="" id="showCover" alt="" title="" style="width: 250px;">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">
+                                    清晰的作品图可以吸引更多人认可你的作品噢
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">作品内容</label>
+                            <div class="layui-input-block">
+                                <textarea class="layui-textarea layui-hide" name="content" lay-verify="content"
+                                          id="LAY_demo_editor">
+                                  <h3>1.作品说明</h3><br><br>
+                                  <h3>2.详细描述</h3><br><br>
+                                  <h3>3.附带文件</h3><br><br>
+                                </textarea>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button type="submit" class="layui-btn" lay-submit="" lay-filter="achv-btn">立即提交
+                                </button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script th:inline="none">
+    layui.use(['jquery', 'js_tools', 'upload', 'layedit', 'form'], function () {
+        var tools = layui.js_tools;
+        var layedit = layui.layedit;
+        var upload = layui.upload;
+        var form = layui.form;
+        var $ = layui.$;
+        layedit.set({
+            uploadImage: {
+                url: '/uploadEditor',
+                type: 'post'
+            }
+        })
+        var editIndex = layedit.build('LAY_demo_editor');
+        tools.fill_select('/admin/api/userAchvType/list', null, {elem: '#typeId'});
+        form.render('select');
+        //拖拽上传
+        upload.render({
+            elem: '#test10'
+            , url: '/upload'
+            , done: function (res) {
+                console.log(res)
+                $('#coverUrl').val(res.body.path);
+                $('#showCover').attr('src', res.body.path);
+            }
+        });
+
+        form.on('submit(achv-btn)', function (data) {
+            delete data.field.file;
+            console.log(data.field);
+            tools.quick_post('/admin/api/userAchv/add', data.field, function (res) {
+                if (res.code == tools.successCode) {
+                    layer.alert('提交成功', {icon: 1});
+                } else {
+                    layer.alert(res.msg, {icon: 2});
+                }
+            })
+            return false;
+        });
+    })
+</script>
+
+</body>
+</html>

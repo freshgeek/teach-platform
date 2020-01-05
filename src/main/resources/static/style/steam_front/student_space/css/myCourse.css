@@ -1,0 +1,380 @@
+@charset "utf-8";
+/* CSS Document */
+
+#p_link{
+	width:1200px;
+	height:55px;
+	margin:0 auto;
+	position:relative;
+	overflow:hidden;
+}
+.p_fuhao{
+	width:13px;
+	height:17px;
+	float:left;
+	margin-top:20px;
+	background:url(../images/fuhao_03.gif) no-repeat;
+	position:relative;
+	overflow:hidden;
+}
+.p_link_a{
+	font-family:"Microsoft YaHei";
+	font-size:12px;
+	float:left;
+	margin-top:23px;
+	margin-left:8px;
+	letter-spacing:2px;
+}
+.p_link_a a{
+	color:#898e95;
+}
+.p_link_a a:hover{
+	color:#f5bb0b;
+}
+.p_course_page{
+	width:1200px;
+	height:auto;
+	margin:0 auto;
+	border:1px solid #dddddd;
+	position:relative;
+}
+.p_yellowtiao{
+	width:100%;
+	height:4px;
+	background:#f5bb0b;
+	position:relative;
+}	
+.p_course_nav{
+	width:1200px;
+	height:56px;
+	position:relative;
+	overflow:hidden;
+}	
+.p_course_nav ul li{
+	float:left;
+	width:240px;
+	height:56px;
+	position:relative;
+	overflow:hidden;
+}
+.p_course_nav ul li:hover{
+	background:#f5bb0b;
+}	
+.p_course_nav ul li a{
+	float:left;
+	display:block;
+	font-size:18px;
+	color:#484a4a;
+	text-align:center;
+	line-height:56px;
+	width:206px;
+	height:56px;
+	padding-left:33px;
+	letter-spacing:3px;
+	position:relative;
+	overflow:hidden;
+}	
+.p_course_nav_fenge{
+	float:right;
+	width:1px;
+	height:24px;
+	margin-top:18px;
+	background:#a4a4a4;
+}	
+.p_course_nav ul li a.p_course{
+	
+	background:url(../images/5.jpg) 60px 12px no-repeat;
+}
+.p_course_nav ul li a.p_course:hover{
+	color:#FFF;
+	background-color:#f5bb0b;	
+}
+.p_course_nav ul li a.p_nav_cur1{
+	color:#FFF;
+	background-color:#f5bb0b;	
+}
+.p_course_nav ul li a.p_nav_cur2{
+	background:url(../images/hoverdiy_03.png) center left 60px no-repeat;
+	color:#FFF;
+	background-color:#f5bb0b;	
+}
+.p_diy_course{
+	background:url(../images/diy_03.png) center left 60px no-repeat;
+}
+.p_course_nav ul li a.p_diy_course:hover{
+	background:url(../images/hoverdiy_03.png) center left 60px no-repeat;
+	color:#FFF;
+}
+	
+/*当页导航end*/	
+.p_course_fenlei{
+	width:1200px;
+	height:auto;
+	margin-top:20px;
+	border-bottom:1px dashed #dddddd;
+	position:relative;
+	overflow:hidden;
+}	
+.p_course_fenlei span{
+	float:left;
+	font-size:14px;
+	color:#818181;
+	width:80px;
+	height:45px;
+	padding-left:20px;
+	line-height:30px;
+}	
+.p_course_fenlei ul li{
+	float:left;
+	width:auto;
+	height:30px;
+	line-height:30px;
+	font-size:14px;
+	margin-right: 50px;
+}	
+.p_course_fenlei ul li a{
+	color:#818181;
+}	
+.p_course_fenlei ul li a:hover{
+	color:#a873b9;
+}
+.p_course_fenlei ul li a.current{
+	color:#a873b9;
+}	
+/*课程分类end*/	
+.p_course_zhuangtai{
+	width:1200px;
+	height:50px;
+	border-bottom:1px dashed #dddddd;
+	position:relative;
+	overflow:hidden;
+}	
+.p_course_zhuangtai span{
+	float:left;
+	font-size:14px;
+	color:#818181;
+	width:80px;
+	height:50px;
+	padding-left:20px;
+	line-height:50px;
+}	
+.p_course_zhuangtai ul li{
+	float:left;
+	width:auto;
+	height:50px;
+	line-height:50px;
+	padding-right:50px;
+	font-size:14px;
+	
+}	
+.p_course_zhuangtai ul li a{
+	color:#818181;
+}	
+.p_course_zhuangtai ul li a:hover{
+	color:#a873b9;
+}
+.p_course_zhuangtai ul li a.current{
+	color:#a873b9;
+}	
+/*课程状态end*/		
+.p_course_list{
+	width:1115px;
+	height:auto;
+	margin-top:20px;
+	position:relative;
+	overflow:hidden;
+}
+.p_course_list_contain{
+	width:1200px;
+	height:188px;
+	padding-top:30px;
+	padding-bottom:30px;
+	border-bottom:1px solid #dddddd;
+	position:relative;
+	overflow:hidden;
+}
+
+.p_course_list_contain_img{
+	float:left;	
+	padding-left:30px;
+	padding-right:30px;
+	width:266px;
+	height:199px;
+	position:relative;
+	cursor:pointer;
+}
+.p_course_list_contain_title{
+	float:left;
+	width:850px;
+	height:80px;
+	position:relative;
+	overflow:hidden;
+	cursor:pointer;
+}
+.p_course_list_contain_title span{
+	display:inline-block;
+	width:600px;
+	font-size:24px;
+	line-height:30px;
+	color:#000;
+	letter-spacing:1px;
+	text-overflow:ellipsis;
+	overflow:hidden;
+	-o-text-overflow:ellipsis;
+	white-space:nowrap;
+}
+.p_course_list_contain_title p{
+	font-size:16px;
+	color:#909090;
+	letter-spacing:1px;
+	margin:20px auto;
+}
+.p_course_list_contain_intro{
+	float:left;
+	width: 45%;	height:76px;
+	position:relative;
+	overflow:hidden;
+}
+.p_course_list_contain_intro p{
+	font-size:12px;
+	color:#909090;
+	letter-spacing:1px;
+	line-height:18px;
+}
+.p_course_list_contain_intro p:hover{
+	color:#000;
+}
+.p_course_list_contain_renshu{
+	float:left;
+	width: 62%;
+	margin-top: 5px;
+	position:relative;
+	overflow:hidden;
+
+}
+.q_property{
+	float:left;
+	width:500px;
+	font-size:12px;
+	line-height:14px;
+	padding-top:18px;
+	color:#000;
+	letter-spacing:1px;
+	vertical-align:bottom;
+}
+.p_course_list_contain_renshu span{
+	margin:0px 30px;
+}
+.p_continue{
+	float:right;
+}
+.p_continue a{
+	display:block;
+	float:left;
+	margin-left:15px;
+	background:#a972b9;
+	width:102px;
+	height:32px;
+	line-height:32px;
+	font-size:16px;
+	color:#fff;
+	text-align:center;
+	letter-spacing:1px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	behavior:url(/style/steam_front/PIE.htc);
+}
+.p_continue a:hover{
+	background:#764287;
+}
+/*课程列表end*/
+.p_course_yema{
+	width:1180px;
+	height:50px;
+	margin-right:20px;
+	padding-top:20px;
+	position:relative;
+	overflow:hidden;
+}
+.p_course_yema_tiaozhuan{
+	float:right;
+	width:30px;
+	line-height:26px;
+	padding:0 6px;
+}
+.p_course_yema_tiaozhuan a{
+	font-size:12px;
+	color:#808080;
+	cursor:pointer;
+	letter-spacing:1px;
+}
+.p_course_yema_input{
+	float:right;
+}
+.p_course_yema_input input{
+    border: 1px solid #dddddd;
+    padding: 4px;
+    width: 16px;
+    font-size: 12px;
+    font-family: Microsoft Yahei;
+    color: #888888;
+    text-align: center;
+    margin: 0;
+}
+.p_course_yema_number{
+	float:right;
+}
+.p_course_yema_number a{
+	float: left;
+    display: inline-block;
+    font-family: Microsoft Yahei;
+    font-size: 12px;
+    color: #808080;
+    height: 24px;
+    line-height: 24px;
+    border: 1px solid #dddddd;
+    padding: 0px 8px;
+    margin-right: 4px;
+    cursor: pointer;
+}
+.p_course_yema_number a.p_course_yema_number_current{
+	background:#808080;
+	color:#FFF;
+}
+.p_course_yema_number a:hover{
+	background:#808080;
+	color:#FFF;
+}
+.p_kongbai{
+	width:100%;
+	height:70px;
+	position:relative;
+}
+/*没有资源*/
+.h_pp_no_data{
+	width: 1198px;
+	height: 400px;
+	margin:  0 auto;
+	background: url(../images/nodata.jpg) top center no-repeat;
+    border: 1px solid #e6e6e6;
+    border-top:none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

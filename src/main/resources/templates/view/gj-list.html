@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>工具介绍</title>
+    <link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="/style/steam_front/student_space/css/userWorks.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="/style/common/common.js"></script>
+</head>
+<link href="/style/jw/css/base.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
+<link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css"/>
+
+<body>
+
+<div th:replace="view/frame/head :: head-div(index=2)"></div>
+<div th:replace="view/frame/userLearnHead :: subHead(index=3)"></div>
+<div id="p_link" th:include="view/frame/links :: p_links(l1='',name1='工具介绍')">
+    <div class="p_fuhao"></div>
+    <div class="p_link_a"><a href="/index">创客教育</a>&gt;
+        <a></a>&gt;
+        <a id="f_course_name"></a></div>
+</div>
+<style>
+    thead {
+        display: none;
+    }
+
+    .layui-tab-card > .layui-tab-title .layui-this {
+        color: white;
+        /*
+                background: url(/style/steam_front/student_space/images/55.gif) 100px 12px no-repeat;
+        */
+        background-color: #f5bb0b;
+    }
+
+    .layui-laypage .layui-laypage-curr .layui-laypage-em {
+        background-color: #808080;
+    }
+</style>
+<div class="p_wrap">
+    <div class="layui-tab layui-tab-card">
+        <ul class="layui-tab-title">
+            <li class="layui-this">工具介绍</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <div class="row">
+                    <table id="tool-list"></table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script th:inline="none">
+        layui.use(['table', 'js_tools'], function () {
+            var table = layui.table;
+            var tools = layui.js_tools;
+            var tpl = tools.getTableTemplate();
+            tpl.elem = '#tool-list';
+            tpl.url = '/admin/api/sysInfo/page';
+            tpl.cols = [[
+                {field: 'title', align: 'center', title: 'title', width: '33%'}
+                , {
+                    field: 'title',
+                    align: 'center',
+                    title: 'title',
+                    width: '33%',
+                    templet: '<div><a href="/notify-detail.html?id={{d.id}}">点击查看</a></div>'
+                }
+                , {field: 'createTime', align: 'center', title: 'createTime', width: '33%'}
+            ]];
+            tpl.skin = "line";
+            tpl.where = {typeId: 3};
+            var tzlist = table.render(tpl);
+        })
+    </script>
+</div>
+</body>
+</html>

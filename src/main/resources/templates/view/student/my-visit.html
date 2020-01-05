@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="/style/steam_front/student_space/css/myCourse.css" rel="stylesheet" type="text/css"/>
+    <title>我的收藏</title>
+    <link href="/style/jw/css/base.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
+    <link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .tip-item {
+            font-size: 15px;
+            padding: 20px;
+            border-bottom: 1px dotted #e2e2e2;
+        }
+    </style>
+</head>
+<body>
+
+
+<div th:replace="view/frame/head :: head-div(index=6)"></div>
+<div th:include="view/frame/userHead::subHead(index=3)"></div>
+
+<div id="p_link" th:include="view/frame/links::p_links(l1='',name1='个人中心',l2='',name2='我的足迹')">
+</div>
+<div class="clear"></div>
+
+<div class="layui-container">
+    <div class="layui-tab layui-tab-card">
+        <ul class="layui-tab-title">
+            <li class="layui-this">我的足迹</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div id="list" class="layui-row " style="min-height: 400px;">
+
+            </div>
+            <div style="text-align: right">
+                <div id="page"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="model">
+    <div class="layui-col-sm12 tip-item">
+        <div class="layui-col-sm3">
+            2019-12-22 日
+        </div>
+
+        <div class="layui-col-sm9">
+                        <span class="tiem">
+                            查看
+                        </span>
+            <a>
+                xxxx作品[实打实打算]
+            </a>
+        </div>
+    </div>
+</script>
+<script th:inline="none">
+    layui.use(['laypage', 'js_tools', 'laytpl'], function () {
+        var js_tools = layui.js_tools;
+        var laypage = layui.laypage;
+        var laytpl = layui.laytpl;
+        var param = js_tools.getParam();
+
+        var page = {
+            elem: 'page'
+            , count: 10 //数据总数，从服务端得到
+            , limit: 12
+            , jump: function (obj, first) {
+                //obj包含了当前分页的所有参数，比如：
+                console.log(obj);
+                //首次不执行
+                if (!first) {
+                    param.pageIndex = obj.curr;
+                    js_tools.quick_get('/student/api/userVisitLog/page', param, function (res) {
+                        // 模板
+                        laytpl(js_tools.get('#model').html()).render(res, function (html) {
+                            js_tools.get('#list').html(html);
+                        });
+                        //分页
+                        page.count = res.total;
+                        laypage.render(page);
+                    });
+                }
+            }
+        };
+
+        js_tools.quick_get('/student/api/userVisitLog/page', param, function (res) {
+            // 模板
+            laytpl(js_tools.get('#model').html()).render(res, function (html) {
+                js_tools.get('#list').html(html);
+            });
+            //分页
+            page.count = res.total;
+            laypage.render(page);
+        });
+
+    });
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

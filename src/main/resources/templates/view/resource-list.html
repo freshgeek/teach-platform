@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title th:text="'创客资源'">-详情</title>
+    <link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css">
+    <link href="/style/steam_front/diyWorks/css/diyWorksDetail.css" rel="stylesheet" type="text/css">
+    <link href="/style/steam_front/common/css/common.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/style/steam_front/common/js/common.js"></script>
+    <link href="/style/steam_front/resourceLibrary/css/vote.css" rel="stylesheet" type="text/css">
+    <style>
+        .weixin {
+            display: inline-block;
+            position: absolute;
+            right: 50px;
+            top: 0;
+            width: 100px;
+            height: 34px;
+            line-height: 34px;
+            color: #fff;
+        }
+
+        .p_main_content img {
+            width: 65%;
+        }
+
+        .p_main_content p {
+            padding-bottom: 10px;
+        }
+    </style>
+    <link href="/style/jw/css/base.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css"
+          media="screen">
+    <link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css">
+</head>
+
+<link href="/style/jw/css/base.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
+<link href="/style/steam_front/creativeProgramming/css/creativeProgramming.css" rel="stylesheet" type="text/css"/>
+<link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css"/>
+<!--
+<link href="/layui/css/global.css" type="text/css" rel="stylesheet">
+-->
+<body>
+<div th:replace="view/frame/head :: head-div(index=2)"></div>
+<div th:replace="view/frame/userLearnHead :: subHead(index=2)"></div>
+<div id="p_link" th:include="view/frame/links :: p_links(l1='/resource/page',name1='资源列表')">
+</div>
+
+<div class="p_course_page">
+    <div class="p_course_paixu"><span>分类：</span>
+        <ul id="type_list">
+
+        </ul>
+        <!--
+                <a class="p_play">边玩边学</a>
+        -->
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="q_content" style="height:auto;min-height:550px;">
+    <style>
+        .list-item {
+            position: relative;
+            line-height: 22px;
+            padding: 15px 15px 15px 75px;
+            border-bottom: 1px dotted #e2e2e2;
+        }
+
+        .list-item .item-avatar {
+            position: absolute;
+            left: 15px;
+            top: 15px;
+        }
+
+        .list-item .item-avatar img {
+            display: block;
+            width: 45px;
+            height: 45px;
+            margin: 0;
+            border-radius: 2px;
+        }
+
+        .list-item .item-content {
+            text-align: left;
+            margin: 5px;
+        }
+
+        .list-item .item-content .item-title {
+            font-size: 20px;
+        }
+
+        .list-item .item-content > * {
+            text-align: left;
+            width: 80%;
+            margin: 5px 0px 0px 5px;
+        }
+
+        .list-item .item-content .item-intro {
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .list-item .item-info > * {
+            margin-left: 10px;
+        }
+
+        .list-item .item-info {
+            position: relative;
+            font-size: 13px;
+            text-align: left;
+            color: #999;
+        }
+
+        .list-item .item-badge > * {
+            margin-right: 5px;
+        }
+
+        .list-item .item-badge {
+            position: absolute;
+            right: 15px;
+            top: 25px;
+            font-size: 0;
+        }
+
+        .user-point {
+            height: 16px;
+            line-height: 16px;
+            padding: 0 3px;
+            background-color: #FF5722;
+            color: #fff;
+            border-radius: 2px;
+        }
+    </style>
+    <div class="q_bg_white">
+        <div class="q_works">
+            <div class="p_bag1">
+                <div class=" layui-card layui-row">
+                    <div class="layui-card-body" id="list">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="h_pp_page">
+            <div id="page"></div>
+        </div>
+    </div><!-- q_bg_white end -->
+</div>
+<script id="resource-model" type="text/html">
+    {{# layui.each(d.body,function(i,e){   }}
+    <div class="list-item layui-col-sm12 ">
+        <div class="item-avatar">
+            <img src="{{e.user.headUrl||'/style/back/image/tou_c.jpg'}}"></img>
+        </div>
+        <div class="item-content">
+            <h2 class="item-title">
+                <a href="/resource/detail/1/{{e.id}}">
+                    {{e.name}}
+                </a>
+            </h2>
+            <p class="item-intro">
+                <a href="/resource/detail/1/{{e.id}}">
+                    {{e.intro}}
+                </a>
+            </p>
+        </div>
+        <div class="item-info">
+                <span class="layui-badge user-point">
+                    {{e.user.pointLevel}}
+                </span>
+            <span class="item-num">
+                    <i class="layui-icon layui-icon-praise"></i>
+                    {{e.likeNum}}
+                </span>
+            <span class="item-num">
+                    <i class="layui-icon layui-icon-read"></i>
+                     {{e.visitNum}}
+                </span>
+            <span class="item-num">{{e.createTime}}</span>
+        </div>
+        <div class="item-badge">
+            {{# if(e.top=='1') { }}
+            <span class="layui-badge layui-bg-red">置顶</span>
+            {{# } }}
+            <span class="layui-badge layui-bg-cyan ">{{e.resourceType.name}}</span>
+        </div>
+    </div>
+    {{# }); }}
+</script>
+
+<script th:inline="none">
+
+    layui.use(['laypage', 'js_tools', 'laytpl'], function () {
+        var js_tools = layui.js_tools;
+        var laypage = layui.laypage;
+        var laytpl = layui.laytpl;
+        var param = js_tools.getParam();
+        js_tools.quick_get('/admin/api/resourceType/list', null, function (res) {
+            var b = res.body;
+            var html = [];
+            for (var i in b) {
+                html.push('<li><a class="' + (b[i].id == param.typeId ? 'current' : '') + '" href="/resource-list.html?typeId=' + b[i].id + '" >' + b[i].name + '</a></li>');
+            }
+            js_tools.get('#type_list').html(html.join(''));
+        })
+
+        var page = {
+            elem: 'page'
+            , count: 10 //数据总数，从服务端得到
+            , limit: 12
+            , jump: function (obj, first) {
+                //obj包含了当前分页的所有参数，比如：
+                console.log(obj);
+                //首次不执行
+                if (!first) {
+                    param.pageIndex = obj.curr;
+                    js_tools.quick_get('/admin/api/resource/page', param, function (res) {
+                        // 模板
+                        laytpl(js_tools.get('#resource-model').html()).render(res, function (html) {
+                            js_tools.get('#list').html(html);
+                        });
+                        //分页
+                        page.count = res.total;
+                        laypage.render(page);
+                    });
+                }
+            }
+        };
+
+        js_tools.quick_get('/admin/api/resource/page', param, function (res) {
+            // 模板
+            laytpl(js_tools.get('#resource-model').html()).render(res, function (html) {
+                js_tools.get('#list').html(html);
+            });
+            //分页
+            page.count = res.total;
+            laypage.render(page);
+        });
+
+    });
+</script>
+
+</body>
+</html>

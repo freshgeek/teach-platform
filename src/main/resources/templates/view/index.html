@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>创客教育平台</title>
+    <link href="/style/jw/css/base.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
+    <link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css"/>
+    <link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="/style/steam_front/index/css/loginPage.css" rel="stylesheet" type="text/css"/>
+    <script src="/style/steam_front/jquery-1.7.1.min.js"></script>
+    <script src="/style/steam_front/index/js/lubo.js"></script>
+    <style>
+        .divpic a p img {
+            width: 1200px;
+            height: 200px
+        }
+    </style>
+</head>
+
+<body>
+<div th:replace="view/frame/head :: head-div"></div>
+<link rel="stylesheet" type="text/css" href="banner/banner.css">
+<!--背景焦点图轮播-->
+<div class="p_lunbo">
+    <div id="p_lunbomain" style="margin: 57px auto 0px;">
+        <div class="banner-view"></div>
+        <div class="banner-btn" style="display: none;"></div>
+        <div class="banner-number"></div>
+        <div class="clear"></div>
+        <div class="banner-progres"></div>
+    </div>
+    <script type="text/javascript" src="banner/banner.js"></script>
+    <script type="text/javascript">
+        var banner = new FragmentBanner({
+            container: "#p_lunbomain", //选择容器 必选
+            imgs: ['/style/steam_front/index/images/programme-banner.jpg', '/style/steam_front/index/images/achievement-banner.jpg', '/style/steam_front/index/images/course-banner.jpg', '/style/steam_front/makerCarnival/images/banner1.png', '/style/steam_front/index/images/index-banner.jpg'], //图片集合 必选
+            size: {
+                width: 1200,
+                height: 670
+            }, //容器的大小 可选
+            //行数与列数 可选
+            grid: {
+                line: 2,
+                list: 3
+            },
+            index: 0, //图片集合的索引位置 可选
+            type: 1, //切换类型 1 ， 2 可选
+            boxTime: 5000, //小方块来回运动的时长 可选
+            fnTime: 5000 //banner切换的时长 可选
+        });
+
+    </script>
+</div>
+<!--背景焦点图轮播结束-->
+<div class="clear"></div>
+<!--内容-->
+<div class="q_content">
+
+    <!--通知资讯-->
+    <div class="q_bg_white">
+        <div class="q_works" style="padding-top:72px;">
+            <div class="p_bag_1" style="height:400px;">
+                <div class="index_wrap_div" id="sys_info_div">
+                    <div class="index_div_title">
+                        <a class="title_span" href="/sys-notify-list.html">通知 & 资讯</a>
+                    </div>
+                </div>
+                <div class="index_link_div" style="top:350px;">
+                    <a target="blank" class="p_lookMore" href="/sys-notify-list.html">查看更多</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--通知资讯 end -->
+
+    <!--作品-->
+    <div class="q_bg_white  layui-anim " data-anim="layui-anim-upbit">
+        <div class="q_works" style="padding-top:72px;">
+            <div class="p_bag1">
+                <div class="index_wrap_div">
+                    <div class="index_div_title"><a class="title_span" href="/achv-list.html">创客作品分享</a></div>
+                    <ul id="achv_list">
+
+                    </ul>
+                </div>
+                <div class="index_link_div">
+                    <a target="blank" class="p_lookMore" style="float:right" href="/achv-list.html">查看更多</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--作品 end -->
+
+    <!--课程-->
+    <div class="q_bg_white layui-anim" data-anim="layui-anim-upbit">
+        <div class="q_works">
+            <div class="p_diyWorks">
+                <div class="index_wrap_div">
+                    <div class="index_div_title">
+                        <a class="title_span" href="/course">学习视频</a>
+                    </div>
+                    <ul id="course_list">
+
+                    </ul>
+                </div>
+                <div class="index_link_div">
+                    <a target="blank" class="p_lookMore" href="/course">查看更多</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script id="sys_info_model" type="text/html">
+        {{#  layui.each(d.body,function(i,e){ }}
+        <div style="float:left;">
+            <a target="_blank" class="index_site_href" href="/sys/detail/{{e.id}}">
+                <p><img src="{{e.coverUrl}}"/></p>
+            </a>
+        </div>
+        {{#   }) ;  }}
+    </script>
+
+    <script id="achv_model" type="text/html">
+        {{#  layui.each(d.body,function(i,e){ }}
+        <li data="{{e.id}}" userId="120648">
+            <a href="/achv/detail/{{e.id}}">
+                <div class="q_div">
+                    <img class="q_cover"
+                         src="{{e.coverUrl}}"/>
+                    <p class="q_coverName">{{e.name}} <a class="q_dianzan">{{e.likeNum}}</a></p>
+                    <div class="q_worksCn">
+                        <img class="q_head"
+                             src="{{e.user.headUrl}}"/>
+                        <a class="q_works_user">{{e.user.nickName}}</a>
+                        <span></span>
+                        <a class="q_fav">
+                            {{e.favNum}}</a>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </a>
+        </li>
+
+        {{#   }) ;  }}
+    </script>
+<script id="course_model" type="text/html">
+    {{#  layui.each(d.body,function(i,e){ }}
+        <li data="{{e.id}}" userId="72">
+            <a href="/courseDetail/{{e.id}}">
+                <div class="q_div">
+                    <img class="q_cover"
+                        src="{{e.coverUrl}}"/>
+                    <p class="q_coverName">{{e.name}}
+                        <a class="q_works_time" title="学习时长">
+                            <i class="layui-icon layui-icon-date"></i>
+                            {{e.lessonNum}}</a>
+                    </p>
+                    <div class="q_worksCn">
+                        <span>{{e.intro}}</span>
+                        <a class="q_learn_num" title="学习人数">
+                            <i class="layui-icon layui-icon-read"></i>
+                            {{e.learnNum}}</a>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </a>
+        </li>
+    {{#   }) ;  }}
+</script>
+
+    <!--课程 end -->
+    <script>
+        layui.use(['jquery', 'laytpl', 'js_tools'], function () {
+            var $ = layui.$;
+            var laytpl = layui.laytpl;
+            var js = layui.js_tools;
+            //页面加载
+            js.loadData({
+                url: '/admin/api/userAchv/page',
+                param: {pageSize: 8},
+                list: '#achv_list',
+                model: '#achv_model'
+            });
+
+            js.loadData({
+                url: '/admin/api/sysInfo/page',
+                param: {pageSize: 2},
+                list: '#sys_info_div',
+                model: '#sys_info_model',
+                append: true
+            });
+            //课程搜索
+            js.loadData({
+                url: '/admin/api/course/page',
+                param: {pageSize: 8},
+                list: '#course_list',
+                model: '#course_model'
+            });
+        });
+    </script>
+</div>
+<div th:include="view/frame/footer::p_foot"></div>
+</body>
+
+</html>

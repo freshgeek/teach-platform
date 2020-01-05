@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>我的资源</title>
+    <link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="/style/steam_front/common/css/common.css" rel="stylesheet" type="text/css"/>
+    <link href="/style/steam_front/creativeProgramming/css/creativeProgramming.css" rel="stylesheet" type="text/css"/>
+    <script src="/style/steam_front/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <style>
+        .layui-table-cell {
+            text-align: center;
+        }
+
+        .layui-card-header {
+            text-align: left;
+        }
+
+        .layui-card-header .layui-right-btn {
+            float: right;
+            margin: 5px 0px;
+        }
+    </style>
+</head>
+
+<link href="/style/jw/css/base.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
+<link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css"/>
+
+<body style="background-color: #F2F2F2">
+<div th:replace="view/frame/head :: head-div(index=5)"></div>
+<div th:include="view/frame/userHead::subHead(index=5)"></div>
+
+<div id="p_link" th:include="view/frame/links::p_links(l1='',name1='学生空间',l2='',name2='我的资源')">
+</div>
+<div class="clear"></div>
+<div class="layui-container">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-sm12">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    我上传的资源
+                    <button class="layui-btn layui-btn-warm layui-right-btn" id="share-btn">分享资源</button>
+                </div>
+                <div class="layui-card-body">
+                    <table id="list1"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:inline="none">
+    layui.use(['table', 'layer', 'js_tools', 'jquery'], function () {
+        var table = layui.table;
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var tools = layui.js_tools;
+        var tpl = tools.getTableTemplate();
+        tpl.elem = '#list1';
+        tpl.url = '/student/resource/page';
+        tpl.cols = [[
+            {field: 'title', align: 'center', title: '资源标题', width: '20%'}
+            , {field: 'name', align: 'center', title: '资源名', width: '20%'}
+            , {field: 'createTime', align: 'center', title: '上传时间', width: '10%'}
+            , {field: 'top', align: 'center', title: '置顶资源', width: '10%'}
+            , {
+                field: 'status', align: 'center', title: '状态', width: '10%', templet: function (d) {
+                    return d.status == '0' ? '审核中' : '正常';
+                }
+            }
+            , {field: 'likeNum', align: 'center', title: '点赞数', width: '10%'}
+            , {field: 'visitNum', align: 'center', title: '访问数', width: '10%'}
+            , {
+                field: 'title',
+                align: 'center',
+                title: '操作',
+                templet: '<div><a href="/resource/detail/{{d.typeId}}/{{d.id}}">查看资源</a></div>'
+            }
+        ]];
+        tpl.skin = 'line';
+        var list = table.render(tpl);
+
+        $('#share-btn').on('click', function () {
+            layer.open({
+                title: '上传资源分享'
+                , type: 2
+                , area: ['1200px', '600px']
+                , anim: 2
+                , content: '/student/resourceAdd.html'
+            });
+        });
+    });
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

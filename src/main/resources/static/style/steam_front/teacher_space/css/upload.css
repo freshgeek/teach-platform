@@ -1,0 +1,523 @@
+@charset "utf-8";
+/* CSS Document */
+
+#p_head{
+	width:auto;
+	height:57px;
+	background:#484a4a;
+	position:relative;
+	overflow:hidden;
+}
+#p_main{
+	width:1185px;
+	height:auto;
+	margin:0 auto;
+	text-align:center;
+	position:relative;
+	overflow:hidden;
+}
+.p_main_nav{
+	width:auto;
+	height:48px;
+	background:#f2f2f2;
+	margin-top:34px;
+	padding-left:2px;
+	border:1px solid #f2f2f2;
+	border-radius:3px;
+	position:relative;
+	overflow:hidden;
+}
+.p_main_nav ul li{
+	width:auto;
+	height:48px;
+	float:left;
+}
+.p_main_nav ul li a{
+	float:left;
+	width:auto;
+	height:48px;
+	color:#000;
+	padding-left:75px;
+	padding-right:75px;
+	letter-spacing:1px;
+	line-height:48px;
+	border:1px solid #f2f2f2;
+	position:relative;
+	overflow:hidden;
+}
+.p_main_nav ul li a.p_nav_current{
+	background:#ededed;
+	border:1px solid #CCC;
+	border-top-color:#a5a3a4;
+}
+.p_main_nav ul li a:hover{
+	background:#ededed;
+	border:1px solid #CCC;
+	border-top-color:#a5a3a4;
+}
+/*当页导航end*/
+#p_main_upload{
+	border:1px solid #ccc;
+	margin-top:67px;
+	margin-bottom:100px;
+	position:relative;
+}
+#p_main_upload p{
+	font-size:14px;
+	color:#807a7a;
+	line-height:30px;
+}
+.p_basic_infor_fenlei p input{
+	margin-left:5px;
+	padding-left:8px;
+	border:1px solid #ccc;
+	border-radius:3px;
+	font-size:14px;
+	line-height:30px;
+	color:#333;
+}
+#p_main_upload p select{
+	margin-left:5px;
+	border:1px solid #ccc;
+	border-radius:3px;
+}
+.p_course_file{
+	width:auto;
+	height:205px;
+	float:left;
+	position:relative;
+	overflow:hidden;
+}
+.p_title{
+	margin-top:45px;
+	margin-bottom:18px;
+	width:1083px;
+	height:20px;
+}
+.p_title span{
+	font-size:20px;
+	letter-spacing:2px;
+	float:left;
+	
+}
+.p_subtitle1{
+	margin-top:18px;
+	margin-bottom:18px;
+	width:1083px;
+	height:20px;
+}
+.p_subtitle1 span{
+	font-size:20px;
+	letter-spacing:2px;
+	float:left;
+}
+/*课程文件end*/
+.p_fengexian{
+	width:1083px;
+	height:1px;
+	margin:0 auto;
+	background:#d1d1d1;
+	position:relative;
+	overflow:hidden;
+}
+.p_basic_infor{
+	width:1083px;
+	margin: 0 auto;
+}
+.p_course_intro{
+	width:1083px;
+	margin: 0 auto;
+	position:relative;
+	overflow:hidden;
+}
+.p_basic_infor_left{
+	width:677px;
+	margin:0 auto;
+	float:left;
+	text-align:left;
+	position: relative;
+}
+.q_public p input{
+	border:none;
+}
+.p_basic_infor_teacher{
+	width:677px;
+	margin-top:10px;
+	position:relative;
+}
+.p_basic_infor_teacher input{
+	margin-left: 5px;
+    padding-left: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size:14px;
+	line-height:30px;
+	color:#333;
+}
+.p_basic_infor_fenlei{
+	margin-top:20px;
+}
+.p_basic_infor_fenlei span{
+	display:inline-block;
+	width:10px;
+	height:1px;
+}
+#p_fenlei{
+	background:url(../images/fenlei_03.png) center right no-repeat;
+}
+.select{
+	display:none;
+	position:absolute;
+	background-color:#FFF;
+	left:79px;
+	width:274px;
+	z-index:999;
+}
+.select ul{
+	max-height:300px;
+	overflow-x:hidden;
+	overflow-y:auto;
+}
+.select ul li{
+	width: 272px;
+	border:1px solid #ccc;
+	border-top:none;
+	text-align: left;
+	cursor: pointer;
+}
+.select ul li a{
+	width: 265px;
+	height: 35px;
+	text-align:left;
+	color: #909090;
+	padding-left:8px;
+	font-size: 12px;
+	line-height: 35px;
+}
+.select ul li a:hover{
+	color: #a873b9;
+}
+.p_basic_infor_miaosu{
+	width:677px;
+	margin-top:20px;
+	margin-bottom:40px;
+}
+.p_basic_infor_miaosu span{
+	float:left;
+	font-size:14px;
+	color:#807a7a;
+	line-height:22px;
+}
+.p_basic_infor_miaosu textarea{
+	margin-left:9px;
+	border:1px solid #ccc;
+	border-radius:3px;
+	padding-left:8px;
+	line-height:22px;
+	resize:none;
+}
+.p_basic_infor_right{
+	float:right;
+	width:250px;
+	height:250px;
+	position:relative;
+	overflow:hidden;
+}
+/* .p_basic_infor_right a{
+	float:left;
+	width:91px;
+	height:30px;
+	background:url(../images/shangchuan_03.png) no-repeat;
+	margin-top:8px;
+	font-size:12px;
+	color:#747474;
+	line-height:30px;
+	letter-spacing:1px;
+} */
+
+.photoUpload {
+	float:left;
+	width:91px;
+	height:30px;
+	background:url(../images/shangchuan_03.png) no-repeat;
+	margin-top:8px;
+	font-size:12px;
+	color:#747474;
+	line-height:30px;
+	letter-spacing:1px;
+}
+
+#file_upload .swfupload {
+	position: absolute;
+    z-index: 1;
+    left: 0px; 
+    bottom: 24px; 
+}
+
+/*课件简介*/
+.p_course_intro textarea{
+	float:left;
+	border:1px solid #ccc;
+	border-radius:3px;
+	padding-left:8px;
+	line-height:22px;
+}
+/*课程内容*/
+.p_course_contain{
+	width:1083px;
+	margin:0 auto;
+	position:relative;
+	overflow:hidden;
+}
+.p_upload_file{
+	width:94px;
+	height:32px;
+	float:left;
+	margin-bottom:15px;
+	position:relative;
+	overflow:hidden;
+}
+.p_upload_file a{
+	font-size:14px;
+	color:#4d4d4d;
+	background:url(../images/uploadFile_03.png) no-repeat;
+	line-height:33px;
+	display:block;
+	letter-spacing:1px;
+}
+
+.f_upload_file{
+	width:94px;
+	height:32px;
+	float:left;
+	margin-bottom:15px;
+	position:relative;
+	overflow:hidden;
+}
+.f_upload_file a{
+	font-size:14px;
+	color:#4d4d4d;
+	background:url(../images/uploadFile_03.png) no-repeat;
+	line-height:33px;
+	display:block;
+	letter-spacing:1px;
+}
+
+
+.video_upload{
+	font-size:14px;
+	color:#4d4d4d;
+	background:url(../images/uploadFile_03.png) no-repeat;
+	line-height:33px;
+	display:block;
+	letter-spacing:1px;
+}
+
+#video_upload .swfupload {
+	position: absolute;
+    z-index: 1;
+    left: 0px; 
+}
+
+.other_upload{
+	font-size:14px;
+	color:#4d4d4d;
+	background:url(../images/uploadFile_03.png) no-repeat;
+	line-height:33px;
+	display:block;
+	letter-spacing:1px;
+}
+
+#other_upload .swfupload {
+	position: absolute;
+    z-index: 1;
+    left: 0px; 
+}
+
+.p_select_file{
+	width:1083px;
+	height:auto;
+	position:relative;
+	overflow:hidden;
+}
+.p_select_file ul li{
+	width:1053px;
+	height:50px;
+	float:left;
+	padding-left:30px;
+	background:url(../images/a_07.png) left no-repeat;
+	border-bottom:1px solid #ccc;
+}
+.p_select_file ul li a{
+	float:left;
+	line-height:50px;
+	font-size:16px;
+	color:#4d4d4d;
+}
+.p_select_file ul li a:hover{
+	color:#a873b9;
+}
+
+.p_select_file .editinput {
+    height: 30px;
+    width: 350px;
+    margin-top: 10px;
+}
+
+
+.f_select_file{
+	width:1083px;
+	height:auto;
+	position:relative;
+	overflow:hidden;
+}
+.f_select_file ul li{
+	width:1053px;
+	height:50px;
+	float:left;
+	padding-left:30px;
+	background:url(../images/a_07.png) left no-repeat;
+	border-bottom:1px solid #ccc;
+}
+.f_select_file ul li a{
+	float:left;
+	line-height:50px;
+	font-size:16px;
+	color:#4d4d4d;
+}
+.f_select_file ul li a:hover{
+	color:#a873b9;
+}
+
+.f_select_file .editinput {
+    height: 30px;
+    width: 350px;
+    margin-top: 10px;
+}
+
+
+.p_span{
+	float:right;
+	width:170px;
+	height:20px;
+	margin-top:20px;
+}
+.p_span span{
+	display:block;
+	float:left;
+	width:auto;
+	height:20px;
+	margin-left:20px;
+	font-size:14px;
+	color:#b2b2b2;
+}
+.p_span span:hover{
+	cursor:pointer;
+	color:#a873b9;
+}
+.p_span span.p_span1{
+	background:url(../images/huibianji_06.gif) no-repeat;
+	padding-left:23px;
+}
+.p_span span.p_span1:hover{
+	background:url(../images/bianji_03.gif) no-repeat;
+}
+.p_span span.p_span2{
+	background:url(../images/huicha_11.png) no-repeat;
+	padding-left:23px;
+}
+.p_span span.p_span2:hover{
+	background:url(../images/zicha_11.png) no-repeat;
+}
+
+.p_submit input{
+	width:144px;
+	height:40px;
+	border:none;
+	margin-top:80px;
+	margin-bottom:80px;
+	font-family:"黑体";
+	font-size:16px;
+	color:#FFF;
+	letter-spacing:2px;
+	padding-left:0px;
+	background:url(../images/queren_03.gif) no-repeat;
+	cursor: pointer;
+}
+
+
+.uploadify-queue {
+	margin-bottom: 1em;
+}
+.uploadify-queue-item {
+	background-color: #F5F5F5;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	font: 11px Verdana, Geneva, sans-serif;
+	margin-top: 5px;
+	max-width: 350px;
+	padding: 10px;
+}
+.uploadify-error {
+	background-color: #FDE5DD !important;
+}
+.uploadify-queue-item .cancel a {
+	background: url(../images/uploadify-cancel.png) 0 0 no-repeat;
+	float: right;
+	height:	16px;
+	text-indent: -9999px;
+	width: 16px;
+}
+.uploadify-queue-item.completed {
+	background-color: #E5E5E5;
+}
+.uploadify-progress {
+	background-color: #E5E5E5;
+	margin-top: 10px;
+	width: 100%;
+}
+.uploadify-progress-bar {
+	background-color: #0099FF;
+	height: 3px;
+	width: 1px;
+}
+.q_teamList{
+	margin-top:10px;
+}
+.q_teamList thead td{
+	font-size:14px;
+	color:#807a7a;
+	font-family: Microsoft YaHei;	
+	height:30px;
+	line-height:30px;
+}
+.q_teamTbody td {
+    font-size: 14px;
+    color: #807a7a;
+    font-family: Microsoft YaHei;
+    width: 120px;
+    height: 24px;
+    line-height: 24px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    white-space: nowrap;
+    position: relative;
+}
+.q_teamTbody td input {
+    padding: 0;
+    margin: 0;
+    margin-top: 0px;
+    position: absolute;
+    top: 5px;
+}
+.q_teamTbody td span {
+    display: inline-block;
+    width: 120px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-left: 20px;
+}

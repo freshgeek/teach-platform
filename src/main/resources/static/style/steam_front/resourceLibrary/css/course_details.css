@@ -1,0 +1,662 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+    font-family:'microsoft yahei','微软雅黑','宋体';
+}
+a{
+    cursor: pointer;
+}
+#x_header_contain{
+    height:57px;
+    width:100%;
+}
+#x_class_container{
+    width:1177px;
+    margin:27px auto 50px ;
+}
+#x_class_container span{
+    font-family: Microsoft YaHei
+}
+.reinfoList_list img{
+    max-width:804px;
+    margin-bottom:10px;
+}
+.x_left{
+    float:left;
+    width:957px;
+    background: url(../images/fangkuai_22.gif) 0px 17px no-repeat;
+    border:1px #d7d7d8 solid;
+    margin-top:-1px;
+    padding-left:23px;
+    padding-right:23px;
+    min-height:200px;
+}
+/*课程基本信息*/
+#x_class_head{
+    margin-bottom:27px;
+}
+#x_class_title{
+    display:block;
+    font-size:26px;
+    line-height:1;
+    color:#000;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    -o-text-overflow:ellipsis;
+    white-space:nowrap;
+    width:100%;
+}
+#x_class_sum{
+    margin-bottom:25px;
+}
+#x_class_class{
+    font-size:16px;
+    color:#808080;
+    line-height:26px;
+}
+#x_class_cover{
+    width:399px;
+    height:260px;
+    float:left;
+    margin-right:50px;
+}
+#x_class_main{
+    float:right;
+    width:586px;
+    height:300px;
+    position:relative;
+}
+#x_des_tltle{
+    font-size:18px;
+    color:#000;
+}
+#x_des_del{
+    font-size:14px;
+    color:#969696;
+    line-height:20px;
+    letter-spacing: 1px;
+    margin-top:15px;
+    padding-bottom: 20px;
+    border-bottom:1px solid #ddd;
+    max-height:140px;
+    overflow-y:auto;
+}
+
+#x_descrip p{
+    font-family:Microsoft YaHei;
+}
+#x_class_join div span{
+    font-family:Microsoft YaHei;
+    color:#000;
+    font-size:14px;
+    line-height:25px;
+}
+.x_join{
+    float:left;
+    padding-left:37px;
+    margin:20px 56px 13px 10px;
+    width:190px;
+    _width:170px;
+}
+#x_join1{
+    background:url(../images/mi_06.gif) left center no-repeat;
+
+}
+#x_join2{
+    background: url(../images/mi_09.gif) left center no-repeat;
+}
+#x_join3{
+    background: url(../images/mi_10.gif) left center no-repeat;
+}
+#x_join4{
+    background: url(../images/mi_14.gif) left center no-repeat;
+}
+#x_join_but{
+    display:block;
+    width:200px;
+    height:53px;
+    line-height:53px;
+    text-align:center;
+    font-family: Microsoft YaHei;
+    font-size:26px;
+    color:#000;
+    position:absolute;
+    bottom:0;
+    right:15px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius:5px;
+    behavior:url(/style/steam_front/PIE.htc);
+}
+#x_chakan_but{
+    display:none;
+    width:200px;
+    height:53px;
+    line-height:53px;
+    text-align:center;
+    font-family: Microsoft YaHei;
+    font-size:26px;
+    color:#000;
+    position:absolute;
+    bottom:0;
+    right:15px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius:5px;
+    background-color:#f5bb0b;
+}
+.x_left_title{
+    color:#000;
+    font-size:20px;
+    line-height:70px;
+}
+.x_left textarea{
+    display:block;
+    width:100%;
+    min-height:110px;
+    border:none;
+    overflow:hidden;
+    resize: none;
+    font-family:Microsoft YaHei;
+    color:#000;
+    font-size:12px;
+    letter-spacing:1.5px;
+    line-height:27px;
+    word-break:break-all; /*支持IE，chrome，FF不支持*/
+    word-wrap:break-word;/*支持IE，chrome，FF*/
+}
+
+/*课程简介*/
+#x_info p{
+    font-family:Microsoft YaHei;
+    color:#000;
+    font-size:14px;
+    letter-spacing:1.5px;
+    line-height:27px;
+}
+#x_chapter p{
+    font-family:Microsoft YaHei;
+    color:#000;
+    font-size:12px;
+    letter-spacing:1.5px;
+    line-height:27px;
+    word-break:break-all; /*支持IE，chrome，FF不支持*/
+    　　word-wrap:break-word;/*支持IE，chrome，FF*/
+}
+
+
+.q_reinfoList p{
+    cursor: pointer;
+
+}
+#x_chapter .q_reinfoList p:hover{
+    font-size:14px;
+}
+#x_chapter p.reinfoclick{
+    font-size:14px;
+}
+.x_chapter_s{
+    font-size:14px;
+    line-height:32px;
+}
+#x_chapter a{
+    color:#339ee9;
+    font-size:12px;
+    line-height:72px;
+}
+.reinfoList_movel{
+    display:none;
+}
+
+.fileList_model{
+    display:none;
+}
+/*教师简介*/
+#x_teach_tou{
+    width:32px;
+    height:32px;
+    float:left;
+    margin:0 20px 20px 0;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    position: relative;
+    behavior: url(/style/steam_front/PIE.htc);
+}
+#x_teach_name{
+    font-size:18px;
+}
+#x_teach_class{
+    font-size:12px;
+    margin-left:20px;
+}
+#x_teacher_main p{
+    margin-top:9px;
+    font-size:12px;
+    color:#7f7f7f;
+    letter-spacing:1.7px;
+    line-height:25px;
+}
+/*常见问题*/
+.x_ask{
+    font-size:14px;
+    line-height:33px;
+}
+.x_answer{
+    font-size:12px;
+    color:#6e6e6e;
+    letter-spacing:1.7px;
+    line-height:25px;
+}
+/*相关课程*/
+#x_relate{
+    float:right;
+    background: url(../images/fangkuai_22.gif) 0px 17px no-repeat;
+    border:1px #d7d7d8 solid;
+    padding-left:23px;
+    width:283px;
+}
+#x_relate ul li{
+    margin-bottom:15px;
+}
+
+#x_relate img{
+    width:260px;
+
+}
+.x_relate_title{
+    font-size:16px;
+    line-height:30px;
+    color:#000;
+}
+.x_relate_info{
+    font-size:12px;
+    color:#9d9d9d;
+    line-height:25px;
+}
+.q_btAttention{
+    display:inline-block;
+    height:26px;
+    text-align: center;
+    padding: 0 10px 0 20px;
+    color: #fff;
+    font-size: 12px;
+    font-family: Microsoft YaHei;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius:4px;
+    position:relative;
+    behavior:url(/style/steam_front/PIE.htc);
+}
+a.q_btA{
+    background: url(../images/attention.png) 6px center no-repeat #76cdfa;
+}
+a.q_btB{
+    background: url(../images/attention.png) 6px center no-repeat #fabd76;
+}
+.q_btA:hover{
+    background-color: #fabd76
+}
+a.q_btB:hover{
+    background-color: #76cdfa
+}
+.q_state{
+    font-size: 14px;
+    font-family: Microsoft YaHei;
+    color:#000;
+    margin-top: 30px;
+}
+
+
+/*评论区*/
+.h_mycommont{
+    margin: 12px auto;
+    height: 28px;
+}
+.h_mycommont span {
+    float: left;
+    line-height: 20px;
+    font-family: Microsoft Yahei;
+    color: #000000;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+/*您的评价-星级评价*/
+.star_rating {
+    float:left;
+    margin:1px 0 0 -1px;
+}
+.star_rating_baffle{
+    display:none;
+    width:125px;
+    height:25px;
+    float:left;
+    margin-left:-125px;
+    z-index:2;
+}
+.star_rating li{
+    display:inline-block;
+    cursor:pointer;
+    float:left;
+    background:url(../images/commont_star_white_03.jpg) no-repeat;
+    width:20px;
+    height:20px;
+    margin-left:5px;
+}
+li.star_ratingHover{
+    background:url(../images/commont_star_yellow_04.jpg) no-repeat;
+}
+li.star_ratingClick{
+    background:url(../images/commont_star_yellow_04.jpg) no-repeat;
+}
+.h_commont {
+    margin: 12px auto;
+    height: 145px;
+    font-size: 12px;
+    font-family: Microsoft YaHei;
+    color: #b0b0b0;
+    text-align: center;
+    position: relative;
+}
+
+.h_commont textarea {
+    width: 750px;
+    height: 122px;
+    border: 1px solid #ddd;
+    resize: none;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-family: Microsoft YaHei;
+    color: #b0b0b0;
+    overflow:auto;
+}
+.h_commont p{
+    display: inline-block;
+    font-size: 12px;
+    font-family: Microsoft YaHei;
+    color: #b0b0b0;
+    width: 90px;
+    height: 25px;
+    line-height: 28px;
+    text-align: center;
+    position: absolute;
+    right:0px;
+    bottom:5px;
+}
+
+a.h_stut_publishSubmit {
+    display: inline-block;
+    font-size: 12px;
+    font-family: Microsoft YaHei;
+    color: #585858;
+    border: 1px solid #ddd;
+    padding: 0;
+    width: 93px;
+    height: 30px;
+    line-height: 28px;
+    text-align: center;
+    float: right;
+    cursor: pointer;
+}
+a.h_stut_publishSubmit:hover{
+    background:#999;
+    color:#fff;
+}
+#q_myAssess{
+    display:none;
+    font-family: Microsoft YaHei;
+    font-size:14px;
+    color:#585858;
+    line-height:1.4;
+    margin-bottom:20px;
+}
+#q_myAssess span{
+    font-family: Microsoft YaHei;
+    font-size:14px;
+    color:#585858;
+    line-height:1.4;
+}
+.h_usercommont_cont {
+    margin: 12px auto;
+}
+
+.h_usercommont_cont h4{
+    width: 120px;
+    font-size: 20px;
+    font-family: Microsoft YaHei;
+    color: #000000;
+}
+.h_usercommont_cont font{
+    font-size: 20px;
+    font-family: Microsoft YaHei;
+    color: #a4a4a4;
+}
+.h_usercommont_con {
+    overflow: hidden;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #d2d2d2;
+}
+.h_usercommont_prciure {
+    float: left;
+    width: 80px;
+    height: 80px;
+    margin-top: 18px;
+    position: relative;
+}
+
+.h_usercommont_data {
+    float: left;
+    width: 665px;
+    height:78px;
+    margin-left: 17px;
+    margin-top: 20px;
+    position: relative;
+}
+
+.h_usercommont_data>a {
+    display: block;
+    font-family: Microsoft YaHei;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #457fd5;
+    margin-bottom: 16px;
+    line-height: 20px;
+}
+.h_usercommont_data_star {
+    float: right;
+    width: 72px;
+    height: 20px;
+    position: absolute;
+    top: 4px;
+    right: 0;
+}
+.h_usercommont_data_star ul {
+    list-style: none;
+    width: 70px;
+    height: 20px;
+    margin-left: 0px;
+}
+
+.h_usercommont_data_star li {
+    display: block;
+    width: 14px;
+    height: 20px;
+    float: left;
+    background: url(../images/lesson_star_04_03.jpg) no-repeat;
+}
+
+li.h_usercommont_data_stary {
+    background: url(../images/lesson_star_03.jpg) no-repeat;
+}
+.q_usercommont_date{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height:12px;
+    overflow:hidden;
+}
+.h_usercommont_data span ,.q_usercommont_date a{
+    float: right;
+    font-size: 12px;
+    font-family: Microsoft YaHei;
+    color: #b0b0b0;
+}
+.q_usercommont_date a{
+    margin-left:10px;
+}
+.h_usercommont_data p {
+    font-family: Microsoft YaHei;
+    font-size: 14px;
+    color: #585858;
+    word-wrap: break-word;
+    line-height:1.7;
+}
+.q_comment{
+    padding: 0 20px;
+    margin: 40px 0;
+}
+#h_assessCommont_content{
+    margin-top:20px;
+}
+.p_taolun_rightError{
+    position:relative;
+    display:none;
+}
+.q_taolun_errorImg{
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    padding-left: 30px;
+    padding-top: 116px;
+    width: 201px;
+    height: 99px;
+    color: #7f868e;
+    font-family: microsoft yahei;
+    line-height: 25px;
+    letter-spacing: 1px;
+    background:url(/style/steam_front/resourceLibrary/images/lead_12.png) 60px 0 no-repeat;
+}
+/*评论区 end*/
+/*页码样式*/
+.q_page{
+    padding-top:10px;
+    display:none;
+}
+.page_action{
+    float: right;
+    line-height: 26px;
+    padding: 0 6px;
+    font-size: 12px;
+    font-family: Microsoft Yahei;
+    color: #808080;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+.page_input{
+    width:24px;
+    height:22px;
+    float: right;
+    line-height: 22px;
+    font-size: 12px;
+    font-family: Microsoft Yahei;
+    color: #808080;
+    letter-spacing: 1px;
+    text-align: center;
+    border: 1px solid #dddddd;
+    margin-left:2px;
+}
+.page_number{
+    float:right;
+}
+.page_number a {
+    display: inline-block;
+    width:24px;
+    line-height: 24px;
+    font-size: 12px;
+    font-family: Microsoft Yahei;
+    color: #808080;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-align: center;
+    border: 1px solid #dddddd;
+    margin: 0 2px;
+}
+a.pageClick{
+    background:#808080;
+    border: 1px solid #808080;
+    color:#FFF;
+}
+
+/*页码样式 end*/
+
+.q_wdhuifu_number {
+    color: #000;
+    font-family: Microsoft YaHei;
+    font-size: 20px;
+    margin-top:20px;
+}
+.q_wdhuifu_number span {
+    color: #999;
+}
+
+.showSpan{
+    background:#00C5CD;
+    border:dashed 0px #000000;
+    -moz-border-radius: 75px;
+    -webkit-border-radius: 75px;
+    border-radius: 75px;
+}
+ol {
+    counter-reset: li; /* Initiate a counter */
+    list-style: none; /* Remove default numbering */
+    *list-style: decimal; /* Keep using default numbering for IE6/7 */
+    font: 15px 'trebuchet MS', 'lucida sans';
+    padding: 0;
+    margin-bottom: 4em;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+.rounded-list a{
+    position: relative;
+    display: block;
+    padding: .4em .4em .4em 2em;
+    *padding: .4em;
+    margin: .5em 0;
+    background: #ddd;
+    color: #444;
+    text-decoration: none;
+    border-radius: .3em;
+    transition: all .3s ease-out;
+}
+.rounded-list li{
+
+}
+.rounded-list a:hover{
+    background: #eee;
+}
+
+.rounded-list a:hover:before{
+    transform: rotate(360deg);
+}
+
+.rounded-list a:before{
+    content: counter(li);
+    counter-increment: li;
+    position: absolute;
+    left: -1.3em;
+    top: 50%;
+    margin-top: -1.3em;
+    background: #87ceeb;
+    height: 2em;
+    width: 2em;
+    line-height: 2em;
+    border: .3em solid #fff;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 2em;
+    transition: all .3s ease-out;
+}

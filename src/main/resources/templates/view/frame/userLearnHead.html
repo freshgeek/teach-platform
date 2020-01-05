@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body th:fragment="subHead">
+<!--/*@thymesVar id="index" type="java.lang.Integer"*/-->
+<link href="/style/steam_front/student_space/css/header.css" rel="stylesheet" type="text/css">
+<div id="p_bg">
+    <div class="p_header_contain">
+        <div id="p_nav">
+            <ul>
+                <li id="p_ziliao">
+                    <a th:classappend="${index}==1?'active':''" href="/course">创客学习</a></li>
+                <li id="p_class"><a th:classappend="${index}==2?'active':''" href="/resource-list.html">创客资源</a></li>
+                <li id="p_visit"><a th:classappend="${index}==3?'active':''" href="/gj-list.html">工具介绍</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="x_header_contain"></div>
+
+</body>
+</html>

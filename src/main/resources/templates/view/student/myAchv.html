@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>创建作品</title>
+    <link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="/style/steam_front/student_space/css/userWorks.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="/style/common/common.js"></script>
+</head>
+<link href="/style/jw/css/base.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
+<link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css"/>
+<link href="/layui/css/steps.css" rel="stylesheet" type="text/css"/>
+<body>
+
+<div th:replace="view/frame/head :: head-div(index=5)"></div>
+<div th:include="view/frame/userHead::subHead(index=4)"></div>
+<div id="p_link" th:include="view/frame/links :: p_links(l1='',name1='个人中心',l2='',name2='我的作品')">
+    <div class="p_fuhao"></div>
+    <div class="p_link_a"><a href="/index">创客教育</a>&gt;
+        <a></a>&gt;
+        <a id="f_course_name"></a></div>
+</div>
+<div class="layui-container">
+    
+    <div class="layui-tab layui-tab-card">
+        <ul class="layui-tab-title">
+            <li class="layui-this">个人创作</li>
+            <li>竞赛创作</li>
+            <button class="layui-btn layui-btn-warm layui-layout-right" id="share-btn" onclick="javascript:location.href='/student/createAchv.html'">开始创作</button>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <div class="row">
+                    <table id="list1"></table>
+                </div>
+            </div>
+            <div class="layui-tab-item ">
+                <div class="row">
+                    <table id="list2"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script th:inline="none">
+    layui.use(['table','layer','jquery', 'js_tools'], function () {
+        var table = layui.table;
+        var tools = layui.js_tools;
+        var tpl = tools.getTableTemplate();
+        tpl.elem = '#list1';
+        tpl.url = '/student/achv/page';
+        tpl.cols = [[
+            {field: 'name', align: 'center', title: '作品名', width: '20%'}
+            , {field: 'createTime', align: 'center', title: '创作时间', width: '20%'}
+            , {field: 'likeNum', align: 'center', title: '点赞数', width: '10%'}
+            , {field: 'favNum', align: 'center', title: '收藏数', width: '10%'}
+            , {
+                field: 'title',
+                align: 'center',
+                title: '操作',
+                templet: '<div><a href="/achv/detail/{{d.id}}">查看作品</a></div>'
+            }
+        ]];
+        tpl.where = {contest:'0'};
+        var list = table.render(tpl);
+
+
+
+        var tpl2 = tools.cloneObj(tpl);
+        tpl2.elem='#list2';
+        tpl2.where = {
+            contest:'1'
+        }
+        var list2 = table.render(tpl2);
+
+    });
+
+</script>
+</body>
+</html>

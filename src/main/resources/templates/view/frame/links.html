@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--/*@thymesVar id="l1" type="java.lang.String"*/-->
+<!--/*@thymesVar id="name1" type="java.lang.String"*/-->
+<!--/*@thymesVar id="l2" type="java.lang.String"*/-->
+<!--/*@thymesVar id="name2" type="java.lang.String"*/-->
+<div id="p_link" th:fragment="p_links">
+    <div class="p_fuhao"></div>
+    <div class="p_link_a">
+        <a href="/">创客教育</a>&gt;
+        <a id="first_link" th:href="${l1}" th:text="${name1}" href="">课程中心</a>
+        <span th:if="${name2}!=null">&gt;</span>
+        <a id="second_link" th:href="${l2}" th:text="${name2}" href="">课程详情</a></div>
+</div>
+
+</body>
+</html>

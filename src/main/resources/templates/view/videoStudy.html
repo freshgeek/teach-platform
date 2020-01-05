@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/style/steam_front/resourceLibrary/css/taolunqu2.css" rel="stylesheet" type="text/css"/>
+    <link href="/style/steam_front/resourceLibrary/css/video_study.css" rel="stylesheet" type="text/css"/>
+    <link href="/style/steam_front/resourceLibrary/css/file_download.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="/static-res/sea-modules/1.0/arale/dialog/1.3.0/dialog.css"/>
+    <title>资源库</title>
+</head>
+
+<body>
+
+<div th:replace="view/frame/head :: head-div"></div>
+<link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css"/>
+<link href="/style/jw/css/base.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css"
+      media="screen"/>
+<link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css"/>
+<input type="hidden" id="loginUserId" value=122500/>
+<input type="hidden" id="loginNickName" value=1163518793/>
+<input type="hidden" id="identityId" value=2/>
+<input type="hidden" id="courseId" data="89"/>
+<input type="hidden" id="resId" data="509"/>
+<input type="hidden" id="authorId"/>    <!-- 课件作者ID -->
+<input type="hidden" id="showdisscuss" value=""/>
+<input type="hidden" id="showworks" value=""/>
+<input type="hidden" id="showworksView" value=""/>
+<input id="state" type="hidden" value="0"/>
+
+<div id="p_link">
+    <div class="p_fuhao"></div>
+    <div class="p_link_a"><a href="/index">STEAM创客教育</a>&gt;
+        <a href="/course">课程中心</a>&gt;<a
+                href="/courseDetails/89">课程视频</a></div>
+</div>
+<div id="x_container">
+
+    <div class="p_taolun_nav">
+        <div class="p_taolun_nav_ul">
+            <ul>
+                <li><a class="p_current">视频</a></li>
+            </ul>
+        </div>
+        <div class="q_nav_works_add"><a>上传作品</a></div>
+    </div>
+    <div id="x_main"><!--主要内容开始-->
+        <ul class="q_mainUl">
+            <li class="q_mainli">
+                <div id="q_void">
+                    <!-- 课件 -->
+                    <div id="x_directory">
+                        <div id="x_directory_h">课程目录</div>
+                        <div id="q_navModel">
+                            <ul>
+                                <li class="x_zhang" data="{id}">{name}</li>
+                            </ul>
+                        </div>
+                        <div id="q_nav">
+                            <ul>
+                                <li th:each="lesson , stat : ${lessons}" class="x_zhang"
+                                    th:text="${lesson.name}"
+                                    th:attr="url=${lesson.videoUrl}"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="x_video">
+                        <!--视频区域开始-->
+                        <div id="x_video_h">
+                            <div id="x_video_l"></div>
+                            <div id="x_video_r"></div>
+                            <img id="x_video_m"
+                                 src="/style/steam_front/resourceLibrary/images/icon_07.jpg"/>
+                        </div>
+                        <div id="x_videv_p"></div>
+                        <div id="fileContent">
+                            <div id="video" style="width:100%; height:100%;">
+                                <div id="wtCkplayer" style="position:relative;height:650px;">
+                                    <video style="width: 830px;" controls>
+                                        <source type="video/mp4" src="">
+                                    </video>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div id="fileContent_model" style="display: none">
+                            <div class="z_contain">
+                                <div class="z_contain_box">{fileViewData}</div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="videoRecoudId"/> <input type="hidden"
+                                                                         id="recordTime"/>
+                        <p class="q_record">
+                            上次播放到：<span>06:55</span> 是否继续播放？ <a id="q_record_yes">Yes</a> <a
+                                id="q_record_no">No</a>
+                        </p>
+                    </div>
+<script>
+
+layui.use('jquery', function () {
+    var $ = layui.jquery;
+
+    $('.x_zhang').on('click', function () {
+        $('.x_zhang').removeClass('clickLi');
+        $(this).addClass('clickLi');
+        $('video')[0].src = $(this).attr('url');
+    });
+})
+
+</script>
+
+                    <!--视频区域结束-->
+                    <div class="clear"></div>
+                </div> <!-- q_void end -->
+            </li>
+        </ul>
+    </div>
+    <!--主要内容结束-->
+</div>
+<div th:include="view/frame/footer::p_foot"></div>
+
+</body>
+
+</html>

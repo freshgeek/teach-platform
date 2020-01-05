@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/style/jw/css/base.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
+    <link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>课程列表</title>
+</head>
+<body>
+<div th:replace="view/frame/head :: head-div(index=2)"></div>
+<div th:replace="view/frame/userLearnHead :: subHead(index=1)"></div>
+<link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css"/>
+<link href="/style/steam_front/resourceLibrary/css/resource.css" rel="stylesheet" type="text/css"/>
+<div id="type_out_div">
+    <div class="outer_div">
+        <div class="type_div1">
+            <span class="type_span">分类:</span>
+            <div class="content_div">
+                <ul class="type_ul" id="typeUl">
+                    <li id="firstLi" data="">
+                        <a href="/course" th:class=" ${course.typeId}==null?'checked_a':''" data="">全部</a>
+                    </li>
+                    <li th:each="ty : ${course_type}">
+                        <a th:class="${course.typeId}==${ty.id}?'checked_a':''"
+                           th:attr="data=${ty.id}"
+                           th:text="${ty.name}"
+                           th:href="'/course/'+${ty.id}"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--<div class="type_div1">
+            <span class="type_span">排序:</span>
+            <div class="content_div">
+                <ul class="type_ul" id="sortUl">
+                    <li><a class="checked_a sort_a_new">最新</a></li>
+                    <li><a class="sort_a_hot">最热</a></li>
+                </ul>
+            </div>
+        </div>-->
+    </div>
+</div>
+<!--/*@thymesVar id="item" type="org.ck.teach.teachplatform.entity.Course"*/-->
+<div style="width:100%;height:100%;display:inline-block;background:#f3f5f7;padding-bottom:30px;">
+    <div class="outer_div">
+        <div id="typeChoose" style="margin-top:50px;">
+            <ul>
+                <li class="typeChoose-outer-li" th:each="item : ${course_page.getRecords()}">
+                    <a th:href="'/courseDetail/'+${item.getId()}">
+                        <div class="course-big-div">
+                            <div class="showTypeDiv" style="">
+                                <div class="showTypeTile">
+                                    <span class="course-type-span" th:text="${item.title}">魔盒</span>
+                                </div>
+                                <div class="course_content">
+                                    <div style="text-align:center;padding-top:10px;">
+                                        <img class="course-img" th:src="${item.coverUrl}">
+                                        <h3 class="course-card-name" th:text="${item.name}">123</h3>
+                                        <p class="course-intro-p" th:text="${item.intro}">123</p>
+                                        <p class="course-visit-num"><span class="num-span"
+                                                                          th:text="${item.learnNum}+'人在学'"></span><img
+                                                src="/style/steam_front/resourceLibrary/images/period.png"><span
+                                                class="period-span" th:text="${item.lessonNum}+课时"></span></p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </a></li>
+            </ul>
+        </div>
+        <div th:if="${course_page} != null" class="page">
+            <!--disabled_page-->
+            <a th:href="'/course?pageIndex=1'+(${course.typeId}==null?'':'&typeId='+${course.typeId})" id="index_page"
+               class="front_page">首页</a>
+            <a th:href="'/course?pageIndex='+${course_page.getCurrent()-1}+(${course.typeId}==null?'':'&typeId='+${course.typeId})"
+               id="last_page"
+               class="  front_page">上一页</a>
+
+            <a th:href="'/course?pageIndex='+${course_page.getCurrent()}+(${course.typeId}==null?'':'&typeId='+${course.typeId})"
+               th:text="${course_page.getCurrent()}"
+               class="active text-page-tag">1</a>
+            <a th:href="'/course?pageIndex='+${course_page.getCurrent()+1}+(${course.typeId}==null?'':'&typeId='+${course.typeId})"
+               th:text="${course_page.getCurrent()+1}"
+               class="text-page-tag">3</a>
+            <a th:href="'/course?pageIndex='+${course_page.getCurrent()+2}+(${course.typeId}==null?'':'&typeId='+${course.typeId})"
+               th:text="${course_page.getCurrent()+2}"
+               class="text-page-tag back_pageNo">4</a>
+
+            <a th:href="'/course?pageIndex='+${course_page.getCurrent()+1}+(${course.typeId}==null?'':'&typeId='+${course.typeId})"
+               class="back_page">下一页</a>
+            <a th:href="'/course?pageIndex='+${course_page.getPages()}+(${course.typeId}==null?'':'&typeId='+${course.typeId})"
+               class="back_page">最后一页</a>
+        </div>
+    </div>
+</div>
+
+<div style="width:100%;height:70px;" th:include="view/frame/footer :: p_foot">
+
+</body>
+</html>

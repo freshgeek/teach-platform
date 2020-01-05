@@ -1,0 +1,269 @@
+﻿@charset "utf-8";
+/* CSS Document */
+body{
+	font-family: 'microsoft yahei','微软雅黑','宋体';
+	min-width:1200px;
+}	
+#x_bg{
+	height:57px;
+	width:100%;
+	background:rgba(0, 0, 0, 0);
+	position:fixed;
+	top:0px;
+	left:0px;
+	z-index: 3;
+}
+#x_header_contain{
+	background-color: black;
+	width:1200px;
+	text-align:center;
+	margin:0 auto;
+	height:57px;
+	_padding-top:10px;
+	position:relative;
+}
+#x_logo{
+	width:229px;
+	height:30px;
+	background: url(../images/logo2_03.png) no-repeat;
+	float:left;
+	margin-top:11px;
+}
+#x_logo a{
+	display:block;
+	width:229px;
+	height:30px;
+}
+#x_nav{
+	float:left;
+	margin-top:20px;
+	margin-left:30px;
+	_margin-left:30px;
+	
+}
+#x_nav ul li{
+	float:left;
+	font-size:16px;
+	margin-left:35px;
+	color:#fff;
+	_margin-left:33px;
+}
+#x_nav ul li a{
+	color:#fff;
+}
+#x_search_l{
+	width:189px;
+	height:30px;
+	background: url(../images/left_03.png) no-repeat;
+	float:left;
+	margin-top:11px;
+	margin-left:30px;	
+}
+#x_search_r{
+	width:30px;
+	height:30px;
+	background: url(../images/right_05.png) no-repeat;
+	float:left;
+
+}
+#x_search{
+	width: 189px;
+    height: 30px;
+    position: absolute;
+    top: 0;
+    left:0;
+    border-radius: 15px;
+    padding-left: 14px;
+    box-sizing: border-box;
+	background:#FFF;
+	border:none;
+	vertical-align: bottom;
+}
+.x_unknow{
+	float:left;
+}
+#x_unknow1{
+	width:23px;
+	height:24px;
+	background: url(../images/yuan_03.png) no-repeat;
+	margin-left:25px;
+	margin-top:15px;
+}
+#x_unknow2{
+	width:23px;
+	height:24px;
+	background: url(../images/zhong_06.png) no-repeat;
+	margin-left:25px;
+	margin-top:15px;
+}
+a{
+	cursor: pointer;;
+}
+#x_nav ul li a:hover{
+	color:#fcff00;
+}
+#x_nav ul li a.active{
+	color:#fcff00;
+}
+#x_unknow1:hover{
+	background: url(../images/hoveryuan_03.png) no-repeat;
+}
+#x_unknow2:hover{
+	background: url(../images/hoverzhong_06.png) no-repeat;
+}
+.p_head_self_photo{
+	margin-top: 10px;
+	width: 80px;
+	height: 32px;
+	float: right;
+	margin-left:30px;
+}
+.q_btLogin{
+	font-family: Microsoft YaHei;
+	font-size:14px;
+	line-height:32px;
+	color:#fff;
+	letter-spacing:2px;
+}
+#p_head img{
+	display:block;
+	height:32px;
+	width:32px;
+	-webkit-border-radius: 50%;
+ 	-moz-border-radius: 50%;
+	border-radius:50%;
+	position:relative;
+	behavior:url(/style/steam_front/PIE.htc);
+}
+#p_header_contain,.p_header_contain {
+  height: 57px;
+  width: 100%;
+  background-color: #484a4a;
+}
+.q_headPortrait img {
+   -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  position: relative;
+  behavior: url(/style/steam_front/PIE.htc);
+}
+.q_option{
+	display:none;
+	position:absolute;
+	top:44px;
+	right:-26px;
+}
+.q_option ul{
+	border: solid 1px #dfdfdf;
+    box-shadow: 0px 0px 3px #ccc;
+}
+.q_option li{
+	background:#fff;
+	height: 27px;
+	width:88px;
+	list-style: none;
+	line-height: 27px;
+	text-align: center;
+}
+.q_option strong{
+	display:block;
+	width:14px;
+	height:9px;
+	background:url("/style/steam_front/head/images/nav_03.png");
+	position:relative;
+	left:50%;
+	margin-left:-8px;
+	margin-bottom:-2px;
+	z-index:2;
+}
+.q_option a{
+	font-family: simhei;
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
+}
+.q_option a:hover{
+	color:#FC7E8E;
+}
+/***
+ 头部搜索
+ */
+
+.q_search{
+	display:none;
+	position:absolute;
+	top:35px;
+	width: 200px;
+}
+.q_search ul{
+	border: solid 1px #dfdfdf;
+	box-shadow: 0px 0px 3px #ccc;
+}
+.q_search li:hover{
+	background-color: #00c3ff;
+}
+.q_search li{
+	background:#fff;
+	height: 27px;
+	width: 200px;
+	line-height: 27px;
+	text-align: center;
+}
+.q_search strong{
+	display:block;
+	width:14px;
+	height:9px;
+	background:url("/style/steam_front/head/images/nav_03.png");
+	position:relative;
+	left:50%;
+	margin-left:-8px;
+	margin-bottom:-2px;
+	z-index:2;
+}
+.q_search a,.q_search span{
+	font-family: simhei;
+	font-size: 14px;
+	color: #666;
+	cursor: pointer;
+}
+.q_search span{
+	float: left;
+}
+.q_search a{
+	float: right;
+}
+.q_search a:hover{
+	color:#FC7E8E;
+}
+/*定位条*/
+#p_link{
+	width:1200px;
+	height:55px;
+	margin:0 auto;
+	position:relative;
+	overflow:hidden;
+	padding-left:13px;
+}
+.p_fuhao{
+	width:13px;
+	height:17px;
+	float:left;
+	margin-top:20px;
+	background: url(../images/locat_03.gif) no-repeat;
+	position:relative;
+	overflow:hidden;
+}
+.p_link_a{
+	font-family:"Microsoft YaHei";
+	font-size:12px;
+	float:left;
+	margin-top:23px;
+	margin-left:8px;
+	letter-spacing:2px;
+}
+.p_link_a a{
+	color:#898e95;
+}
+.p_link_a a:hover{
+	color: #f5bb0b;
+}

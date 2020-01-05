@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="/style/steam_front/student_space/css/myCourse.css" rel="stylesheet" type="text/css"/>
+    <title>我的收藏</title>
+    <link href="/style/jw/css/base.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
+    <link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+
+<div th:replace="view/frame/head :: head-div(index=6)"></div>
+<div th:include="view/frame/userHead::subHead(index=6)"></div>
+
+<div id="p_link" th:include="view/frame/links::p_links(l1='',name1='个人中心',l2='',name2='我的收藏')">
+</div>
+<div class="clear"></div>
+<style>
+
+    .layui-tab-card > .layui-tab-title .layui-this {
+        color: white;
+        background-color: #f5bb0b;
+    }
+
+    .layui-laypage .layui-laypage-curr .layui-laypage-em {
+        background-color: #808080;
+    }
+</style>
+<div class="layui-container">
+    <div class="layui-tab layui-tab-card">
+        <ul class="layui-tab-title">
+            <li class="layui-this">作品收藏</li>
+            <!--
+                        <li>资源收藏</li>
+            -->
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <div class="row">
+                    <table id="list1"></table>
+                </div>
+            </div>
+            <!--
+                        <div class="layui-tab-item ">
+                            <div class="row">
+                                <table id="list2"></table>
+                            </div>
+                        </div>
+            -->
+        </div>
+    </div>
+</div>
+
+<script th:inline="none">
+    layui.use(['js_tools', 'table'], function () {
+        var table = layui.table;
+        var js_tools = layui.js_tools;
+
+        var tpl = js_tools.getTableTemplate();
+        tpl.elem = '#list1';
+        tpl.url = '/student/achvFav/page';
+        tpl.cols = [[
+            {field: 'name', align: 'center', title: '作品名', width: '20%',templet: '<div>{{d.achv.name}}</div>'}
+            , {field: 'createTime', align: 'center', title: '收藏时间', width: '20%'}
+            , {field: 'createTime', align: 'center', title: '创作时间', width: '20%',templet: '<div>{{d.achv.createTime}}</div>'}
+            , {field: 'likeNum', align: 'center', title: '点赞数', width: '10%',templet: '<div>{{d.achv.likeNum}}</div>'}
+            , {field: 'favNum', align: 'center', title: '收藏数', width: '10%',templet: '<div>{{d.achv.favNum}}</div>'}
+            , {
+                field: 'title',
+                align: 'center',
+                title: '操作',
+                templet: '<div><a href="/achv/detail/{{d.achv.id}}">查看作品</a></div>'
+            }
+            , {
+                field: 'title',
+                align: 'center',
+                title: '操作',
+                templet: '<div><a onclick="delFav({{d.id}})">取消收藏</a></div>'
+            }
+        ]];
+        tpl.where = {contest:'0'};
+        var list = table.render(tpl);
+
+        window.delFav = function (i) {
+            js_tools.quick_post('/admin/api/userAchvFav/delete',{id:i},function (res) {
+                if (js_tools.isSucc(res)){
+                    layer.msg('取消成功');
+                    list.reload();
+                }else{
+                    layer.alert(res.msg);
+                }
+            })
+        }
+    })
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

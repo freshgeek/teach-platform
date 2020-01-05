@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title th:text="${detail.getName()}">-详情</title>
+    <link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css">
+    <link href="/style/steam_front/diyWorks/css/diyWorksDetail.css" rel="stylesheet" type="text/css">
+    <link href="/style/steam_front/common/css/common.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/style/steam_front/common/js/common.js"></script>
+    <link href="/style/steam_front/resourceLibrary/css/vote.css" rel="stylesheet" type="text/css">
+    <style>
+        .weixin {
+            display: inline-block;
+            position: absolute;
+            right: 50px;
+            top: 0;
+            width: 100px;
+            height: 34px;
+            line-height: 34px;
+            color: #fff;
+        }
+
+        .p_main_content img {
+            width: 65%;
+        }
+    </style>
+</head>
+<link href="/style/jw/css/base.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
+<link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css"/>
+<body>
+<div th:replace="view/frame/head :: head-div(index=5)"></div>
+<div id="p_link" th:include="view/frame/links :: p_links(l1='/achv/page',name1='创客创作'
+,l2='#',name2=${detail.getName()})">
+</div>
+<div class="p_worksdetail">
+    <div class="p_title" th:text="${detail.getName()}">照顾盲人眼镜</div>
+    <div class="p_author">
+        作者：[(${detail.getUser().getNickName()})]
+        <span>时间：[(${#dates.format(detail.getCreateTime(),'yyyy-MM-dd')})]</span>
+        <div class="q_like"
+             th:attr="data-id=${like?.getId()}"
+             th:classappend="${like!=null} ?'checked':''"
+             th:text="${detail.getLikeNum()}">
+            0</div>
+        <div class="q_fav"
+             th:attr="data-id=${fav?.getId()}"
+             th:classappend="${fav!=null}?'checked':''">
+            <span class="layui-icon layui-icon-star"></span>
+            <span class="num" th:text="${detail.getFavNum()}" ></span>
+            </div>
+        <div class="clear"></div>
+    </div>
+    <div class="p_fenge"></div>
+    <div class="p_main_content">
+        [(${detail.getContent()})]
+    </div>
+    <!--投票部分-->
+    <div class="clear"></div>
+    <!--评论区-->
+    <div class="p_worksdetail">
+        <div class="q_discussText layui-form">
+
+            <input th:value="${login_user?.getId()}" name="userId" type="hidden" lay-reqtext="请先登录!"
+                   lay-verify="required">
+            <input id="achvId" name="achvId" type="hidden" th:value="${detail.getId()}">
+            <textarea placeholder="写点评论支持下资源贡献者,注意字数不要超过70字 ~" name="content" lay-verify="required"></textarea>
+            <div class="q_discussBt">
+                <a lay-submit lay-filter="cmt-btn">发表评论</a>
+            </div>
+        </div>
+        <p class="q_wdhuifu_number">作品评论</p>
+        <div class="p_worksdetail_discuss_list">
+            <div class="p_worksdetail_discuss_list">
+                <div class="q_detailList" id="cmt-list">
+                </div>
+                <div class="common_yema" style="text-align: right">
+                    <div id="page"></div>
+                </div>
+            </div>
+        </div>
+        <!-- p_worksdetail_discuss_list end -->
+
+        <script id="cmt-model" type="text/html">
+            {{#  layui.each(d.body,function(i,e){ }}
+            <div class="q_detailModel">
+                <div class="p_worksdetail_discuss_detail" data="{{e.id}}">
+                    <a class="p_worksdetail_discuss_userimg">
+                        <img src="{{e.user.headUrl}}">
+                    </a>
+                    <a class="p_worksdetail_discuss_username">{{e.user.nickName}}</a>
+                    <p>{{e.content}}</p>
+                    <span>{{e.createTime}}</span>
+                    <span><a data-user="{{e.userId}}" data-id="{{e.id}}">删除评论</a></span>
+                </div>
+            </div>
+            {{#   }) ;  }}
+        </script>
+        <script th:inline="none">
+            layui.use(['form', 'js_tools', 'layer'], function () {
+                var js = layui.js_tools;
+                var form = layui.form;
+                var layer = layui.layer;
+                js.loadData({
+                    url: '/admin/api/userAchvCmt/page',
+                    param: {achvId: js.get('#achvId').val(), pageSize: 5},
+                    model: '#cmt-model',
+                    list: '#cmt-list',
+                    page: 'page'
+                });
+
+                form.on('submit(cmt-btn)', function (data) {
+                    js.quick_post('/admin/api/userAchvCmt/add', data.field, function (res) {
+                        layer.msg(res.msg);
+                        js.loadData({
+                            url: '/admin/api/userAchvCmt/page',
+                            param: {resourceId: js.get('#achvId').val(), pageSize: 5},
+                            model: '#cmt-model',
+                            list: '#cmt-list',
+                            page: 'page',
+                            refresh: true
+                        });
+                    })
+                })
+
+                //点赞
+                js.get('.q_like').on('click', function () {
+                    var l = checkLogin();
+                    var me = this;
+                    // 判断登录
+                    if (l) {
+                        //取消
+                        if (js.get(me).hasClass('checked')) {
+                            js.quick_post('/admin/api/userAchvLike/delete', {
+                                id:js.get(me).attr('data-id')
+                            }, function (res) {
+                                if (js.isSucc(res)) {
+                                    js.addText(js.get(me).removeClass('checked'),-1);
+                                } else {
+                                    layer.msg(res.msg);
+                                }
+                            })
+                        }else{
+                            //点暂
+                            js.quick_post('/admin/api/userAchvLike/add', {
+                                userId: l.id,
+                                achvId: js.get('#achvId').val()
+                            }, function (res) {
+                                if (js.isSucc(res)) {
+                                    js.addText(js.get(me).addClass('checked'),1);
+                                } else {
+                                    layer.msg(res.msg);
+                                }
+                            })
+                        }
+                    }
+                });
+
+                //收藏
+                js.get('.q_fav').on('click', function () {
+                    var l = checkLogin();
+                    var me = this;
+                    if (l) {
+                        if (js.get(me).hasClass('checked')) {
+                            js.quick_post('/admin/api/userAchvFav/delete', {
+                                id:js.get(me).attr('data-id')
+                            }, function (res) {
+                                if (js.isSucc(res)) {
+                                    js.addText(js.get(me).removeClass('checked').find('span.num'),-1);
+                                } else {
+                                    layer.msg(res.msg);
+                                }
+                            })
+                        }else{
+                            js.quick_post('/admin/api/userAchvFav/add', {
+                                userId: l.id,
+                                achvId: js.get('#achvId').val()
+                            }, function (res) {
+                                if (js.isSucc(res)) {
+                                    js.addText(js.get(me).addClass('checked').find('span.num'),1);
+                                } else {
+                                    layer.msg(res.msg);
+                                }
+                            })
+                        }
+                    }
+                });
+
+            });
+        </script>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,704 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="/style/steam_front/resourceLibrary/css/course_details.css" rel="stylesheet" type="text/css"/>
+    <link href="/style/newUeditor/third-party/video-js/video-js.css" rel="stylesheet" type="text/css"/>
+    <link type="text/css" rel="stylesheet" href="/style/newUeditor/third-party/video-js/video-js.css"/>
+    <script language="javascript" type="text/javascript" src="/style/newUeditor/third-party/video-js/video.js"></script>
+    <title>课程详情</title>
+</head>
+<body>
+
+<link href="/style/jw/css/base.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
+<link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css"/>
+<script src="/static-res/sea-modules/seajs/sea-2.3.0.js"></script>
+<script>
+
+    seajs.config({
+        base: "http://static.steamaker.cn/static-res/sea-modules/1.0/",
+        paths: {
+            'bean': '/bean'
+        },
+        alias: {
+            "jquery": "jquery/jquery-1.7.2",
+            "$": "jquery/jquery-1.7.2",
+            "jquery1.7": "jquery/jquery-1.7.2",
+            "jquery2": "jquery/jquery-2.1.0",
+            "ajaxRpc": "utils/ajaxRpc-sea",
+            "extAuthUser": "utils/extAuthUser-sea",
+            "utils": "utils/base-utils-sea",
+            "comets": "utils/comets-sea",
+            "swfobject": "utils/swfobject-sea",
+            "fancybox": "utils/fancybox-sea",
+            "ui": "ui/base-ui-sea",
+            "zTree": "tree/jquery.ztree.core-3.5-sea",
+            "ztree-exedit": "tree/jquery.ztree.exedit-3.5-sea",
+            "ztree-excheck": "tree/jquery.ztree.excheck-3.5-sea",
+            'widget': "arale/widget/1.1.1/widget",
+            'validator': "arale/validator/0.9.7/validator",
+            "dialog": "arale/dialog/1.3.0/dialog",
+            "confirmbox": "arale/dialog/1.3.0/confirmbox",
+            "uploadify": "uploadify/jquery.uploadify",
+            "pbtip": "customplugins/tip-pbplugins-sea",
+            "kinMaxShow": "customplugins/flash-pbplugins-sea",
+            "Jcrop": "ui/jquery.Jcrop.sea",
+            "ueditor": "utils/ueditor-utils",
+            "blackbox": "blackbox/blackbox-sea"
+        }
+    });
+
+
+    seajs.use("utils", function (utils) {
+
+        utils.constants.ctx = "";
+        utils.constants.seaModulesPath = "http://static.steamaker.cn/static-res/sea-modules/1.0";
+        utils.constants.loginRedirectUrl = "/loginRedirect";
+        utils.constants.basicUrl = "http://www.steamaker.cn";
+
+    });
+
+
+</script>
+
+
+<link href="/style/steam_front/common/css/online.css" rel="stylesheet" type="text/css">
+<script src="/style/bootstrap/js/jquery.js" type="text/javascript"></script>
+<script type="text/javascript" src="/style/steam_front/common/js/online.js"></script>
+
+<div id="top">
+    <div id="izl_rmenu" class="izl-rmenu">
+        <div class='consult-header'>
+            <div>
+                <h3 class='consult-title'>在线咨询</h3>
+            </div>
+        </div>
+        <div class='qq' style="background:#F9FAFB;">
+            <div class='qq-detail' style='padding-top: 4px;height:130px;'>
+                <a href="/msgrd?v=3&uin=3535275828&site=qq&menu=yes.html" class="im-qq qq-a" title="在线QQ客服">
+                    <div class="qq-container"></div>
+                    <div class="qq-hover-c"><img class="img-qq" src="/style/steam_front/common/img/qq.png"></div>
+                    <span>客服(深圳1)</span>
+                </a>
+            </div>
+
+        </div>
+        <!--<div id="drawback" style="height:36px;width:90px;background:#2acb6b; position: absolute;left:-90px;top:0px;"></div>-->
+    </div>
+</div>
+
+<div id="izl_rmenu2" class="izl-rmenu2">
+    <div id="contonct_first"><h3 class='contonct_first_title'>在线咨询</h3></div>
+</div>
+
+
+<link href="/style/steam_front/head/css/header.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript">
+    seajs.use("http://static.steamaker.cn/style/steam_front/head/js/head");
+
+</script>
+
+<div id="x_bg" style="background-color:black">
+    <div id="x_header_contain">
+        <div id="x_logo"><a href="/index.html"></a></div>
+        <div id="x_nav">
+            <ul>
+                <li id="x_shouye"><a href="/index.html">首页</a></li>
+                <li id="x_find"><a href="/creativeprogramming.html">发现</a></li>
+
+                <li id="x_newProgramming"><a href="/goProgramming.html">编程</a></li>
+
+                <li id="x_diyzuopin"><a href="/diyworks.html">造物</a></li>
+                <li id="x_luntan"><a class="active" href="/resourcelibrary.html">课程</a></li>
+                <li id="x_contest"><a href="/school.html">学校</a></li>
+                <!--              	<li id="x_homeworkss"><a  class="homework">作业</a></li>
+           -->
+                <li id="x_contest"><a href="/competition.html">赛事</a></li>
+                <li id="x_gongzuoshi"><a class="personal">个人中心</a></li>
+
+            </ul>
+        </div>
+
+        <div id="x_search_l" style="width:189px;height:30px;position:relative;">
+            <input id="x_search" type="text" value=""/>
+            <a style="position:absolute;right:0;">
+                <div id="x_search_r"></div>
+            </a>
+        </div>
+
+
+        <!-- <div>
+            <a><div class="x_unknow" id="x_unknow1"></div></a>
+            <a><div class="x_unknow" id="x_unknow2"></div></a>
+        </div> -->
+        <div class="p_head_self_photo">
+            <!-- <a href="/index.htmllogin" class="q_btLogin">登录</a> -->
+            <a id="btn_login2" class="q_btLogin">登录</a>
+        </div>
+        <div id="wn" class="q_option">
+            <strong></strong>
+            <ul>
+                <li><a href="/logout.html">退&nbsp;&nbsp;出</a></li>
+            </ul>
+        </div>
+        <div id="personalCenter" class="q_option" style="right:350px">
+            <strong></strong>
+            <ul>
+            </ul>
+        </div>
+
+        <div id="fenlei" class="q_option" style="right:130px">
+            <strong></strong>
+            <ul>
+
+                <li><a id="kc">课程</a></li>
+
+                <li><a id="bc">编程</a></li>
+
+                <li><a id="diy">造物</a></li>
+
+                <li><a id="cpt">赛事</a></li>
+            </ul>
+        </div>
+
+        <link href="/style/steam_front/small_login/css/small_login.css" type="text/css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="/style/signin.css">
+        <script src="/style/steam_front/cpt/js/js/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="/style/login.js"></script>
+        <style>
+
+            .form-control {
+                display: block;
+                width: 100%;
+                height: 34px;
+                padding: 6px 12px;
+                font-size: 14px;
+                line-height: 1.42857143;
+                color: #555;
+                background-color: #fff;
+                background-image: none;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+                box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+                -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+                -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+                transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            }
+
+        </style>
+        <script>
+
+            seajs.use(["extAuthUser", "extAuthUser"], function (extAuthUser, extAuthUser) {
+                $("#signin-close a").click(function () {
+                    $(".q_login").toggle();
+                });
+                $("#q_login_b").click(function () {
+
+                    try {
+
+                        var params = {};
+
+                        var username = $("#q_login_id").val();
+                        var password = $("#q_login_pass").val();
+
+                        if (username == "") {
+                            $(".q_login_error").html("错误信息：请输入用户名");
+                            return;
+                        }
+                        if (password == "") {
+                            $(".q_login_error").html("错误信息：请输入密码");
+                            return;
+                        }
+
+                        $.ajax({
+                            type: "POST",
+                            url: "/checkValidateCode",
+                            dataType: "json",
+                            data: {number: $("#number").val()},
+                            success: function (msg) {
+                                if (msg) {
+                                    var result = extAuthUser.auth(username, password, params);
+
+                                    if (result.success) {
+                                        $(".q_login").toggle();
+                                        window.location.reload();
+                                    } else {
+                                        $(".q_login_error").html("错误信息：" + result.message);
+                                        $(".check_bt img").attr("src", "/imageServlet.html?" + Math.random());
+                                    }
+                                } else {
+                                    $(".q_login_error").html("错误信息：验证码错误，请重新输入！");
+                                    $(".check_bt img").attr("src", "/imageServlet.html?" + Math.random());
+                                }
+                            },
+                            error: function () {
+                                alert("登录失败，刷新后再尝试！");
+                                $(".check_bt img").attr("src", "/imageServlet.html?" + Math.random());
+                            }
+
+                        });
+
+                    } catch (ex) {
+                        console.log(ex);
+                    }
+
+                });
+
+                $("#q_login_pass").keydown(function (event) {
+                    if (event.keyCode == 13) {
+                        $("#q_login_b").click();
+                    }
+                });
+
+                $(".q_login_check input").keydown(function (event) {
+                    if (event.keyCode == 13) {
+                        $("#q_login_b").click();
+                    }
+                });
+                $(".q_login_check input").keyup(function () {
+                    var texts = $(this).val();
+                    if (texts.length > 4) {
+                        var t = texts.substr(0, 4);
+                        $(this).val(t);
+                    }
+                });
+
+
+                $(document).on("click", ".reset_bt", function (e) {
+                    $(".check_bt img").attr("src", "/imageServlet.html?" + Math.random());
+                })
+            });
+        </script>
+        <div id="shelter"></div>
+        <div class="q_login"><!-- 小登录框 -->
+            <div class="signin">
+                <div id="signin-close"><a>✘</a></div>
+                <div class="signin-head">
+
+                    <img id="imageUrl" src="/style/back/image/tou.jpg" style="width:119px;height:119px"
+                         class="img-circle">
+                </div>
+                <div class="form-signin">
+                    <input id="q_login_id" name="name" value="" type="text" class="form-control" placeholder="用户名"
+                           required autofocus/>
+                    <input id="q_login_pass" name="password" value="" type="password" class="form-control"
+                           placeholder="密码" required/>
+                    <p class="q_login_check">
+                        <input placeholder="输入验证码" id="number"/>
+                        <a class="check_bt"><img src="/imageServlet.html"></a>
+                        <a class="reset_bt">换一张</a>
+                    </p>
+                    <p class="q_login_forget">
+                        <a class="q_forget_left" href="/templates/view/userRegister.html">马上注册&gt;&gt;</a>
+                        <a class="q_forget_right" href="/forgetPassword.html">忘记密码</a>
+                    </p>
+                    <p id="q_login_bt">
+                        <a id="q_login_b" title="登录">登&nbsp;&nbsp;&nbsp;录</a>
+                    </p>
+                    <p class="q_login_error"></p>
+
+                </div>
+            </div>
+        </div><!-- q_login end--></div>
+</div>
+<div id="p_header_contain"></div>
+<input type="hidden" id="loginUserId" value=2/>
+<input type="hidden" id="loginNickName" value=匿名用户/>
+<input type="hidden" id="identityId" value=/>
+<script type="text/javascript">
+    seajs.use("/style/steam_front/resourceLibrary/js/course_details");
+</script>
+<input type="hidden" id="courseType" data="0"/>
+<input type="hidden" id="isPublic"/>
+<input type="hidden" id="courseId" data="70"/>
+<input type="hidden" id="courseUserId"/><!-- 课程作者ID -->
+
+<div id="p_link">
+    <div class="p_fuhao"></div>
+    <div class="p_link_a"><a href="/index.html">STEAM创客教育</a>&gt;<a href="/resourcelibrary.html">课程列表</a>&gt;<a
+            id="f_course_name"></a></div>
+</div>
+<div class="clear"></div>
+<div id="x_class_container">
+    <div id="x_class_sum"><!--课程基本信息-->
+        <div id="x_class_head">
+            <span id="x_class_title">课程名</span><br/><br/>
+            <span id="x_class_class">分类： <span></span></span>
+        </div>
+        <img id="x_class_cover" src="/files/courseCover/2017-06-05/2a303148-994a-41dc-b90c-b2ecaac5306b.png" alt="封面"/>
+        <div id="x_class_main">
+            <div id="x_descrip">
+                <p id="x_des_tltle">课程简介</p>
+                <p id="x_des_del"></p>
+            </div>
+            <div id="x_class_join">
+                <div class="x_join" id="x_join1"><span class="x_join_text">开课时间：</span><span class="x_join_text"
+                                                                                             id="releaseTime"></span>
+                </div>
+                <div class="x_join" id="x_join4"><span class="x_join_text">浏览人数：</span><span class="x_join_text"
+                                                                                             id="x_join_num">17322人</span>
+                </div>
+                <div class="x_join" id="x_join3"><span class="x_join_text">课程进度：</span><span class="x_join_text"
+                                                                                             id="q_updateText">连载至第4讲</span>
+                </div>
+                <div class="x_join" style="padding-left:0px;"><p><img id="x_teach_tou"
+                                                                      src="/style/back/image/tou_e.jpg"><span
+                        style="margin-left:-11px;" id="x_teach_name" data="905">林康生</span><span id="x_teach_class">深圳盛思科教 </span>
+                </p></div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div><!--课程基本信息结束-->
+    <div id="x_relate"><!--相关课程开始-->
+        <span class="x_left_title">相关课程</span>
+        <ul>
+        </ul>
+    </div><!--相关课程结束-->
+    <div id="x_relate_model" style="display:none;"><!--相关课程开始-->
+        <span class="x_left_title">相关课程</span>
+        <ul>
+            <li data="{id}">
+                <a href="/courseDetails/{id}.html">
+                    <img class="x_relate_pic" src="{imgUrl}.html"/>
+                    <p></p>
+                    <span class="x_relate_title">{name}</span>
+                </a><br/>
+            </li>
+        </ul>
+    </div><!--相关课程结束-->
+    <div class="x_left" id="x_chapter">
+        <span class="x_left_title" id="q_courseTitle">课程章节</span><br>
+        <div class="reinfoList_movel">
+            <li>
+                <a class="videoA" data="{data}"><p style="font-size:14px;" data="{id}">{reinfoList}</p></a>
+            </li>
+        </div>
+        <div class="reinfoList_list">
+            <ol class="rounded-list">
+                <li>
+                    <a class="videoA" data="259"><p style="font-size:14px;" data="259">1scratch第一课自我介绍</p></a>
+                </li>
+
+                <li>
+                    <a class="videoA" data="260"><p style="font-size:14px;" data="260">2scratch第二课看我72变</p></a>
+                </li>
+
+                <li>
+                    <a class="videoA" data="261"><p style="font-size:14px;" data="261">3scratch第三课汪汪动起来</p></a>
+                </li>
+
+                <li>
+                    <a class="videoA" data="262"><p style="font-size:14px;" data="262">4scratch第四课幸运号</p></a>
+                </li>
+
+                <li>
+                    <a class="videoA" data="263"><p style="font-size:14px;" data="263">5scratch第五课 幸运大转盘</p></a>
+                </li>
+
+                <li>
+                    <a class="videoA" data="264"><p style="font-size:14px;" data="264">6scratch第六课砸金蛋</p></a>
+                </li>
+
+                <li>
+                    <a class="videoA" data="265"><p style="font-size:14px;" data="265">7scratch第七课神奇的“画笔”</p></a>
+                </li>
+
+                <li>
+                    <a class="videoA" data="266"><p style="font-size:14px;" data="266">8scratch第八课设计画图板</p></a>
+                </li>
+
+                <li>
+                    <a class="videoA" data="267"><p style="font-size:14px;" data="267">9scratch第九课美丽的七色花</p></a>
+                </li>
+
+                <li>
+                    <a class="videoA" data="268"><p style="font-size:14px;" data="268">10scratch第十课 贺卡设计</p></a>
+                </li>
+
+                <li>
+                    <a class="videoA" data="269"><p style="font-size:14px;" data="269">11scratch第十一课 添加动画</p></a>
+                </li>
+
+                <li>
+                    <a class="videoA" data="270"><p style="font-size:14px;" data="270">12scratch第十二课 节日贺卡</p></a>
+                </li>
+
+                <li>
+                    <a class="videoA" data="271"><p style="font-size:14px;" data="271">13scratch第十三课 设计迷宫</p></a>
+                </li>
+
+                <li>
+                    <a class="videoA" data="272"><p style="font-size:14px;" data="272">14scratch第十四课 机关重重</p></a>
+                </li>
+
+                <li>
+                    <a class="videoA" data="273"><p style="font-size:14px;" data="273">15scratch第十五课 历经艰辛</p></a>
+                </li>
+
+                <li>
+                    <a class="videoA" data="274"><p style="font-size:14px;" data="274">16scratch第十六课 发出第一颗炮弹</p></a>
+                </li>
+
+                <li>
+                    <a class="videoA" data="275"><p style="font-size:14px;" data="275">17scratch第十七课 让飞机和炮弹多多</p></a>
+                </li>
+
+                <li>
+                    <a class="videoA" data="276"><p style="font-size:14px;" data="276">18scratch第十八课 比比谁的分数高</p></a>
+                </li>
+
+                <li>
+                    <a class="videoA" data="277"><p style="font-size:14px;" data="277">19scratch第十九课 启动摄像头</p></a>
+                </li>
+
+                <li>
+                    <a class="videoA" data="278"><p style="font-size:14px;" data="278">20scratch第二十课 水果争夺战</p></a>
+                </li>
+
+                <li>
+                    <a class="videoA" data="279"><p style="font-size:14px;" data="279">21scratch第二十一课 水果争夺战二</p></a>
+                </li>
+
+                <li>
+                    <a class="videoA" data="280"><p style="font-size:14px;" data="280">22scratch第二十二课 场景和角色</p></a>
+                </li>
+
+                <li>
+                    <a class="videoA" data="281"><p style="font-size:14px;" data="281">23scratch第二十三课 双人控制</p></a>
+                </li>
+
+                <li>
+                    <a class="videoA" data="282"><p style="font-size:14px;" data="282">24scratch第二十四课 比赛开始</p></a>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="x_left" id="f_chapter" style="border-bottom:1px #d7d7d8 solid;">
+        <span class="x_left_title">相关资料</span><br/>
+        <div class="fileList_model">
+            <div class="q_reinfoList"><p data="{id}" style="margin-bottom:10px;">{reinfoList}</p></div>
+        </div>
+        <div class="fileList_list"></div>
+    </div>
+
+    <div class="x_left" style="border-top:none;" id="left_comment">
+        <div class="q_comment">
+            <!-- 评论区 -->
+            <input id="q_commontType" type="hidden" value="0"/>
+            <div class="h_mycommont">
+                <div style="display: block; float: left; width: 97px;">
+                    <span>您的评价</span>
+                </div>
+                <ul class="star_rating">
+                    <li data="1"></li>
+                    <li data="2"></li>
+                    <li data="3"></li>
+                    <li data="4"></li>
+                    <li data="5"></li>
+                </ul>
+                <div class="star_rating_baffle"></div>
+            </div>
+            <!--h_mycommont end-->
+
+            <div class="h_commont">
+								<textarea name="textarea" id="textlimit" cols="10" rows="5"
+                                          placeholder="写点评论支持下资源贡献者~"></textarea>
+                <p>
+                    <span>最多</span><font>50</font>字
+                </p>
+                <!--style="display:none;"  -->
+            </div>
+            <!--h_commont end-->
+            <a class="h_stut_publishSubmit" data="50">发布评论</a>
+
+            <div class="clear"></div>
+            <p class="q_wdhuifu_number">作品评论<span>（<font>0</font>）</span></p>
+            <div id="h_usercommont_model" style="display:none;">
+                <div class="h_usercommont_con" data="{assessId}">
+                    <div class="h_usercommont_prciure">
+                        <a title="头像"> {img}
+                        </a>
+                    </div>
+                    <!--h_usercommont_prciure end-->
+                    <div class="h_usercommont_data">
+                        <div class="q_usercommont_date">
+                            <span>{date}</span>
+                        </div>
+
+                        <a data="{userId}">{userName}</a>
+                        <div class="h_usercommont_data_star">
+                            <ul>{score}
+                            </ul>
+                        </div>
+                        <p>{comment}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- h_usercommont_model end -->
+
+            <div id="h_assessCommont_content">
+                <div class="h_usercommont_con" data="130">
+                    <div class="h_usercommont_prciure">
+                        <a title="头像"> <img src="/style/back/image/tou_b.jpg" style="width:80px;height:80px">
+                        </a>
+                    </div>
+                    <!--h_usercommont_prciure end-->
+                    <div class="h_usercommont_data">
+                        <div class="q_usercommont_date">
+                            <span><span>2019-11-13 12:11</span></span>
+                        </div>
+
+                        <a data="121041">乖怪兽</a>
+                        <div class="h_usercommont_data_star">
+                            <ul>
+                                <li class="h_usercommont_data_stary"></li>
+                                <li class="h_usercommont_data_stary"></li>
+                                <li class="h_usercommont_data_stary"></li>
+                                <li class="h_usercommont_data_stary"></li>
+                                <li class="h_usercommont_data_stary"></li>
+                            </ul>
+                        </div>
+                        <p>dfsgsfsf
+                            hgghjf
+                            vf
+                            v
+                            v
+                        </p>
+                    </div>
+                </div>
+
+                <div class="h_usercommont_con" data="129">
+                    <div class="h_usercommont_prciure">
+                        <a title="头像"> <img src="/style/back/image/tou_b.jpg" style="width:80px;height:80px">
+                        </a>
+                    </div>
+                    <!--h_usercommont_prciure end-->
+                    <div class="h_usercommont_data">
+                        <div class="q_usercommont_date">
+                            <span><span>2019-11-07 13:03</span></span>
+                        </div>
+
+                        <a data="121041">乖怪兽</a>
+                        <div class="h_usercommont_data_star">
+                            <ul>
+                                <li class="h_usercommont_data_stary"></li>
+                                <li class="h_usercommont_data_stary"></li>
+                                <li class="h_usercommont_data_stary"></li>
+                                <li class="h_usercommont_data_stary"></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                        <p>课程内容简明易懂</p>
+                    </div>
+                </div>
+
+                <div class="h_usercommont_con" data="120">
+                    <div class="h_usercommont_prciure">
+                        <a title="头像"> <img src="/style/back/image/tou_h.jpg" style="width:80px;height:80px">
+                        </a>
+                    </div>
+                    <!--h_usercommont_prciure end-->
+                    <div class="h_usercommont_data">
+                        <div class="q_usercommont_date">
+                            <span><span>2019-09-09 15:51</span></span>
+                        </div>
+
+                        <a data="120857">刘梓亦</a>
+                        <div class="h_usercommont_data_star">
+                            <ul>
+                                <li class="h_usercommont_data_stary"></li>
+                                <li class="h_usercommont_data_stary"></li>
+                                <li class="h_usercommont_data_stary"></li>
+                                <li class="h_usercommont_data_stary"></li>
+                                <li class="h_usercommont_data_stary"></li>
+                            </ul>
+                        </div>
+                        <p>刘梓亦</p>
+                    </div>
+                </div>
+
+                <div class="h_usercommont_con" data="119">
+                    <div class="h_usercommont_prciure">
+                        <a title="头像"> <img src="/style/back/image/tou_b.jpg" style="width:80px;height:80px">
+                        </a>
+                    </div>
+                    <!--h_usercommont_prciure end-->
+                    <div class="h_usercommont_data">
+                        <div class="q_usercommont_date">
+                            <span><span>2019-06-19 19:02</span></span>
+                        </div>
+
+                        <a data="120323">ttt</a>
+                        <div class="h_usercommont_data_star">
+                            <ul>
+                                <li class="h_usercommont_data_stary"></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                        <p>王建斌</p>
+                    </div>
+                </div>
+
+                <div class="h_usercommont_con" data="118">
+                    <div class="h_usercommont_prciure">
+                        <a title="头像"> <img src="/style/back/image/tou_b.jpg" style="width:80px;height:80px">
+                        </a>
+                    </div>
+                    <!--h_usercommont_prciure end-->
+                    <div class="h_usercommont_data">
+                        <div class="q_usercommont_date">
+                            <span><span>2019-06-19 18:55</span></span>
+                        </div>
+
+                        <a data="120323">ttt</a>
+                        <div class="h_usercommont_data_star">
+                            <ul>
+                                <li class="h_usercommont_data_stary"></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                        <p>浪费我时间</p>
+                    </div>
+                </div>
+            </div>
+			<div class="q_page" id="q_commont_page" style="display: block;">	<!-- q_page -->
+				<input type="hidden" class="pageNo" value="1">
+				<input type="hidden" class="totalCount" value="28">
+				<input type="hidden" class="pageCount" value="6">
+				<a class="page_action">跳转</a>
+				<input type="text" class="page_input">
+				<div class="page_number"><a class="pageClick">1</a><a>2</a><a>3</a><a>4</a><a>5</a><a>6</a></div>
+				<div class="clear"></div>
+			</div>
+
+        </div>
+        <!-- 评论区 end-->
+    </div>
+    <div class="clear"></div>
+</div>
+
+<link href="/style/steam_front/foot/css/foot.css" rel="stylesheet" type="text/css">
+<div class="p_foot" style="height:70px;background-color:black;">
+    <div class="p_foot_title"> 佛山市创意设计与创客教育工程中心开发|| <span style="color:#E4DAB4">联系我们:0755 - 26698678</span>|| <span
+            style="color:#E4DAB4">版权所有:华南智能教育研究中心，佛山创客教育联盟</span> || <a style="color:#E4DAB4" href='index.html'
+                                                                        target='_blank'>粤ICP备16049812号</a> ||
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1262118875'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/z_stat.php%3Fid%3D1262118875%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+    </div>
+</div>
+
+</body>
+</html>

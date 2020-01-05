@@ -1,0 +1,490 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>报名参赛提交作品</title>
+
+<link href="/style/jw/css/base.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
+<link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css" />
+<script src="/static-res/sea-modules/seajs/sea-2.3.0.js"></script>
+<script>
+
+	seajs.config({
+		base : "http://static.steamaker.cn/static-res/sea-modules/1.0/",
+		paths: {
+	        'bean': '/bean'
+	    },
+		alias : {
+			"jquery"           : "jquery/jquery-1.7.2",
+			"$"                     : "jquery/jquery-1.7.2",
+			"jquery1.7"      : "jquery/jquery-1.7.2",
+			"jquery2"         : "jquery/jquery-2.1.0",
+			"ajaxRpc"         : "utils/ajaxRpc-sea",
+			"extAuthUser"    : "utils/extAuthUser-sea",
+			"utils"                : "utils/base-utils-sea",
+			"comets"                   : "utils/comets-sea",
+			"swfobject"               : "utils/swfobject-sea",
+			"fancybox"               : "utils/fancybox-sea",
+			"ui"                         : "ui/base-ui-sea",
+			"zTree"                  : "tree/jquery.ztree.core-3.5-sea",
+            "ztree-exedit"      : "tree/jquery.ztree.exedit-3.5-sea",
+            "ztree-excheck"   : "tree/jquery.ztree.excheck-3.5-sea",
+            'widget'         : "arale/widget/1.1.1/widget",
+ 	        'validator'      : "arale/validator/0.9.7/validator",
+ 	        "dialog"         : "arale/dialog/1.3.0/dialog",
+ 	        "confirmbox"     : "arale/dialog/1.3.0/confirmbox",
+ 	        "uploadify"         : "uploadify/jquery.uploadify",
+ 	        "pbtip"                : "customplugins/tip-pbplugins-sea",
+ 	        "kinMaxShow"     : "customplugins/flash-pbplugins-sea",
+ 	        "Jcrop"                  : "ui/jquery.Jcrop.sea",
+ 	        "ueditor"        : "utils/ueditor-utils",
+ 	        "blackbox" :  "blackbox/blackbox-sea"
+		}
+	});
+	
+	
+	seajs.use("utils", function(utils) {
+
+	   utils.constants.ctx = "";
+	   utils.constants.seaModulesPath = "http://static.steamaker.cn/static-res/sea-modules/1.0";
+	   utils.constants.loginRedirectUrl = "/loginRedirect";
+	   utils.constants.basicUrl = "index.html";
+
+	});
+	
+	
+</script>
+
+
+<style type="text/css">
+embed.hidden, object.hidden {
+    height: 1px;
+    width: 1px;
+    position: absolute;
+    top: -1000px;
+    left: -1000px;
+}
+</style>
+<script>
+
+seajs.use(["crossDomain/ajaxRpcCrossDomain-sea","utils"], function(crossDomainHelper,utils) {
+
+	//Flash插件的安装地址：http://www.adobe.com/go/getflashplayer
+	
+	// function 用于callback，返回值value表示有没有安装flash插件
+	/*
+	  crossDomainHelper.init(function(value){
+		  alert(value);
+	 });
+	*/
+	
+	//默认情况会有提示，然后跳到安装页面
+	crossDomainHelper.init();
+	
+});
+
+</script>
+
+   <script type="text/javascript">
+    seajs.use("/style/steam_front/cpt/js/nocsubmit.js");	
+     seajs.use("/style/steam_front/diyWorks/js/cptWorks");
+    seajs.use("/style/steam_front/creativeProgramming/js/cptcreativeProgramming");
+    seajs.use("/style/steam_front/cpt/js/new1");
+    </script> 
+    <link rel="stylesheet" href="/style/steam_front/cpt/css/themify-icons.css">
+	<link rel="stylesheet" href="/static-res/sea-modules/1.0/arale/dialog/1.3.0/dialog.css" />
+    <script type="text/javascript">window.UEDITOR_HOME_URL = '/style/newUeditor/';</script>
+    <script type="text/javascript" charset="utf-8" src="/style/newUeditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/style/newUeditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="/style/newUeditor/lang/zh-cn/zh-cn.js"></script> 
+	<link rel="stylesheet" href="/style/steam_front/cpt/css/superfish.css">
+	<link rel="stylesheet" href="/style/steam_front/cpt/css/easy-responsive-tabs.css">
+	<link rel="stylesheet" href="/style/steam_front/cpt/css/animate.css">
+	<link rel="stylesheet" href="/style/steam_front/cpt/css/style.css">
+	<link href="/style/steam_front/diyWorks/css/diyWorks.css" rel="stylesheet" type="text/css" />
+	<link href="/style/steam_front/cpt/css/header.css" rel="stylesheet" type="text/css">
+	<script src="/style/steam_front/cpt/js/js/modernizr-2.6.2.min.js"></script>
+	<script src="/style/steam_front/cpt/js/js/jquery-1.10.2.min.js"></script>
+	<script src="/style/steam_front/cpt/js/js/owl.carousel.min.js"></script>
+	<script src="/style/steam_front/cpt/js/js/jquery.magnific-popup.min.js"></script>
+	<script src="/style/steam_front/cpt/js/js/superfish.js"></script>
+	<script src="/style/steam_front/cpt/js/js/easyResponsiveTabs.js"></script>	
+	<script src="/style/steam_front/cpt/js/js/jquery.waypoints.min.js"></script>
+    <script src="/style/steam_front/cpt/js/js/flat-ui.min.js"></script>
+    <script src="/style/steam_front/cpt/js/js/area.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/style/steam_front/cpt/css/nocsubmit.css">   
+    <link href="/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">  
+    <script src="/jquery/2.0.0/jquery.min.js"></script>  
+    <script src="/bootstrap/3.0.3/js/bootstrap.min.js"></script>  
+    <link rel="stylesheet" type="text/css" href="/style/bootstrap/css/jquery.step.css" />
+    <script src="/style/bootstrap/js/jquery.step.min.js"></script>
+</head>
+  <body>
+<input type="hidden" id="loginUserId" value=122500 />
+<input type="hidden" id="loginUsername" value=cc1163 />
+<input type="hidden" id="identityId" value=2 />
+<input type="hidden" id="cptid" value="">
+<input id="cssj" type="hidden" value="2017-12-21 16:04:52">
+<input id="csjg" type="hidden" value="2017-12-21 16:04:54">
+<input id="jssj" type="hidden" value="2017-12-21 16:04:44">
+<input id="jsjg" type="hidden" value="2017-12-21 16:04:50">
+<input id="p_page" type="hidden" value="">
+<input id="d_page" type="hidden" value="">
+<input id="sqtype" type="hidden" value="">
+<input id="actor" type="hidden" value="0">
+<input id="cpt_sqtype" type="hidden" value="全区">
+<input id="cpt_zltype" type="hidden" value="综合类">
+<input id="persionid" type="hidden" value="">
+<input id="provinceval" type="hidden" value="">
+<input id="persioncity" type="hidden" value="">
+<input id="persioncounty" type="hidden" value="">
+<input id="persionnoctype" type="hidden" value="">
+
+ <!-- 导航栏 start-->
+  	<header>
+  		<nav class="navbar navbar-default navbar-fixed-top">
+  			<div class="container container-fluid">
+  				<!-- Brand and toggle get grouped for better mobile display -->
+  				<div class="navbar-header">
+  					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+  						<span class="sr-only">Toggle navigation</span>
+  						<span class="icon-bar"></span>
+  						<span class="icon-bar"></span>
+  						<span class="icon-bar"></span>
+  					</button>
+  				</div>
+  				<!-- Collect the nav links, forms, and other content for toggling -->
+  				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  					<ul    class="nav navbar-nav" style="margin:0 auto;cursor:pointer">
+                         <li>
+                           <a target="_blank" href="index.html" style="margin-top: 14px;border-bottom: none;margin-right: -18px;">   
+                           <img src="/style/steam_front/cpt/images/steamaker.png"/>
+                           </a>
+                        </li>           
+                   </ul>
+  				</div><!-- /.navbar-collapse -->
+  			</div><!-- /.container-fluid -->
+  		</nav>
+  	</header>
+    <!-- 导航栏 end-->
+<div class="main">
+      <div id="step"></div>
+      <div id="page1" class="page">
+        <div class="context"><h3>报名参赛规则</h3></div>
+        <div class="textpage" style="text-align:left;">
+          <ul>
+            <li><strong>【参赛范围】</strong></li>
+            <li>1、参赛组别：小学组，初中组，高中组（含中职）。</li>
+			<li>2、参赛人数：2-3人/组。</li>
+			<li>3、指导教师：限1人。</li>
+			<li>4、每人限参加一个赛项、一支队伍。</li>
+			<li><strong>【参赛申报】</strong></li>
+			<li>1、互动编程项目电子报名表1份（纸质申报表另交）</li>
+			<li>2、互动编程项目研制报告1份。该报告的文字与图表（执行程序图、外观图、结构图、原理图等），项目研发所需材料清单一份，团队人员分工内容，共计不超过5页。另附作品彩色照片、但数量不超过5幅；（至少4个步骤的编程过程，整个项目报告不超过5MB，Word文档格式）</li>
+			<li>3、互动编程作品演示的视频时间为3分钟以内（不超过30M，MP4格式）。</li>
+			<li>4、项目运行的完整源代码程序一份，（作品源代码格式要求为spp格式，鼓励学生使用Labplus图形化编程软件进行编程）。</li>
+			<li>5、互动编程作品项目完整的演讲分享资料PPT一份（PPT风格简洁、不夸张、符合赛事主题，整个PPT不超过5MB）.</li>
+            <li><a href="/files/noc/NOC国家赛创客创意类·互动编程赛主题与规则.pdf" target="_blank">NOC国家赛创客创意类·互动编程赛主题与规则（请用鼠标右键另存）</a></li>
+			
+          </ul>
+        </div>
+        <div class="agree">
+            <button id="butn1" class="next btn btn-primary ">同意</button>
+        </div>
+      </div>
+      <!--参赛信息  -->
+      <div id="page2" class="page">
+      <legend><h3 style="text-align: center;">成员信息</h3></legend>
+        <form class="form-horizontal">	
+          <div class="form-group">	
+            <label for="school" class="col-sm-2 control-label" >
+            地区：		
+            </label>
+            <div class="col-sm-4">
+     
+             <div>
+				<select class="form-control" id="s_province" name="s_province"></select>  
+			    <select class="form-control" id="s_city" name="s_city" ></select>  
+			    <select class="form-control" id="s_county" name="s_county"></select>
+			    <script type="text/javascript">_init_area();</script>
+            </div>
+    
+            </div>
+            <label for="school" class="col-sm-2 control-label" >
+                  赛区：
+            </label>
+            <div class="col-sm-4">
+              <input class="form-control" type="radio" name="noctype" value="1" checked="checked" />小学组 
+              <input class="form-control" type="radio" name="noctype" value="2" />初中组 
+              <input class="form-control" type="radio" name="noctype" value="3" />高中组（含中职）
+            </div>
+            </div>
+          <div class="form-group">
+            <label for="guideTeacher" class="col-sm-2 control-label">
+                    合作者真实姓名：                   </label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control  teamworkname" value=""/><span>此项为选填，若有多个合作者请用“；”隔开</span>
+            </div>
+            <label for="teacherPhone" class="col-sm-2 control-label">
+                      合作者院校：</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control teamworkschool" value=""/><span>此项为选填，若有多个合作者请用“；”隔开</span>
+            </div>
+          	</div>
+          	<div class="form-group">
+            <label for="guideTeacher" class="col-sm-2 control-label">
+                    合作者身份证号：                 </label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control teamworkcode" value=""/><span>此项为选填，若有多个合作者请用“；”隔开</span> 
+              
+            </div>
+            <label for="teacherPhone" class="col-sm-2 control-label">
+                 合作者年龄： </label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control teamworkage" value="" /><span>此项为选填，若有多个合作者请用“；”隔开</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="guideTeacher" class="col-sm-2 control-label">
+                    合作者性别：                  </label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control teamworksex" value=""/><span>此项为选填，若有多个合作者请用“；”隔开</span>  
+            </div>
+            <label for="teacherPhone" class="col-sm-2 control-label">
+                     合作者联系地址：</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control teamworksite" value="" /><span>此项为选填，若有多个合作者请用“；”隔开</span>      
+            </div>
+          	</div>
+          <div class="form-group">
+            <label for="guideTeacher" class="col-sm-2 control-label">
+                    合作者手机号码：                   </label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control teamworkphone" value=""/><span>此项为选填，若有多个合作者请用“；”隔开</span>
+            </div>
+            <label for="teacherPhone" class="col-sm-2 control-label">
+                     指导教师：</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control teamworkteacher" value="" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="teacherEmail" class="col-sm-2 control-label">
+                         指导教师手机：</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control teamworkteacherphone" value="" />
+            </div>
+            <label for="headmaster" class="col-sm-2 control-label">
+                                </label>
+            <div class="col-sm-4">
+             <!--  <input type="text" class="form-control" value="" /> -->
+            </div>
+          </div>
+        </form>
+  
+   <div class="form-group center-block " style="height: 40px; margin-top: 20px;">
+              <div class="col-sm-1 col-sm-offset-5">
+                  <button id="re2" type="button" class="return btn btn-default center-block">返回</button>
+              </div>
+              <div class="col-sm-1 ">
+                  <button  id="butn222" type="button" class="next btn btn-primary center-block">下一步</button>
+              </div>
+          </div>
+      </div>
+
+<!--作品提交  -->
+      <div id="page3" class="page">
+       
+       <!--提交电子报名表  -->
+         <div class="p_course_contain">
+            	<div class="p_title"><span>电子报名表</span></div>
+                <div class="f_upload_file"><a id="baoming_upload" name="baoming_upload"></a></div>
+                <div class="download" id="download_template" style="float:right;">
+                <span style="position: absolute;left: 118px; top: 78px;font-size: 12px;">（整个电子报名表不超过 1MB，Word 文档格式）</span><button  class="btn">下载模板</button></div>
+                <div class="f_select_file" id="f_baoming_upload">
+                	<ul>
+                    </ul>
+                </div>
+                <div id="baoming_file_queue" style="height:50px;"></div>
+             </div>
+          
+          <!--提交研制报告  -->
+             <div class="p_course_contain">
+            	<div class="p_title"><span>研制报告</span></div>
+                <div class="f_upload_file"><a id="word_upload" name="other_upload"></a></div>
+                <div class="download" id="download_template" style="float:right;"><span style="position:absolute;left:118px;top:78px;font-size:12px;">（整个研制报告不超过 5MB，Word 文档格式）</span><button class="btn">下载模板</button></div>
+                <div class="f_select_file" id="f_word_upload">
+                	<ul>
+                    </ul>
+                </div>
+                <div id="word_file_queue" style="height:50px;"></div>
+             </div>
+             
+           <!--提交视频  --> 
+             <div  class="p_course_contain">
+            	<div class="p_title"><span>视频</span></div>
+                <div class="p_upload_file"><a id="video_upload" name="video_upload"></a></div>
+                <div class="download" id="download_template" style="float:right;"><span style="position:absolute;left:118px;top:78px;font-size:12px;">（整个视频不超过30MB，mp4格式）</span><!-- <button class="btn">下载模板</button> --></div>
+                <div class="p_select_file" id="f_video_upload">
+                	<ul>
+                    </ul>
+                </div>
+                <div id="some_file_queue" style="height:50px;"></div>
+            </div>
+            
+            
+            
+          <!--提交作品封面  --> 
+          
+            <div class="p_course_contain">
+            	<div class="p_title"><span>上传封面</span></div>
+                <div class="f_upload_file"><a id="img_upload" name="other_upload"></a></div>
+ 				<div class="f_select_file" id="f_img_upload" >
+<!--  	          <button style="position: absolute;right:0;width:75px;height:39px;" id="delectimg" class="btn btn-default" >删除</button>	
+ -->                	                 <button style="position: absolute;
+    right: 0;
+    width: 75px;
+    height: 39px;" id="delectimg" class="btn btn-default" >删除</button>	
+                	<img src="" data=''/> 
+                </div>
+                <div id="img_file_queue" style="height:50px;"></div>
+            </div>
+            
+            <!--上传程序文件  -->
+            <div class="p_course_contain">
+            	<div class="p_title"><span>程序</span></div>
+                <div class="f_upload_file"><a id="program_upload" name="other_upload"></a></div>
+ 				<div class="f_select_file" id="f_program_upload" >
+                	<ul>
+                   </ul>
+                </div>
+                <div id="program_file_queue" style="height:50px;"></div>
+            </div>
+            
+            
+            <!--上传ppt  -->
+            <div class="p_course_contain">
+            	<div class="p_title"><span>PPT</span></div>
+                <div class="f_upload_file"><a id="ppt_upload" name="other_upload"></a></div>
+                <span style="position:absolute;left:118px;top:78px;font-size:12px;">（ppt不超过 5MB，ppt格式）</span>
+                <div class="f_select_file" id="f_ppt_upload">
+                	<ul>
+                    </ul>
+                </div>
+                <div id="ppt_file_queue" style="height:50px;"></div>
+            </div>
+          
+          <!--上传  -->
+          <div style="height:50px;margin-top:10px;">
+              <div class="col-sm-1 col-sm-offset-5">
+                  <button id="re3" type="button" class="return btn btn-default center-block">返回</button>
+              </div>
+              <div class="col-sm-1 ">
+                  <button  id="butn333" type="button" class="next btn btn-primary center-block">提交</button>
+                 </div>
+          </div> 
+      </div>
+      
+<!--上传成功  -->
+      <div id="page4" class="page">
+        <div class="successbox">
+          <span><img src="/style/steam_front/cpt/images/success.png"/></span>
+          <h3>恭喜您已成功提交资料！</h3>
+          <div class="col-sm-1 col-sm-offset-4" style="margin-top: 50px;"> 
+            <button style="margin-left:-26px" id="fanhui" type="button" class=" btn btn-default center-block">返回首页</button>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </body> 
+<script>
+  $(document).ready(function(){
+    $("#page1").show();
+    $("#page2").hide();
+    $("#page3").hide();
+    $("#page4").hide();
+  });  
+  $("#addstu").click(function(event) {
+    /* Act on the event */
+     $(".addstudent").slideToggle();
+  });
+  $("#butn1").click(function(event) {
+    /* Act on the event */
+    $("#page1").hide();
+    $("#page2").show();
+    $("#page3").hide();
+    $("#page4").hide();
+  });
+  /*  $("#butn222").click(function(event) {
+   
+    $("#page1").hide();
+    $("#page2").hide();
+    $("#page3").show();
+    $("#page4").hide();
+  });  */
+  /*   $("#butn3").click(function(event) {
+    $("#page1").hide();
+    $("#page2").hide();
+    $("#page3").hide();
+    $("#page4").show();
+  });   */
+ $("#re2").click(function(event) {
+    /* Act on the event */
+    $("#page1").show();
+    $("#page2").hide();
+    $("#page3").hide();
+    $("#page4").hide();
+  });
+   $("#re3").click(function(event) {
+    /* Act on the event */
+    $("#page1").hide();
+    $("#page2").show();
+    $("#page3").hide();
+    $("#page4").hide();
+  });
+    $("#re4").click(function(event) {
+    /* Act on the event */
+    $("#page1").hide();
+    $("#page2").hide();
+    $("#page3").show();
+    $("#page4").hide();
+  });
+    var $step = $("#step");
+      var $index = $("#index");
+      $step.step({
+        index: 0,
+        time: 500,
+        title: ["赛事规则", "加载报名信息", "上传资料", "报名成功"]
+      });
+      $index.text($step.getIndex());
+      $(".return").on("click", function() {
+        $step.prevStep();
+        // $index.text($step.getIndex());
+      });
+      $(".next").on("click", function() {
+        $step.nextStep();
+        // $index.text($step.getIndex());
+      });
+      $("#fanhui").on("click", function() { 
+    	  window.open("/noc"); 
+      });
+/*       $("input[name='inlineRadioOptions'][value=2]").attr("checked",true); 
+ */   
+ function fn_focus(ele){ 
+	 if(ele.value == ele.defaultValue){ 
+	     ele.value = ''; 
+	 } 
+	 } 
+function fn_blur(ele){ 	  
+	 if(ele.value == ""||ele.value == null){ 	     
+		 ele.value = ele.defaultValue; 			
+	   } 	 
+	 } 
+    </script>
+  
+</html>

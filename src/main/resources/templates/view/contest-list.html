@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>创客擂台</title>
+    <link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="/style/steam_front/index/css/loginPage.css" rel="stylesheet" type="text/css"/>
+    <script src="/style/steam_front/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <style>
+
+        #rollwarp {
+            width: 1200px;
+            height: 600px;
+            position: relative;
+            margin: auto;
+            margin-top: 30px;
+            margin-bottom: 58px;
+            overflow: hidden;
+        }
+
+        #rollwarp #rollbox {
+            width: 1200px;
+            height: 600px;
+        }
+
+        #rollwarp #rollbox .roll {
+            width: 1200px;
+            height: 600px;
+            display: none;
+        }
+
+        #rollwarp #rollbox .roll img {
+            width: 1200px;
+            height: 600px;
+        }
+
+        #rollwarp #rollbox .select {
+            display: block;
+        }
+
+        #rollwarp ul {
+            width: 120px;
+            height: 6px;
+            position: absolute;
+            bottom: 32px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            list-style: none;
+        }
+
+        #rollwarp ul li {
+            width: 53px;
+            height: 6px;
+            background: grey;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            border-radius: 6px;
+            float: left;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            cursor: pointer;
+        }
+
+        #rollwarp ul li:nth-of-type(2) {
+            float: right;
+        }
+
+        #rollwarp ul li div {
+            width: 0;
+            height: 6px;
+            background-color: white;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+        }
+
+        #rollwarp ul .select div {
+            width: 100%;
+            -webkit-transition: 4s;
+            -moz-transition: 4s;
+            -ms-transition: 4s;
+            -o-transition: 4s;
+            transition: 4s;
+        }
+
+        .gamesWrap {
+            width: 1200px;
+            height: auto;
+            margin: 0px auto;
+            margin-top: -30px;
+        }
+
+        .gameBox {
+            width: 100%;
+            height: auto;
+            margin-top: -8px;
+        }
+
+        .games {
+            width: 580px;
+            height: 363px;
+            float: left;
+            margin-bottom: 57px;
+        }
+
+        .games a {
+            color: #4d4d4d;
+            text-decoration: none;
+        }
+
+        .games:nth-child(2n) {
+            float: right;
+        }
+
+        .game_Bg {
+            width: 580px;
+            height: 300px;
+            background-repeat: no-repeat;
+            background-position: center center;
+
+        }
+
+        .games p {
+            text-align: left;
+        }
+
+        .game_Name {
+            line-height: 45px !important;
+            font-size: 18px !important;
+        }
+
+        .game_Time {
+            font-size: 16px !important;
+        }
+
+        .game_Bg img {
+            width: 580px;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<link href="/style/jw/css/base.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
+<link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css"/>
+<body>
+<div th:replace="view/frame/head :: head-div(index=3)"></div>
+<div th:replace="view/frame/userBLHead :: subHead(index=2)"></div>
+
+<div id="rollwarp">
+    <div id="rollbox">
+        <div class="roll select">
+            <a target="_blank" href="/robocom.html"><img src="/style/steam_front/cpt/images/banner1.png"/></a>
+        </div>
+        <div class="roll">
+            <a target="_blank" href="/noc.html">
+            <img src="/style/steam_front/cpt/images/banner2.png"/></a>
+        </div>
+    </div>
+    <ul>
+        <li class="select">
+            <div></div>
+        </li>
+        <li>
+            <div></div>
+        </li>
+    </ul>
+</div>
+<div class="gamesWrap">
+    <div style="line-height: 100px;color: #4d4d4d;text-align:left;font-size:20px;font-weight:600;">赛事列表</div>
+    <div class="gameBox">
+        <div class="games" th:each="contest:${contest_list}">
+            <a th:href="'/contest/detail/'+${contest.getId()}">
+                <div class="game_Bg">
+                    <p>
+                        <img th:src="${contest.getCoverUrl()}"
+                             src="/files/cpt/2018-01-22/1516610715233068373.png" title="1516610715233068373.png"
+                             alt="xlq.png"/>
+                    </p>
+                </div>
+
+                <p class="game_Name" th:text="${contest.getTitle()}"> 西陵区首届创客节-Scratch创意互动编程大赛</p>
+                <p class="game_Time" th:text="${#dates.format(contest.getCreateTime(),'yyyy-MM-dd')}">2018.01.09</p>
+            </a>
+        </div>
+    </div>
+    <div style='clear:both'></div>
+</div>
+
+
+<div style="width:100%;height:70px;" th:include="view/frame/footer :: p_foot">
+</div>
+
+<script type="text/javascript">
+    //轮播图
+    var index = 0;
+    var timer = null;
+    var length = $("#rollwarp ul li").length;
+    start();
+
+    function start() {
+        clearInterval(timer);
+        timer = setInterval(function () {
+            index++;
+            if (index == length) {
+                index = 0;
+            }
+            show();
+        }, 4000);
+    }
+
+    $("#rollwarp ul li").mouseover(function () {
+        index = $(this).index();
+        show();
+        clearInterval(timer);
+    }).mouseout(function () {
+        start();
+    });
+
+    function show() {
+        $("#rollwarp ul li").eq(index).addClass("select").siblings().removeClass("select");
+        //$(".roll:eq("+index+")").fadeIn().siblings().fadeOut();
+        $(".roll:eq(" + index + ")").addClass("select").siblings().removeClass("select");
+    }
+</script>
+</body>
+</html>

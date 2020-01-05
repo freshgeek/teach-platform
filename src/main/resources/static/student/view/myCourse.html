@@ -1,0 +1,527 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css" />
+<link href="/style/steam_front/student_space/css/myCourse.css" rel="stylesheet" type="text/css" />
+<title>我的课程</title>
+
+<link href="/style/jw/css/base.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
+<link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css" />
+<script src="/static-res/sea-modules/seajs/sea-2.3.0.js"></script>
+<script>
+
+	seajs.config({
+		base : "http://static.steamaker.cn/static-res/sea-modules/1.0/",
+		paths: {
+	        'bean': '/bean'
+	    },
+		alias : {
+			"jquery"           : "jquery/jquery-1.7.2",
+			"$"                     : "jquery/jquery-1.7.2",
+			"jquery1.7"      : "jquery/jquery-1.7.2",
+			"jquery2"         : "jquery/jquery-2.1.0",
+			"ajaxRpc"         : "utils/ajaxRpc-sea",
+			"extAuthUser"    : "utils/extAuthUser-sea",
+			"utils"                : "utils/base-utils-sea",
+			"comets"                   : "utils/comets-sea",
+			"swfobject"               : "utils/swfobject-sea",
+			"fancybox"               : "utils/fancybox-sea",
+			"ui"                         : "ui/base-ui-sea",
+			"zTree"                  : "tree/jquery.ztree.core-3.5-sea",
+            "ztree-exedit"      : "tree/jquery.ztree.exedit-3.5-sea",
+            "ztree-excheck"   : "tree/jquery.ztree.excheck-3.5-sea",
+            'widget'         : "arale/widget/1.1.1/widget",
+ 	        'validator'      : "arale/validator/0.9.7/validator",
+ 	        "dialog"         : "arale/dialog/1.3.0/dialog",
+ 	        "confirmbox"     : "arale/dialog/1.3.0/confirmbox",
+ 	        "uploadify"         : "uploadify/jquery.uploadify",
+ 	        "pbtip"                : "customplugins/tip-pbplugins-sea",
+ 	        "kinMaxShow"     : "customplugins/flash-pbplugins-sea",
+ 	        "Jcrop"                  : "ui/jquery.Jcrop.sea",
+ 	        "ueditor"        : "utils/ueditor-utils",
+ 	        "blackbox" :  "blackbox/blackbox-sea"
+		}
+	});
+	
+	
+	seajs.use("utils", function(utils) {
+
+	   utils.constants.ctx = "";
+	   utils.constants.seaModulesPath = "http://static.steamaker.cn/static-res/sea-modules/1.0";
+	   utils.constants.loginRedirectUrl = "/loginRedirect";
+	   utils.constants.basicUrl = "http://www.steamaker.cn";
+
+	});
+	
+	
+</script>
+
+
+<script type="text/javascript">
+seajs.use("/style/steam_front/student_space/js/resource_library");
+</script>
+</head>
+<body>
+<link href="/style/steam_front/student_space/css/header.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/style/steam_front/jquery-1.7.1.min.js"></script>
+
+<script>
+$(document).on("click","a.q_headPortrait",function(e){
+		if(e.preventDefault) {//!ie	阻止父类标签的事件触发
+			e.stopPropagation();
+		} else {
+			e.cancelBubble = true;
+		}
+		$("#user").show();
+		
+	});
+	
+		$(document).on("click","#p_search_r",function(e){
+		if(e.preventDefault) {//!ie	阻止父类标签的事件触发
+			e.stopPropagation();
+		} else {
+			e.cancelBubble = true;
+		}
+		$("#sousuo").show();
+		
+	});
+	
+	$(document).click(function(e){
+		if($(e.target).is(".q_headPortrait")) {
+			return;
+		}
+		$("#user").hide();
+	});
+	
+		$(document).click(function(e){
+		if($(e.target).is("#p_search_r")) {
+			return;
+		}
+		$("#sousuo").hide();
+	});
+	
+	$(document).on("click","#p_unknow2",function(){
+		var userId = $("#loginUserId").val();
+		var identityId = $("#identityId").val();
+		if(userId == 2) {
+			$(".q_login").show();
+			$(".q_login").css({"position":"fixed","left":"50%","top":"10px","z-index":"1001","margin-left":"-113px"});
+			$(".q_login_back").css("background-position","0px -11px");
+			$(".q_id_p").css("margin-top","19px");
+			$("#shelter").show();
+		}else {
+			if(identityId == 2 || identityId == 4){
+				location.href="/student/view/index.html.html/notice";
+			}else if(identityId == 1){
+				location.href="/teacher/view/classinfo/notice";
+			}
+		}
+	});
+	
+	
+	$(document).on("click","#p_search_r",function(){
+		var condition = $("#p_search").val();
+		var type = $("#type").val();
+		if(type==undefined){
+			type=1
+		}
+		location.href = "/resourcelibrary.html?type="+type+"&page=1&condition="+condition;
+	});
+	$(document).on("keydown","#p_search",function(event){
+		if(event.keyCode==13){
+			var condition = $("#p_search").val();
+			var type = $("#type").val();
+			if(type==undefined){
+				type=1
+			}
+			location.href = "/resourcelibrary.html?type="+type+"&page=1&condition="+condition;
+		}
+	});
+	
+</script> 
+<link href="/style/steam_front/head/css/header.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript">
+	seajs.use("http://static.steamaker.cn/style/steam_front/head/js/head");
+
+</script>
+
+<div id="x_bg" style="background-color:black">
+ 	<div id="x_header_contain">
+ 		<div id="x_logo"><a href="/index.html"></a></div>
+    		<div id="x_nav">
+     		<ul>
+         		<li id="x_shouye"><a  href="/index.html">首页</a></li>
+         		<li id="x_find"><a  href="/creativeprogramming.html">发现</a></li>
+         		
+         		 <li id="x_newProgramming"><a class="active"  href="/goProgramming.html">编程</a></li>
+         		 
+         		 <li id="x_diyzuopin"><a  href="/diyworks.html">造物</a></li>
+             	<li id="x_luntan"><a  href="/resourcelibrary.html">课程</a></li>
+             	 <li id="x_contest"><a  href="/school.html">学校</a></li>
+      <!--             <li id="x_homeworkss"><a  href="/student/view/index.html.html/homework">作业</a></li>
+ -->
+             	<li id="x_contest"><a  href="/competition.html">赛事</a></li>
+             	<li id="x_gongzuoshi"><a class="personal_p">个人中心</a></li>
+         	</ul>
+     	</div>
+     
+     		<div id="x_search_l" style="width:189px;height:30px;position:relative;">
+     		   <input id="x_search"  type="text" value=""/>
+     		   <a style="position:absolute;right:0;">
+     		      <div id="x_search_r"></div>
+    		   </a>
+     		</div>
+     		
+     		
+     	
+     	<!-- <div>
+     		<a><div class="x_unknow" id="x_unknow1"></div></a>
+         	<a><div class="x_unknow" id="x_unknow2"></div></a>
+     	</div> -->
+     	<div class="p_head_self_photo">
+     	 	<a class="q_headPortrait"><img src="/style/back/image/tou_c.jpg" width=30 height=30/></a>
+     	</div>
+     	 <div id="wn" class="q_option">
+       		<strong></strong>
+       		<ul>
+       			<li><a href="/student/view/userdatum.html">个人资料</a></li>
+       			<li><a href="/logout.html">退&nbsp;&nbsp;出</a></li>
+       		</ul>
+   		</div>
+     	 <div id="personalCenter" class="q_option" style="right:350px">
+       		<strong></strong>
+       		<ul>
+					<li><a href="/student/view/userworks/userworks.html">我的作品</a></li>
+					<li><a href="/student/view/index.html.html/homework">我的作业</a></li>
+					<li><a href="/student/view/userdatum.html">个人信息</a></li>
+       		</ul>
+   		</div>
+		
+		<div id="fenlei" class="q_option" style="right:130px">
+       		<strong></strong>
+       		<ul>
+       		
+       			<li><a id="kc">课程</a></li>
+       	
+       			<li><a id="bc">编程</a></li>
+       		
+       			<li><a id="diy">造物</a></li>
+				
+				<li><a id="cpt">赛事</a></li>
+       		</ul>
+   		</div>
+		
+<link href="/style/steam_front/small_login/css/small_login.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="/style/signin.css">
+	<script src="/style/steam_front/cpt/js/js/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="/style/login.js"></script>
+	<style>
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+</style>
+<script>
+
+seajs.use([ "extAuthUser","extAuthUser"], function(extAuthUser,extAuthUser) {
+		$("#signin-close a").click(function(){
+			$(".q_login").toggle();
+		});
+		$("#q_login_b").click(function() {
+			
+			 try {
+
+				var params={};
+				
+				var username = $("#q_login_id").val();
+				var password = $("#q_login_pass").val();
+				
+				if(username == ""){
+					$(".q_login_error").html("错误信息：请输入用户名");
+					return ;
+				}
+				if(password == "") {
+					$(".q_login_error").html("错误信息：请输入密码");
+					return ;
+				}
+				
+				$.ajax({
+					  type: "POST",
+					  url: "/checkValidateCode",
+					  dataType: "json",
+					  data:{number: $("#number").val()},
+					  success: function(msg){
+						  if(msg){
+							  var result = extAuthUser.auth(username, password, params);
+								
+							   if(result.success) {
+								   $(".q_login").toggle();
+								  	window.location.reload();
+							   } else {
+								   $(".q_login_error").html("错误信息："+ result.message);
+								   $(".check_bt img").attr("src","/imageServlet.html?"+Math.random());
+							   }
+						  }else{
+							  $(".q_login_error").html("错误信息：验证码错误，请重新输入！");
+							  $(".check_bt img").attr("src","/imageServlet.html?"+Math.random());
+						  }
+						 },
+					 	error:function(){
+					       alert("登录失败，刷新后再尝试！");
+					       $(".check_bt img").attr("src","/imageServlet.html?"+Math.random());
+					    }
+					  
+					});	
+				
+			} catch (ex) {
+				console.log(ex);
+			}
+
+		});	
+		
+		$("#q_login_pass").keydown(function(event){
+			if(event.keyCode==13){
+				$("#q_login_b").click();
+			}
+		});
+		
+		$(".q_login_check input").keydown(function(event){
+			if(event.keyCode==13){
+				$("#q_login_b").click();
+			}
+		});
+		$(".q_login_check input").keyup(function(){
+			var texts = $(this).val();
+			if(texts.length>4){
+				var t = texts.substr(0, 4);
+				$(this).val(t);
+			}
+		});
+
+		
+		$(document).on("click",".reset_bt", function(e){
+			$(".check_bt img").attr("src","/imageServlet.html?"+Math.random());
+		})
+	});
+</script>
+<div id="shelter"></div>
+<div class="q_login"><!-- 小登录框 -->
+	<div class="signin"  >
+		<div id="signin-close" ><a >✘</a></div>
+		<div class="signin-head">
+		
+			<img id="imageUrl" src="/style/back/image/tou.jpg" style="width:119px;height:119px" class="img-circle">
+		</div>
+		<div  class="form-signin" >
+			<input id="q_login_id" name="name" value=""  type="text" class="form-control" placeholder="用户名" required autofocus />
+			<input id="q_login_pass" name="password" value="" type="password" class="form-control" placeholder="密码" required />
+			<p class="q_login_check">
+				<input placeholder="输入验证码" id="number"/>
+				<a class="check_bt"><img src="/imageServlet.html"></a>
+				<a class="reset_bt">换一张</a>
+			</p>
+			<p class="q_login_forget">
+				<a class="q_forget_left" href="/templates/view/userRegister.html">马上注册&gt;&gt;</a>
+				<a class="q_forget_right" href="/forgetPassword.html">忘记密码</a> 
+			</p>
+			<p id="q_login_bt">
+				<a id="q_login_b" title="登录">登&nbsp;&nbsp;&nbsp;录</a>		
+			</p>
+			<p class="q_login_error"></p>
+		
+		</div>
+	</div>
+</div><!-- q_login end--></div>
+</div>
+<div id="p_header_contain"></div>
+<input type="hidden" id="loginUserId" value=122500 />
+<input type="hidden" id="loginNickName" value=1163518793 />
+<input type="hidden" id="identityId" value=2 />	<div id="p_bg">
+    	<div id="p_header_contain">
+    		<!-- <div id="p_logo"><a href="/index.html"></a></div> -->
+       		<div id="p_nav">
+        		<ul>
+<!--             		<li id="p_shouye"><a  href="/student/view/index.html.html">首页</a></li>
+ -->                	<li id="p_class"><a class="active" href="/student/view/myCourse.html">我的课程</a></li>
+                	<!-- <li id="p_rizhi"><a>日志</a></li>
+                    <li id="p_xiangce"><a>相册</a></li> -->
+                    <li id="p_ziliao"><a  href="/student/view/userdatum.html">个人资料</a></li>
+                    <li id="p_works"><a  href="/student/view/userworks/userworks.html">我的作品</a></li>
+                    <li id="p_homeworks"><a  href="/student/view/index.html.html/homework">我的作业</a></li>
+                    <li class="last"><a  class="p_pp_nav_file"  href="/student/view/userworks/usercollect.html" >我的收藏</a></li>
+                    
+            	</ul>
+        	</div>
+<!--         	<div id="p_search_l"></div><input id="p_search" type="text" /><a><div id="p_search_r"></div></a>
+ -->        	<div>
+            	<a><div class="p_unknow" id="p_unknow2" title="班级通知"></div></a>
+        	</div>
+        	<!-- 
+	     	 	<a class="q_headPortrait"><img src="/style/back/image/tou_c.jpg" width=30 height=30/></a>
+ -->
+        	<!-- <div id="user" class="q_option">
+        		<strong></strong>
+        		<ul>
+        			<li><a href="/student/view/userdatum.html">个人资料</a></li>
+        			<li><a href="/logout.html">退&nbsp;&nbsp;出</a></li>
+        		</ul>
+        	</div> -->
+        <!-- <div id="sousuo" class="q_option" style="right:100px">
+        		<strong></strong>
+        		<ul>
+        			<li><a id="kc">课程</a></li>
+       	
+       			<li><a id="bc">编程</a></li>
+       		
+       			<li><a id="diy">造物</a></li>
+				
+				<li><a id="cpt">赛事</a></li>
+        		</ul>
+        	</div> -->
+         </div>
+    </div>
+    <input type="hidden" id="loginUserId" value=122500 />
+    <input type="hidden" id="loginNickName" value=1163518793 />
+    <input type="hidden" id="identityId" value=2 />
+    <div id="x_header_contain"></div>
+    
+ <script>
+ 	(function loginInit(){
+		var loginUserId = $("#loginUserId").val();
+		var identityId = $("#identityId").val();
+		if(loginUserId==2){
+			$(".q_login").show();
+			$(".q_login").css({"position":"fixed","left":"50%","top":"10px","z-index":"1001","margin-left":"-113px"});
+			$(".q_login_back").css("background-position","0px -11px");
+			$(".q_id_p").css("margin-top","19px");
+			$("#shelter").show();
+		}else{
+			if(identityId!=2 && identityId==4){
+				location.href = "/teacher/view/index.html";
+			}
+		}
+	})()
+	$(document).on("click","#kc",function(){
+		var condition = $("#x_search").val();
+		var type = $("#type").val();
+		if(type==undefined){
+			type=1
+		}
+		location.href = "/resourcelibrary.html?page=1&condition="+$("#p_search").val();
+	});
+	
+	$(document).on("click","#bc",function(){
+		var condition = $("#x_search").val();
+		location.href = "/creativeprogramming.html?condition="+$("#p_search").val();
+	});
+	
+	$(document).on("click","#diy",function(){
+		var condition = $("#x_search").val();
+		location.href = "/diyworks.html?condition="+$("#p_search").val();
+	});
+	
+	$(document).on("click","#cpt",function(){
+		var condition = $("#x_search").val();
+		location.href = "/competition.html?condition="+$("#p_search").val();
+	});
+ </script>
+<input type="hidden" id="type" value=""/>
+<input type="hidden" id="libSort" value=""/>
+<input type="hidden" id="state" value=""/>
+<input type="hidden" id="page" value=""/>
+<input type="hidden" id="pageCount" value="0"/>
+    <div id="p_link">
+    	<div class="p_fuhao"></div>
+        <div class="p_link_a"><a href="/index.html">steam创客教育</a>&gt;<a href="/student/view/index.html.html">学生空间</a>&gt;<a href="/student/view/myCourse.html">我的课程</a></div>
+    </div>
+    <div class="clear"></div>
+    <div class="p_course_page">
+    	<div class="p_yellowtiao"></div>
+        <div class="p_course_nav">
+        	<ul>
+            	<li data="1"><a class="p_course" data="1">课&nbsp;程</a><div class="p_course_nav_fenge"></div> </li>
+                <li data="2"><a class="p_diy_course" data="2">DIY课例</a></li>
+            </ul>
+        </div>
+        <div class="p_course_fenlei"><span>分类：</span>
+        	<ul>
+            	<li><a class="current" href="">经济·管理学科</a></li>
+                <li><a href="">经济·管理学科</a></li>
+                <li><a href="">经济·管理学科</a></li>
+                <li><a href="">经济·管理学科</a></li>
+            </ul>
+        </div>
+        <div class="p_course_zhuangtai"><span>状态：</span>
+        	<ul>
+            	<li data=""><a class="current">全部</a></li>
+                <li data="1"><a>正在学习</a></li>
+                <li data="2"><a>学习结束</a></li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+        <div class="p_course_list">
+        <div class="h_pp_no_data"></div>
+        </div><!--课程列表end-->
+        <div class="clear"></div>
+        <div class="p_course_yema">
+        	<div class="p_course_yema_tiaozhuan"><a>跳转</a></div>
+        	<div class="p_course_yema_input"><input type="text"></div>
+            <div class="p_course_yema_number">
+            
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

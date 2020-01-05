@@ -1,0 +1,80 @@
+#schoolName { width:250px;}
+.provinceSchool { display:none;position:absolute;top:46px;left:42px;width:580px;height:310px;border:1px solid #72B9D7; background:#fff;}
+.provinceSchool .title { width:100%;height:30px;line-height:30px;background:url(../images/title-bg.png) repeat-x center left;}
+.provinceSchool .title span { margin-left:10px;font-weight:600;color:#FFF;line-height:30px;}
+.provinceSchool .proSelect { width:550px;height:22px;margin:10px 0 6px 15px;}
+.provinceSchool .proSelect select { width:136px;}
+.provinceSchool .schoolList { width:550px;height:200px;margin-left:15px;overflow-y:auto; border:1px solid #72B9D7;background:#fff;}
+.provinceSchool .schoolList ul { width:510px;}
+.provinceSchool .schoolList ul li { float:left;width:158px;height:22px;margin-left:6px;padding-left:6px;line-height:22px;cursor:pointer;overflow:hidden;}
+.provinceSchool .schoolList ul li.DoubleWidthLi { width:328px;}
+.provinceSchool .schoolList ul li:hover { background:#72B9D7;}
+.liHover{ background:#72B9D7;}
+.provinceSchool .button { width:100%;height:40px;margin-top:8px;}
+.provinceSchool .button button { float:right;height:30px;line-height:25px;margin-right:20px;padding:4px 10px; background:#288FCC;border:none;color:#FFF;font-weight:600;cursor:pointer; 	 -webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius:3px;position:relative;}
+.provinceSchool .button a { float:right;height:30px;line-height:25px;margin-right:20px;padding:4px 10px; background:#288FCC;border:none;color:#FFF;font-weight:600;cursor:pointer; 	 -webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius:3px;position:relative;}
+
+
+
+#condition{
+	width:170px;
+	position:absolute;
+	top:0;
+	left:215px;
+	font-family:Microsoft YaHei;
+	font-size:14px;
+	line-height:19px;
+	height:19px;
+	color:#636363;
+	border: 1px solid #ddd;
+    background: none;
+    width: 150px;
+}
+
+.selectSpan{
+    display: block;
+    height: 20px;
+    line-height: 20px;
+    position: absolute;
+    top: 0;
+    left: 165px;
+}
+.conditionBt{
+	width:50px;
+    height: 20px;
+    line-height: 14px;
+    font-size:12px;
+	position: absolute;
+    top: 1px;
+    left: 406px;
+    color:#636363;
+}
+
+.searchBtn{
+    width: 50px;
+    height: 18px;
+    line-height: 18px;
+    font-size: 12px;
+    position: absolute;
+    top: 1px;
+    left: 406px;
+    color: #636363;
+    border: 1px solid #636363;
+    text-align: center;
+    cursor: pointer;
+   }
+   .provinceSchool1 { display:none;position:absolute;top:46px;left:42px;width:580px;height:310px;border:1px solid #72B9D7; background:#fff;}
+.provinceSchool1 .title1 { width:100%;height:30px;line-height:30px;background:url(../images/title-bg.png) repeat-x center left;}
+.provinceSchool1 .title1 span { margin-left:10px;font-weight:600;color:#FFF;line-height:30px;}
+.provinceSchool1 .proSelect1 { width:550px;height:22px;margin:10px 0 6px 15px;}
+.provinceSchool1 .proSelect1 select { width:136px;}
+.provinceSchool1 .groupList { width:550px;height:200px;margin-left:15px;overflow-y:auto; border:1px solid #72B9D7;background:#fff;}
+.provinceSchool1 .groupList ul { width:510px;}
+.provinceSchool1 .groupList ul li { float:left;width:158px;height:22px;margin-left:6px;padding-left:6px;line-height:22px;cursor:pointer;overflow:hidden;}
+.provinceSchool1 .groupList ul li.DoubleWidthLi { width:328px;}
+.provinceSchool1 .groupList ul li:hover { background:#72B9D7;}
+.liHovera{ background:#72B9D7;}
+.provinceSchool1 .button1 { width:100%;height:40px;margin-top:8px;}
+.provinceSchool1 .button1 button { float:right;height:30px;line-height:25px;margin-right:20px;padding:4px 10px; background:#288FCC;border:none;color:#FFF;font-weight:600;cursor:pointer; 	 -webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius:3px;position:relative;}
+.provinceSchool1 .button1 a { float:right;height:30px;line-height:25px;margin-right:20px;padding:4px 10px; background:#288FCC;border:none;color:#FFF;font-weight:600;cursor:pointer; 	 -webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius:3px;position:relative;}
+   

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body th:fragment="subHead">
+<!--/*@thymesVar id="index" type="java.lang.Integer"*/-->
+<link href="/style/steam_front/student_space/css/header.css" rel="stylesheet" type="text/css">
+<div id="p_bg">
+    <div class="p_header_contain">
+        <div id="p_nav">
+            <ul>
+                <li id="p_ziliao">
+                    <a th:classappend="${index}==1?'active':''" href="/user/info">个人资料</a></li>
+                <li id="p_class"><a th:classappend="${index}==2?'active':''" href="/user/course">我的课程</a></li>
+                <li id="p_visit"><a th:classappend="${index}==3?'active':''" href="/student/my-visit.html">我的足迹</a></li>
+                <li id="p_arch"><a th:classappend="${index}==4?'active':''" href="/student/myAchv.html">我的作品</a></li>
+                <li id="p_resource"><a th:classappend="${index}==5?'active':''" href="/student/my-resource-list.html">我的资源</a>
+                </li>
+                <li class="last">
+                    <a class="p_fav" th:classappend="${index}==6?'active':''" href="/student/myFav.html">我的收藏</a>
+                </li>
+                <li>
+                    <a id="tip-btn" class="p_fav" href="javascript:void(0);">@提及我的
+                        <span class="layui-badge">99+</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <style>
+        .sign {
+            position: fixed;
+            top: 200px;
+            right: 40px;
+        }
+
+        .tip {
+            border-bottom: 1px solid #e6e6e6;
+            padding: 5px 0px;
+        }
+        .layui-layer-tips{
+            position: fixed !important;
+        }
+        .tip > * {
+            color: #000
+        }
+    </style>
+    <div class="sign">
+
+        <div class="layui-btn layui-btn-radius" id="sign_btn">
+            <i class="layui-icon layui-icon-flag"></i>
+            签到
+        </div>
+
+    </div>
+
+    <script>
+        layui.use(['js_tools', 'layer','laytpl', 'jquery'], function () {
+            var js = layui.js_tools;
+            var layer = layui.layer;
+            var laytpl = layui.laytpl;
+            var $ = layui.jquery;
+            js.quick_get('/getTodaySign', null, function (res) {
+                if (res.code == js.successCode && res.body) {
+                    $('#sign_btn').removeClass('layui-btn-primary');
+                } else {
+                    $('#sign_btn').addClass('layui-btn-primary');
+                }
+            });
+            $('#sign_btn').on('click', function () {
+                if (!$(this).hasClass('layui-btn-primary')) {
+                    layer.msg('已经签到过了');
+                } else {
+                    js.quick_post('/user/sign', null, function (res) {
+                        if (res.code == js.successCode) {
+                            $('#sign_btn').removeClass('layui-btn-primary');
+                            layer.msg('签到成功', {icon: 1});
+                        } else {
+                            layer.msg('签到失败', {icon: 2});
+                        }
+                    });
+                }
+            });
+
+            //通知获取
+            js.quick_get('/student/api/userTip/page',null,function (res) {
+                laytpl($('#tip-model').html()).render(res, function(html){
+                    $('#tip-list').html(html);
+                });
+            });
+            var tip = null;
+            $('#tip-btn').on('click',function () {
+                if (tip){
+                    layer.close(tip);
+                    tip = null;
+                }else{
+                    tip = layer.tips($('#tip-list').html(), '#tip-btn', {
+                        tips: [3, '#fff'],
+                        area: '250px',
+                        time: 0
+                    });
+                }
+            })
+
+        });
+    </script>
+</div>
+<div id="x_header_contain"></div>
+<script type="text/html" id="tip-model">
+    {{# layui.each(d.body,function(i,e){ }}
+    <div class="tip" data-id="{{e.id}}">
+        <a>{{e.userId}}</a>
+        <span>{{e.content}}</span>
+        <span>{{e.createTime}}</span>
+    </div>
+    {{# }); }}
+</script>
+<div id="tip-content">
+    <div></div>
+    <div id="tip-list" style="display: none;">
+        <div class="tip" data-id="11">
+            <a> cc</a>
+            <span>在<a>社区帖子中</a>@了你</span>
+            <span>2019-22-11</span>
+        </div>
+        <div class="tip" data-id="11">
+            <a> cc</a>
+            <span>在<a>社区帖子中</a>@了你</span>
+            <span>2019-22-11</span>
+        </div>
+        <div class="tip" data-id="11">
+            <a> cc</a>
+            <span>在<a>社区帖子中</a>@了你</span>
+            <span>2019-22-11</span>
+        </div>
+        <div class="tip" data-id="11">
+            <a> cc</a>
+            <span>在<a>社区帖子中</a>@了你</span>
+            <span>2019-22-11</span>
+        </div>
+    </div>
+</div>
+</body>
+</html>
