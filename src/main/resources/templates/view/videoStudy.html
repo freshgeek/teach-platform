@@ -5,7 +5,6 @@
     <link href="/style/steam_front/resourceLibrary/css/taolunqu2.css" rel="stylesheet" type="text/css"/>
     <link href="/style/steam_front/resourceLibrary/css/video_study.css" rel="stylesheet" type="text/css"/>
     <link href="/style/steam_front/resourceLibrary/css/file_download.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="/static-res/sea-modules/1.0/arale/dialog/1.3.0/dialog.css"/>
     <title>资源库</title>
 </head>
 
@@ -17,22 +16,8 @@
 <link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css"
       media="screen"/>
 <link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css"/>
-<input type="hidden" id="loginUserId" value=122500/>
-<input type="hidden" id="loginNickName" value=1163518793/>
-<input type="hidden" id="identityId" value=2/>
-<input type="hidden" id="courseId" data="89"/>
-<input type="hidden" id="resId" data="509"/>
-<input type="hidden" id="authorId"/>    <!-- 课件作者ID -->
-<input type="hidden" id="showdisscuss" value=""/>
-<input type="hidden" id="showworks" value=""/>
-<input type="hidden" id="showworksView" value=""/>
-<input id="state" type="hidden" value="0"/>
 
-<div id="p_link">
-    <div class="p_fuhao"></div>
-    <div class="p_link_a"><a href="/index">STEAM创客教育</a>&gt;
-        <a href="/course">课程中心</a>&gt;<a
-                href="/courseDetails/89">课程视频</a></div>
+<div id="p_link" th:include="view/frame/links :: p_links(l1='/course',name1='创客视频',l2='#',name2='视频学习')">
 </div>
 <div id="x_container">
 

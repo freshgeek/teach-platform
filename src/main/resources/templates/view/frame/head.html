@@ -24,9 +24,9 @@
             background-color: #808080;
         }
     </style>
-    <input id="user_role" type="hidden" value="">
-    <input id="user_id" type="hidden" value="">
-    <input id="nick_name" type="hidden" value="">
+    <input id="user_role" type="hidden" value="" th:value="${login_user?.getRoleId()}">
+    <input id="user_id" type="hidden" value=""  th:value="${login_user?.getId()}">
+    <input id="nick_name" type="hidden" value=""  th:value="${login_user?.getNickName()}">
 
     <div id="x_bg" style="background-color:black">
         <div id="x_header_contain">

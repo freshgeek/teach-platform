@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title th:text="${detail.getName()}">-详情</title>
+    <title th:text="${detail?.getName()}">-详情</title>
     <link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css">
     <link href="/style/steam_front/diyWorks/css/diyWorksDetail.css" rel="stylesheet" type="text/css">
     <link href="/style/steam_front/common/css/common.css" rel="stylesheet" type="text/css">
@@ -31,10 +31,10 @@
 <body>
 <div th:replace="view/frame/head :: head-div(index=5)"></div>
 <div id="p_link" th:include="view/frame/links :: p_links(l1='/achv/page',name1='创客创作'
-,l2='#',name2=${detail.getName()})">
+,l2='#',name2=${detail?.getName()})">
 </div>
 <div class="p_worksdetail">
-    <div class="p_title" th:text="${detail.getName()}">照顾盲人眼镜</div>
+    <div class="p_title" th:text="${detail?.getName()}">照顾盲人眼镜</div>
     <div class="p_author">
         作者：[(${detail.getUser().getNickName()})]
         <span>时间：[(${#dates.format(detail.getCreateTime(),'yyyy-MM-dd')})]</span>

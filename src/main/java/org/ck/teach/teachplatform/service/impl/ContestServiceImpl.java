@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author 
- * @since 2019-12-26
+ * @since 2020-01-05
  */
 @Service
 public class ContestServiceImpl extends ServiceImpl<ContestDao, Contest> implements ContestService {

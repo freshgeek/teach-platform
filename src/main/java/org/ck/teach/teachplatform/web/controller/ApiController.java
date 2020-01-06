@@ -35,28 +35,40 @@ public class ApiController extends BaseController {
     @Autowired
     private FileLogService fileLogService;
 
+    @GetMapping("/student/api/timer")
+    public Response studentTimer() {
+        Integer id = getSessionUser().getId();
+        return Response.success();
+    }
+    @GetMapping("/student/api/achv/list")
+    public Response achvList() {
+        UserAchv userAchv = new UserAchv();
+        userAchv.setUserId(getSessionUser().getId());
+        return Response.success(userAchvService.list(new QueryWrapper<>(userAchv)));
+    }
 
     @GetMapping("/student/api/userTip/page")
-    public Response userTipPage(UserTip userTip){
+    public Response userTipPage(UserTip userTip) {
         userTip.setUserId(getSessionUser().getId());
-        return Response.parse(userTipService.page(userTip.convertPage(),new QueryWrapper<>(userTip)));
+        return Response.parse(userTipService.page(userTip.convertPage(), new QueryWrapper<>(userTip)));
     }
+
     @GetMapping("/student/api/userVisitLog/page")
-    public Response userTipPage(UserVisitLog userVisitLog){
+    public Response userTipPage(UserVisitLog userVisitLog) {
         userVisitLog.setUserId(getSessionUser().getId());
-        return Response.parse(userVisitLogService.page(userVisitLog.convertPage(),new QueryWrapper<>(userVisitLog)));
+        return Response.parse(userVisitLogService.page(userVisitLog.convertPage(), new QueryWrapper<>(userVisitLog)));
     }
 
     @GetMapping("/student/achv/page")
-    public Response achvPage(UserAchv userAchv){
-        return Response.parse(userAchvService.page(userAchv.convertPage(),new QueryWrapper<>(userAchv)));
+    public Response achvPage(UserAchv userAchv) {
+        return Response.parse(userAchvService.page(userAchv.convertPage(), new QueryWrapper<>(userAchv)));
     }
 
     @GetMapping("/student/achvFav/page")
-    public Response achvPage(UserAchvFav userAchvFav){
+    public Response achvPage(UserAchvFav userAchvFav) {
         userAchvFav.setUserId(getSessionUser().getId());
         IPage page = userAchvFavService.page(userAchvFav.convertPage(), new QueryWrapper<>(userAchvFav));
-        page.getRecords().forEach(e->{
+        page.getRecords().forEach(e -> {
             UserAchvFav fav = (UserAchvFav) e;
             UserAchv byId = userAchvService.getById(fav.getAchvId());
             fav.setAchv(byId);
@@ -65,32 +77,33 @@ public class ApiController extends BaseController {
     }
 
     @GetMapping("/student/resource/page")
-    public Response resourcePage(Resource resource){
+    public Response resourcePage(Resource resource) {
         resource.setUserId(getSessionUser().getId());
-        return Response.parse(resourceService.page(resource.convertPage(),new QueryWrapper<>(resource)));
+        return Response.parse(resourceService.page(resource.convertPage(), new QueryWrapper<>(resource)));
     }
 
     @GetMapping("/student/api/resource/add")
-    public Response addResource(Resource resource){
+    public Response addResource(Resource resource) {
         resource.setUserId(getSessionUser().getId());
-        return Response.parse(resourceService.page(resource.convertPage(),new QueryWrapper<>(resource)));
+        return Response.parse(resourceService.page(resource.convertPage(), new QueryWrapper<>(resource)));
     }
 
     @PostMapping("/uploadEditor")
     public Map uploadEditor(MultipartFile file) {
         Response response = uploadFile(file);
         Map re = new HashMap();
-        re.put("code",1);
-        if (AppUtils.isSuccess(response)){
+        re.put("code", 1);
+        if (AppUtils.isSuccess(response)) {
             FileLog fileLog = (FileLog) response.getBody();
             HashMap inner = new HashMap();
-            re.put("code",0);
-            inner.put("src",fileLog.getPath());
-            inner.put("title",fileLog.getName());
-            re.put("data",inner);
+            re.put("code", 0);
+            inner.put("src", fileLog.getPath());
+            inner.put("title", fileLog.getName());
+            re.put("data", inner);
         }
         return re;
     }
+
     @PostMapping("/upload")
     public Response uploadFile(MultipartFile file) {
         String fileExtension = Files.getFileExtension(file.getOriginalFilename());
@@ -98,14 +111,14 @@ public class ApiController extends BaseController {
                 UUID.randomUUID().toString(),
                 fileExtension
         ));
-        User sessionUser =  getSessionUser();
+        User sessionUser = getSessionUser();
         FileLog fileLog = new FileLog();
         try {
             fileLog.setCreateTime(new Date());
             fileLog.setName(file.getOriginalFilename());
-            fileLog.setPath(String.format("/%s",local.getName()));
+            fileLog.setPath(String.format("/%s", local.getName()));
             fileLog.setSize(Long.valueOf(file.getSize()).intValue());
-            fileLog.setUserId(sessionUser==null?0:sessionUser.getId());
+            fileLog.setUserId(sessionUser == null ? 0 : sessionUser.getId());
             fileLogService.save(fileLog);
 
             file.transferTo(local);

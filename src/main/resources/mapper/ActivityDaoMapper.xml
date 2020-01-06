@@ -11,6 +11,11 @@
         <result column="intro" property="intro" />
         <result column="content" property="content" />
         <result column="create_time" property="createTime" />
+        <association property="user" column="user_id"
+                     select="org.ck.teach.teachplatform.mapper.UserDao.selectById">
+
+        </association>
+
     </resultMap>
 
     <!-- 通用查询结果列 -->

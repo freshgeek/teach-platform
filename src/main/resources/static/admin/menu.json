@@ -1,0 +1,22 @@
+{
+  "body": [
+    {
+      "id": 1,
+      "url": "/admin/resource/resourceList.htm",
+      "name": "学习资源管理",
+      "icon": ""
+    },
+    {
+      "id": 2,
+      "url": "/admin/user/userList.htm",
+      "name": "用户管理",
+      "icon": ""
+    },
+    {
+      "id": 3,
+      "url": "/admin/sysInfo/sysInfoList.htm",
+      "name": "通知资讯管理",
+      "icon": ""
+    }
+  ]
+}

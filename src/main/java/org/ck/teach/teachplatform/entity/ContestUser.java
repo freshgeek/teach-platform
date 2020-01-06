@@ -25,7 +25,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@TableName("t_contest_user")
+@TableName(value = "t_contest_user",resultMap = "BaseResultMap")
 @ApiModel(value="ContestUser对象", description="竞赛参与")
 public class ContestUser extends Request {
 
@@ -41,6 +41,12 @@ public class ContestUser extends Request {
     @ApiModelProperty(value = "参与用户id")
     @TableField("user_id")
     private Integer userId;
+
+    @TableField(exist = false)
+    private User user;
+
+    @TableField(exist = false)
+    private UserAchv achv;
 
     @ApiModelProperty(value = "参与作品id")
     @TableField("achv_id")

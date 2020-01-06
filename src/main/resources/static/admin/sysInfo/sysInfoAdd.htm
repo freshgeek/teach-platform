@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
-    <title>公告修改-后台管理</title>
+    <title>创客资讯新增-后台管理</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="stylesheet" href="/static/css/font.css">
-    <link rel="stylesheet" href="/static/css/weadmin.css">
+    <link rel="stylesheet" href="/layui/css/font.css">
+    <link rel="stylesheet" href="/layui/css/weadmin.css">
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -20,8 +19,27 @@
 <body>
 <div class="weadmin-body">
     <form class="layui-form" lay-filter="form" id="form">
-                <input type="hidden" id="id" name="id"
-                       class="layui-input">
+                <div class="layui-form-item">
+                    <label for="typeId" class="layui-form-label">
+                        <!--必填开启-->
+                        <!--<span class="we-red">*</span> -->
+                        资讯类型
+                    </label>
+                    <div class="layui-input-inline">
+                        <!--必填开启-->
+                        <!--lay-verify="required" -->
+                        <select id="typeId" name="typeId"
+                                lay-verify="required" lay-search>
+
+                        </select>
+                    </div>
+                    <!--
+                        必填开启
+                    <div class="layui-form-mid layui-word-aux">
+                        <span class="we-red">*</span>后缀提示信息
+                    </div>
+                    -->
+                </div>
                 <div class="layui-form-item">
                     <label for="upUser" class="layui-form-label">
                         <!--必填开启-->
@@ -45,7 +63,7 @@
                     <label for="title" class="layui-form-label">
                         <!--必填开启-->
                         <!--<span class="we-red">*</span> -->
-                        公告标题
+                        资讯标题
                     </label>
                     <div class="layui-input-inline">
                         <!--必填开启-->
@@ -61,15 +79,57 @@
                     -->
                 </div>
                 <div class="layui-form-item">
-                    <label for="content" class="layui-form-label">
+                    <label for="coverUrl" class="layui-form-label">
                         <!--必填开启-->
                         <!--<span class="we-red">*</span> -->
-                        公告内容
+                        资讯封面
                     </label>
                     <div class="layui-input-inline">
                         <!--必填开启-->
                         <!--lay-verify="required" -->
-                        <input type="text" id="content" name="content"
+                        <input type="text" id="coverUrl" name="coverUrl"
+                               lay-verify="" autocomplete="off" class="layui-input">
+                    </div>
+                    <!--
+                        必填开启
+                    <div class="layui-form-mid layui-word-aux">
+                        <span class="we-red">*</span>后缀提示信息
+                    </div>
+                    -->
+                </div>
+                <div class="layui-form-item">
+                    <label for="LAY_demo_editor" class="layui-form-label">
+                        <!--必填开启-->
+                        <!--<span class="we-red">*</span> -->
+                        资讯内容
+                    </label>
+                    <div class="layui-input-block">
+                        <!--必填开启-->
+                        <!--lay-verify="required" -->
+                        <textarea class="layui-textarea layui-hide" name="content" lay-verify="content"
+                                  id="LAY_demo_editor">
+                                  <h3>1.作品说明</h3><br><br>
+                                  <h3>2.详细描述</h3><br><br>
+                                  <h3>3.附带文件</h3><br><br>
+                                </textarea>
+                    </div>
+                    <!--
+                        必填开启
+                    <div class="layui-form-mid layui-word-aux">
+                        <span class="we-red">*</span>后缀提示信息
+                    </div>
+                    -->
+                </div>
+                <div class="layui-form-item">
+                    <label for="sortField" class="layui-form-label">
+                        <!--必填开启-->
+                        <!--<span class="we-red">*</span> -->
+                        排序字段
+                    </label>
+                    <div class="layui-input-inline">
+                        <!--必填开启-->
+                        <!--lay-verify="required" -->
+                        <input type="text" id="sortField" name="sortField"
                                lay-verify="" autocomplete="off" class="layui-input">
                     </div>
                     <!--
@@ -83,7 +143,7 @@
                     <label for="createTime" class="layui-form-label">
                         <!--必填开启-->
                         <!--<span class="we-red">*</span> -->
-                        发布日期
+                        资讯日期
                     </label>
                     <div class="layui-input-inline">
                         <!--必填开启-->
@@ -100,29 +160,41 @@
                 </div>
         <div class="layui-form-item">
             <label class="layui-form-label"></label>
-            <button class="layui-btn" lay-filter="submit-btn" lay-submit="">修改</button>
-            <button class="layui-btn layui-btn-warm" type="reset">重置表单</button>
+            <button class="layui-btn" lay-filter="submit-btn" lay-submit="">增加</button>
+            <button class="layui-btn layui-btn-warm" type="reset"  >重置表单</button>
         </div>
     </form>
 </div>
-<script src="/lib/layui/layui.js" charset="utf-8"></script>
+
+<script src="/webjars/layui/2.5.5/layui.js" charset="utf-8"></script>
 <script type="text/javascript">
     layui.extend({
-        admin: '/static/js/admin',
-        js_tools: '/static/js/extends/js_tools'
+        admin: '/layui/js/extends/admin',
+        js_tools: '/layui/js/extends/js_tools'
     });
-    layui.use(['form', 'jquery', 'layer', 'js_tools', 'laydate'], function () {
+
+    layui.use(['form','layedit', 'layer','js_tools', 'laydate','jquery'], function () {
         var form = layui.form,
-            $ = layui.jquery,
             laydate = layui.laydate,
+            layedit = layui.layedit,
+            $ = layui.jquery,
             js_tools = layui.js_tools,
             layer = layui.layer;
+            <!--  资讯日期 laydate实例-->
+            laydate.render({
+                elem: '#createTime' //指定元素
+                ,type: 'datetime'
+            });
 
-        <!--  发布日期 laydate实例-->
-        laydate.render({
-            elem: '#createTime' //指定元素
-            ,type: 'datetime'
-        });
+        layedit.set({
+            uploadImage: {
+                url: '/uploadEditor',
+                type: 'post'
+            }
+        })
+        var editIndex = layedit.build('LAY_demo_editor');
+        js_tools.fill_select('/admin/api/sysInfoType/list', null, {elem: '#typeId'});
+
         form.render();
         //自定义验证规则
         form.verify({
@@ -139,39 +211,27 @@
             }
         });
 
-        window.loadData = function (id) {
-            js_tools.quick_get("/admin/api/sysNotice/find/" + id, null, function (rs) {
-                if (rs.code == js_tools.successCode) {
-                    form.val('form', rs.body);
-                } else {
-                    layer.alert(rs.msg);
-                }
-            });
-        }
-
-        loadData($('#id').val());
-
         //监听提交
         form.on('submit(submit-btn)', function (data) {
-            data.field.createTime = new Date(data.field.createTime);
-//            console.log(data);
-            js_tools.quick_post("/admin/api/sysNotice/update", data.field, function (res) {
-                if (res.code == js_tools.successCode) {
-                    layer.alert("修改成功", {icon: 6}, function () {
+                data.field.createTime = new Date(data.field.createTime);
+            js_tools.quick_post("/admin/api/sysInfo/add",data.field,function (res) {
+                if (res.code==js_tools.successCode){
+                    layer.alert("增加成功", {icon: 6}, function () {
                         // 刷新列表
-                        parent.sysNoticeListIns.reload();
+                        parent.sysInfoListIns.reload();
                         // 获得frame索引
                         var index = parent.layer.getFrameIndex(window.name);
                         //关闭当前frame
                         parent.layer.close(index);
                     });
-                } else {
+                }else{
                     layer.alert(res.msg);
                 }
             });
 
             return false;
         });
+
     });
 </script>
 </body>

@@ -79,9 +79,9 @@
         <div class="layui-card-body">
             <h2 class="p_title" th:text="${detail.getName()}"> 项目标题</h2>
             <div class="p_author">
-                教师:[[${detail.getUserId()}]]
+                教师:[[${detail.getUser()?.getNickName()}]] <i class="layui-badge">[[${detail.getUser()?.getPointLevel()}]]</i>
                 <th:block th:each="ul : ${user_list}">
-                    组员:[[${ul.getId()}]]
+                    组员:[[${ul?.getUser()?.getNickName()}]] <i class="layui-badge">[[${ul.getUser()?.getPointLevel()}]]</i>
                 </th:block>
             </div>
             <div class="intro" th:utext="${detail.getContent()}">
@@ -94,7 +94,7 @@
                     <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
                     <div class="layui-timeline-content layui-text">
                         <h3 class="layui-timeline-title">
-                            <a href="#" th:attr="data-id=${log.getUserId()}" th:text="${log.getUserId()}">陈踩踩</a>
+                            <a href="#" th:attr="data-id=${log.getUserId()}" th:text="${log.getUser()?.getNickName()}">陈踩踩</a>
                             <time th:text="${#dates.format(log.getCreateTime(),'yyyy-MM-dd hh:mm:ss')}">2018-22-11</time>
                         </h3>
                         <div class="content" th:utext="${log.getContent()}">
@@ -103,7 +103,6 @@
                                 <br>不枉近百个日日夜夜与之为伴。因小而大，因弱而强。
                                 <br>无论它能走多远，抑或如何支撑？至少我曾倾注全心，无怨无悔 <i class="layui-icon"></i>
                             </p>
-
                         </div>
                         <button th:attr="data-id=${log.getId()}" class="layui-btn layui-btn-primary"
                                 th:if="${userId==detail.getUserId()}">教师批复
@@ -133,7 +132,7 @@
             <h2 style="font-size: 20px;margin-bottom: 20px;">记录项目:</h2>
             <div class="log-cmt layui-form">
                 <input id="atvId" name="atvId" type="hidden" th:value="${detail.getId()}">
-                <input name="userId" type="hidden" th:value="${login_user.getId()}">
+                <input name="userId" type="hidden" th:value="${login_user?.getId()}" lay-verify="required" lay-reqtext="请登录后再试">
                 <textarea class="layui-textarea layui-hide" name="content" lay-verify="content"
                           id="LAY_demo_editor"></textarea>
                 <button class="layui-btn btn-primary" style="margin-top: 10px;" lay-submit lay-filter="log-btn">

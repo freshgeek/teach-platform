@@ -22,12 +22,14 @@
         <a id="f_course_name"></a></div>
 </div>
 <div class="layui-container">
-    
+
     <div class="layui-tab layui-tab-card">
         <ul class="layui-tab-title">
             <li class="layui-this">个人创作</li>
             <li>竞赛创作</li>
-            <button class="layui-btn layui-btn-warm layui-layout-right" id="share-btn" onclick="javascript:location.href='/student/createAchv.html'">开始创作</button>
+            <button class="layui-btn layui-btn-warm layui-layout-right" id="share-btn"
+                    onclick="javascript:location.href='/student/createAchv.html'">开始创作
+            </button>
         </ul>
         <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
@@ -45,8 +47,9 @@
 
 </div>
 <script th:inline="none">
-    layui.use(['table','layer','jquery', 'js_tools'], function () {
+    layui.use(['table', 'layer', 'jquery', 'js_tools'], function () {
         var table = layui.table;
+        var $ = layui.jquery;
         var tools = layui.js_tools;
         var tpl = tools.getTableTemplate();
         tpl.elem = '#list1';
@@ -63,15 +66,14 @@
                 templet: '<div><a href="/achv/detail/{{d.id}}">查看作品</a></div>'
             }
         ]];
-        tpl.where = {contest:'0'};
+        tpl.where = {contest: '0', userId: $('#user_id').val()};
         var list = table.render(tpl);
 
 
-
         var tpl2 = tools.cloneObj(tpl);
-        tpl2.elem='#list2';
+        tpl2.elem = '#list2';
         tpl2.where = {
-            contest:'1'
+            contest: '1', userId: $('#user_id').val()
         }
         var list2 = table.render(tpl2);
 

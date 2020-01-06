@@ -54,8 +54,10 @@
         作者：<span th:text="${resource.getUser().getNickName()}"></span>
         <span class="layui-badge" th:text="${resource.getUser().getPointLevel()}"></span>
         <span>时间：[(${#dates.format(resource.getCreateTime(),'yyyy-MM-dd')})]</span>
+<!--
         访问量:<span th:text="${resource.getVisitNum()}"></span>
         <div class="q_like" data="1" th:text="${resource.getLikeNum()}">0</div>
+-->
         <div class="clear"></div>
     </div>
     <div class="p_fenge"></div>

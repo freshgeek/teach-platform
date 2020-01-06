@@ -51,7 +51,7 @@ layui.use(['laydate','admin','form', 'jquery', 'table', 'js_tools'], function ()
 
         if (obj.event === 'edit') {
             // 编辑功能
-            WeAdminEdit('编辑','./sysInfoEdit.html',data.id);
+            WeAdminEdit('编辑','./sysInfoEdit.htm',data.id);
         } else if (obj.event === 'del') {
             //删除功能
             js_tools.quick_post("/admin/api/sysInfo/delete",data,function (rs) {

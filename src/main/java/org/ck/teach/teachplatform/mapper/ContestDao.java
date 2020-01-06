@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author 
- * @since 2019-12-26
+ * @since 2020-01-05
  */
 public interface ContestDao extends BaseMapper<Contest> {
 

@@ -71,7 +71,7 @@ layui.use(['laydate','admin','form', 'jquery', 'table', 'js_tools'], function ()
 
         if (obj.event === 'edit') {
             // 编辑功能
-            WeAdminEdit('编辑','./${lowEntity}Edit.html',data.id);
+            WeAdminEdit('编辑','./${lowEntity}Edit.htm',data.id);
         } else if (obj.event === 'del') {
             //删除功能
             js_tools.quick_post("${baseUrl}/delete",data,function (rs) {

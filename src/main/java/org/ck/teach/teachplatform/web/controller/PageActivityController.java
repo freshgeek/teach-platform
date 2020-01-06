@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 /**
  * @author chen.chao
  * @version 1.0
@@ -20,16 +22,24 @@ import org.springframework.web.servlet.ModelAndView;
 public class PageActivityController extends BaseController {
 
     @GetMapping("/activity/detail/{id}")
-    public ModelAndView detail(@PathVariable("id") Integer id,ModelAndView modelAndView){
+    public ModelAndView detail(@PathVariable("id") Integer id, ModelAndView modelAndView) {
         Activity activity = activityService.getById(id);
 
-        modelAndView.addObject("detail",activity);
-        modelAndView.addObject("user_list",activityUserService.list(
-                new QueryWrapper<ActivityUser>().eq("atv_id",activity.getId())
-        ));
-        modelAndView.addObject("teach",userService.getById(activity.getUserId()));
-        modelAndView.addObject("log_list",activityLogService.list(
-           new QueryWrapper<ActivityLog>().eq("atv_id",activity.getId())
+        modelAndView.addObject("detail", activity);
+        List<ActivityUser> userList = activityUserService.list(
+                new QueryWrapper<ActivityUser>().eq("atv_id", activity.getId())
+        );
+
+        modelAndView.addObject("user_list", userList);
+        modelAndView.addObject("hasJoin", activityUserService.getOne(new QueryWrapper<ActivityUser>()
+                .eq("atv_id", id)
+                .eq("user_id",
+                        getSessionUser() == null ?
+                                0 : getSessionUser().getId())));
+
+        modelAndView.addObject("teach", userService.getById(activity.getUserId()));
+        modelAndView.addObject("log_list", activityLogService.list(
+                new QueryWrapper<ActivityLog>().eq("atv_id", activity.getId())
         ));
         modelAndView.setViewName("view/act-detail");
         return modelAndView;

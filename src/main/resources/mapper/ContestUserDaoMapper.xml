@@ -9,6 +9,12 @@
         <result column="user_id" property="userId" />
         <result column="achv_id" property="achvId" />
         <result column="create_time" property="createTime" />
+        <association property="user" column="user_id"
+                     select="org.ck.teach.teachplatform.mapper.UserDao.selectById">
+        </association>
+        <association property="achv" column="achv_id"
+                     select="org.ck.teach.teachplatform.mapper.UserAchvDao.selectById">
+        </association>
     </resultMap>
 
     <!-- 通用查询结果列 -->

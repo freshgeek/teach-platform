@@ -142,38 +142,21 @@
             param:param,
             page:'page'
         });
-       /* var page = {
-            elem: 'page'
-            , count: 10 //数据总数，从服务端得到
-            , limit: 12
-            , jump: function (obj, first) {
-                //obj包含了当前分页的所有参数，比如：
-                console.log(obj);
-                //首次不执行
-                if (!first) {
-                    param.pageIndex = obj.curr;
-                    js_tools.quick_get('/admin/api/activity/page', param, function (res) {
-                        // 模板
-                        laytpl(js_tools.get('#model').html()).render(res, function (html) {
-                            js_tools.get('#list').html(html);
-                        });
-                        //分页
-                        page.count = res.total;
-                        laypage.render(page);
-                    });
-                }
-            }
-        };
 
-        js_tools.quick_get('/admin/api/activity/page', param, function (res) {
-            // 模板
-            laytpl(js_tools.get('#model').html()).render(res, function (html) {
-                js_tools.get('#list').html(html);
-            });
-            //分页
-            page.count = res.total;
-            laypage.render(page);
-        });*/
+        js_tools.get('#list').on('click','button[data-id]',function () {
+            var data = js_tools.get(this).attr('data-id');
+            if (checkLogin()){
+                js_tools.quick_post('/admin/api/activityUser/add',{atvId:data,userId:checkLogin().id},function (res) {
+                    if (js_tools.isSucc(res)){
+                        layer.alert('加入成功',function () {
+                            location.href='/activity/detail/'+data;
+                        });
+                    }else{
+                        layer.alert(res.msg);
+                    }
+                })
+            }
+        })
 
     });
 </script>
@@ -181,34 +164,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

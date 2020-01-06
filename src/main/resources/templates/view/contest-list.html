@@ -149,6 +149,7 @@
 <div th:replace="view/frame/head :: head-div(index=3)"></div>
 <div th:replace="view/frame/userBLHead :: subHead(index=2)"></div>
 
+<!--
 <div id="rollwarp">
     <div id="rollbox">
         <div class="roll select">
@@ -168,6 +169,7 @@
         </li>
     </ul>
 </div>
+-->
 <div class="gamesWrap">
     <div style="line-height: 100px;color: #4d4d4d;text-align:left;font-size:20px;font-weight:600;">赛事列表</div>
     <div class="gameBox">
@@ -195,6 +197,7 @@
 
 <script type="text/javascript">
     //轮播图
+/*
     var index = 0;
     var timer = null;
     var length = $("#rollwarp ul li").length;
@@ -224,6 +227,7 @@
         //$(".roll:eq("+index+")").fadeIn().siblings().fadeOut();
         $(".roll:eq(" + index + ")").addClass("select").siblings().removeClass("select");
     }
+*/
 </script>
 </body>
 </html>

@@ -65,7 +65,7 @@
         </form>
     </div>
     <div class="weadmin-block">
-        <button class="layui-btn" onclick="WeAdminShow('添加','./${lowEntity}Add.html')">
+        <button class="layui-btn" onclick="WeAdminShow('添加','./${lowEntity}Add.htm')">
             <i class="layui-icon"></i>添加
         </button>
     </div>

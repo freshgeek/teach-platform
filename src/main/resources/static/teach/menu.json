@@ -1,0 +1,22 @@
+{
+  "body": [
+    {
+      "id": 1,
+      "url": "/teach/resource/resourceList.htm",
+      "name": "学习资源管理",
+      "icon": ""
+    },
+    {
+      "id": 2,
+      "url": "/teach/activity/activityList.htm",
+      "name": "创意项目管理",
+      "icon": ""
+    },
+    {
+      "id": 3,
+      "url": "/teach/contest/contestList.htm",
+      "name": "创客擂台管理",
+      "icon": ""
+    }
+  ]
+}

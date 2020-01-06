@@ -73,7 +73,7 @@ public class CodeGenerator {
         strategy.setTablePrefix("t_");
         // 表名生成策略
         strategy.setNaming(NamingStrategy.underline_to_camel);
-         strategy.setInclude("t_activity"); // 需要生成的表
+         strategy.setInclude("t_contest"); // 需要生成的表
         strategy.setSkipView(false);
         // strategy.setExclude(new String[]{"test"}); // 排除生成的表
         // 自定义实体父类
@@ -125,7 +125,7 @@ public class CodeGenerator {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输入文件名称
-                return System.getProperty("user.dir") + "/src/main/resources/static/admin/" + uncapFirst(tableInfo.getEntityName()) + "/" + uncapFirst(tableInfo.getEntityName()) + "List.html";
+                return System.getProperty("user.dir") + "/src/main/resources/static/admin/" + uncapFirst(tableInfo.getEntityName()) + "/" + uncapFirst(tableInfo.getEntityName()) + "List.htm";
             }
         });
         //列表js生成
@@ -142,7 +142,7 @@ public class CodeGenerator {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输入文件名称
-                return System.getProperty("user.dir") + "/src/main/resources/static/admin/" + uncapFirst(tableInfo.getEntityName()) + "/" + uncapFirst(tableInfo.getEntityName()) + "Add.html";
+                return System.getProperty("user.dir") + "/src/main/resources/static/admin/" + uncapFirst(tableInfo.getEntityName()) + "/" + uncapFirst(tableInfo.getEntityName()) + "Add.htm";
             }
         });
         //修改页面生成
@@ -150,7 +150,7 @@ public class CodeGenerator {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输入文件名称
-                return System.getProperty("user.dir") + "/src/main/resources/static/admin/" + uncapFirst(tableInfo.getEntityName()) + "/" + uncapFirst(tableInfo.getEntityName()) + "Edit.html";
+                return System.getProperty("user.dir") + "/src/main/resources/static/admin/" + uncapFirst(tableInfo.getEntityName()) + "/" + uncapFirst(tableInfo.getEntityName()) + "Edit.htm";
             }
         });
         cfg.setFileOutConfigList(focList);

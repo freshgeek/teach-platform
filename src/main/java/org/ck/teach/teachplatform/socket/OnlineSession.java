@@ -1,13 +1,14 @@
 package org.ck.teach.teachplatform.socket;
 
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.ck.teach.teachplatform.entity.User;
 
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -21,29 +22,36 @@ import java.util.concurrent.atomic.AtomicInteger;
 @ServerEndpoint(value = "/websocket/open/{uid}")
 public class OnlineSession {
 
-
-    private static final AtomicInteger OnlineCount = new AtomicInteger(0);
-
     private static CopyOnWriteArraySet<OnlineSession> webSocketSet = new CopyOnWriteArraySet<OnlineSession>();
 
     private Session session;
 
+    private OnlineUser onlineUser;
+
+    private OnlineSession getOnline(int userId) {
+        for (OnlineSession e : webSocketSet) {
+            if (e.onlineUser != null && e.onlineUser.getUserId().intValue() == userId) {
+                return e;
+            }
+        }
+        return null;
+    }
 
     /**
      * 连接建立成功调用的方法
      */
     @OnOpen
-    public void onOpen(@PathParam("userId") String userId, Session session) {
+    public void onOpen(@PathParam("userId") Integer userId, Session session) {
         log.info("新客户端连入，用户id：" + userId);
         this.session = session;
         webSocketSet.add(this);
-        if (userId != null) {
-            List<String> totalPushMsgs = new ArrayList<String>();
-            if (totalPushMsgs != null && !totalPushMsgs.isEmpty()) {
-                totalPushMsgs.forEach(e -> sendMessage(e));
-            }
+        OnlineSession online = getOnline(userId);
+        if (online==null){
+            OnlineUser onlineUser = new OnlineUser();
+            onlineUser.setUserId(userId);
+            onlineUser.setStart(new Date());
+            this.onlineUser =onlineUser;
         }
-
     }
 
     /**
@@ -92,5 +100,20 @@ public class OnlineSession {
         }
     }
 
+
+    @Data
+    static class OnlineUser {
+
+        // 用户id
+        Integer userId;
+
+        // 学习时长
+        //默认主动断开 被动断开时间截至
+        long timeSpace;
+
+        //开始时间
+        Date start;
+
+    }
 
 }

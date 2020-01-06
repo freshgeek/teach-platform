@@ -24,7 +24,7 @@ import java.io.Serializable;
 * </p>
 *
 * @author 
-* @since 2019-12-26
+* @since 2020-01-05
 */
 
 @RestController
@@ -46,6 +46,7 @@ import java.io.Serializable;
     @PostMapping("/add")
     @ApiOperation("新增")
     public Response add(Contest contest){
+        contest.setUserId(getSessionUser().getId());
         contestService.save(contest);
         return Response.success();
     }

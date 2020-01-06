@@ -74,18 +74,19 @@
 ,l2='#',name2=${detail.getName()})">
 </div>
 <style>
-    .p_main_content h2{
+    .p_main_content h2 {
         font-size: 26px;
         margin-bottom: 10px;
     }
 </style>
 
 <div class="p_worksdetail">
+    <input type="hidden" th:value="${detail.getId()}" id="contestId">
     <div class="p_title" th:text="${detail.getName()}">照顾盲人眼镜</div>
     <div class="p_author">
         作者：[(${detail.getUserId()})]
         <span>时间：[(${#dates.format(detail.getCreateTime(),'yyyy-MM-dd')})]</span>
-        <button class="layui-btn layui-btn-primary " style="float: right;margin-right: 10px;">作品报名</button>
+        <button class="layui-btn layui-btn-primary bm-btn " style="float: right;margin-right: 10px;">作品报名</button>
         <div class="clear"></div>
     </div>
     <div class="p_fenge"></div>
@@ -114,41 +115,107 @@
 </div>
 
 <script id="model" type="text/html" th:inline="none">
+    {{# if(d.total<=0){ }}
+    <div>
+        还没有报名,赶紧报名吧~
+        <button class="layui-btn layui-btn-primary bm-btn">报名参加</button>
+    </div>
+    {{# } }}
     {{#  layui.each(d.body,function(i,e){ }}
     <div class="list-item layui-col-sm12 ">
         <div class="layui-col-sm3 item-cover">
-            <img src="{{e.coverUrl}}">
+            <img src="{{e.achv.coverUrl}}">
         </div>
         <div class="layui-row layui-col-sm8 item-content">
-            <div class="layui-col-sm12 " onclick="location.href='/activity/detail/{{e.id}}'">
-                <h1 class="title">{{e.name}}</h1>
+            <div class="layui-col-sm12 " onclick="location.href='/achv/detail/{{e.achv.id}}'">
+                <h1 class="title">{{e.achv.name}}</h1>
                 <p class="intro">
-                    {{e.intro}}
+                  报名时间 :  {{e.createTime}}
                 </p>
                 <p class="info">
-                    <span class="teach"><i class="layui-badge user-point">黄金大师{{e.userId}}</i> {{e.userId}}</span>
+                    <span class="teach"><i class="layui-badge user-point">{{e.user.pointLevel}}</i> {{e.user.nickName}}</span>
+                    <span class="like"><i class="layui-icon-star layui-icon"></i> {{e.achv.favNum}}</span>
+                    <span class="like"><i class="layui-icon-star layui-icon"></i> {{e.achv.likeNum}}</span>
                 </p>
             </div>
-            <div class="badge">
-                <button class="layui-btn layui-btn-primary" data-id="{{e.id}}">加入项目</button>
-            </div>
+            <!--
+                        <div class="badge">
+                            <button class="layui-btn layui-btn-primary" data-id="{{e.id}}">加入项目</button>
+                        </div>
+            -->
         </div>
     </div>
     {{#   }) ;  }}
+</script>
+<script type="text/html" id="bm-form">
+    <div class="layui-form" style="margin:20px;">
+        <div class="layui-form-item">
+            <label class="layui-form-label">选择作品参赛</label>
+            <div class="layui-input-block">
+                <select name="achvId" lay-verify="required" lay-search>
+                    {{# layui.each(d.body,function(i,e){ }}
+                    <option value="{{e.id}}">{{e.name}}</option>
+                    {{# }); }}
+                </select>
+            </div>
+        </div>
 
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+            <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="formDemo">立即提交</button>
+            </div>
+        </div>
+
+    </div>
 </script>
 <script th:inline="none">
 
-    layui.use(['laypage', 'js_tools', 'laytpl'], function () {
+    layui.use(['form', 'laypage', 'js_tools', 'laytpl'], function () {
         var js_tools = layui.js_tools;
+        var form = layui.form;
         var laypage = layui.laypage;
         var laytpl = layui.laytpl;
         var param = js_tools.getParam();
         param.pageSize = 5;
+        param.contestId = js_tools.get('#contestId').val();
         js_tools.loadData({
-            url: '/admin/api/activity/page',
+            url: '/admin/api/contestUser/page',
             param: param,
             page: 'page'
+        });
+
+        js_tools.get('.bm-btn').on('click', function () {
+            if (checkLogin()) {
+                js_tools.quick_get('/student/api/achv/list', null, function (res) {
+                    laytpl(js_tools.get('#bm-form').html()).render(res, function (html) {
+                        var ind = layer.open({
+                            type: 1,
+                            title: '选择你的作品参赛',
+                            area: ['400px', '200px'],
+                            content: html
+                        });
+                        form.render();
+                    });
+                });
+            }
+        });
+
+        form.on('submit(formDemo)', function (data) {
+            data.field.contestId = param.contestId;
+            data.field.userId = checkLogin().id;
+            js_tools.quick_post('/admin/api/contestUser/add', data.field, function (res) {
+                if (js_tools.isSucc(res)) {
+                    layer.alert('报名成功', function () {
+                        js_tools.loadData({
+                            url: '/admin/api/contestUser/page',
+                            param: param,
+                            page: 'page'
+                        });
+                    })
+                } else {
+                    layer.alert(res.msg);
+                }
+            });
         });
     });
 </script>

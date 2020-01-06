@@ -25,7 +25,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@TableName("t_activity")
+@TableName(value = "t_activity",resultMap = "BaseResultMap")
 @ApiModel(value="Activity对象", description="项目活动")
 public class Activity extends Request {
 
@@ -38,6 +38,9 @@ public class Activity extends Request {
     @ApiModelProperty(value = "用户id")
     @TableField("user_id")
     private Integer userId;
+
+    @TableField(exist = false)
+    private User user;
 
     @ApiModelProperty(value = "活动名")
     @TableField(value = "name",whereStrategy = FieldStrategy.NOT_EMPTY)

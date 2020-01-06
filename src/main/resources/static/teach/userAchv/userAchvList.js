@@ -1,12 +1,12 @@
 /***
 *
-* @todo  公告列表控制js
+* @todo  成果作品列表控制js
 * @author 
-* @version 2019-12-21
+* @version 2019-12-29
 */
 layui.extend({
-    admin: '/static/js/admin',
-    js_tools: '/static/js/extends/js_tools'
+    admin: '/layui/js/extends/admin',
+    js_tools: '/layui/js/extends/js_tools'
 });
 
 layui.use(['laydate','admin','form', 'jquery', 'table', 'js_tools'], function () {
@@ -15,7 +15,7 @@ layui.use(['laydate','admin','form', 'jquery', 'table', 'js_tools'], function ()
         form = layui.form,
         js_tools = layui.js_tools,
         table = layui.table;
-            <!--  发布日期 筛选-->
+            <!--  上传时间 筛选-->
     //执行一个laydate实例
     laydate.render({
         elem: '#createTimeStart' //指定元素
@@ -29,18 +29,24 @@ layui.use(['laydate','admin','form', 'jquery', 'table', 'js_tools'], function ()
     });
 
     var option = js_tools.getTableTemplate();
-    option.url = "/admin/api/sysNotice/page";
+    option.url = "/admin/api/userAchv/page";
     option.cols = [[
         {fixed: 'left',checkbox: true},
-        {field: 'id', title: 'id'},
-        {field: 'upUser', title: '上传人'},
-        {field: 'title', title: '公告标题'},
-        {field: 'content', title: '公告内容'},
-        {field: 'createTime', title: '发布日期'},
+        {field: 'id', title: '作品id'},
+        {field: 'userId', title: '用户id'},
+        {field: 'typeId', title: '类型id'},
+        {field: 'contest', title: '竞赛作品'},
+        {field: 'name', title: '作品名'},
+        {field: 'coverUrl', title: '作品封面图'},
+        {field: 'content', title: '作品内容'},
+        {field: 'createTime', title: '上传时间'},
+        {field: 'likeNum', title: '点赞数'},
+        {field: 'downloadNum', title: '下载数'},
+        {field: 'favNum', title: '收藏数'},
         {fixed: 'right',title:'操作', width:150, align:'center', toolbar: '#list_btn'} //这里的toolbar值是模板元素的选择器
     ]];
 
-    window.sysNoticeListIns = table.render(option);
+    window.userAchvListIns = table.render(option);
 
     //监听工具条
     table.on('tool(list)', function (obj) {
@@ -48,10 +54,10 @@ layui.use(['laydate','admin','form', 'jquery', 'table', 'js_tools'], function ()
 
         if (obj.event === 'edit') {
             // 编辑功能
-            WeAdminEdit('编辑','./sysNoticeEdit.html',data.id);
+            WeAdminEdit('编辑','./userAchvEdit.html',data.id);
         } else if (obj.event === 'del') {
             //删除功能
-            js_tools.quick_post("/admin/api/sysNotice/delete",data,function (rs) {
+            js_tools.quick_post("/admin/api/userAchv/delete",data,function (rs) {
                if (rs.code==js_tools.successCode){
                    table.reload('list');
                }else{
@@ -69,7 +75,7 @@ layui.use(['laydate','admin','form', 'jquery', 'table', 'js_tools'], function ()
         //console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
         //console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
         //console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
-        sysNoticeListIns.reload({where:data.field});
+        userAchvListIns.reload({where:data.field});
         return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
     });
 });
