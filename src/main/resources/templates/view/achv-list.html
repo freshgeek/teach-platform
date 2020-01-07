@@ -20,19 +20,21 @@
 
 <body>
 <div th:replace="view/frame/head :: head-div(index=5)"></div>
-<div id="p_link" th:include="view/frame/links::p_links(l1='#',name1='i分享',l2='#',name2='创客作品')">
+<div id="p_link" th:include="view/frame/links::p_links(l1='/achv-list.html',name1='i分享',l2='/achv-list.html',name2='创客作品')">
 </div>
 <div class="clear"></div>
 
 <div class="p_course_page">
     <div class="p_course_paixu"><span>排序：</span>
         <ul>
-            <li data=""><a>时间</a></li>
-            <li data="1"><a>推荐</a></li>
-            <li data="2"><a>点赞数</a></li>
-            <li data="3"><a>浏览量</a></li>
+            <li data=""><a href="/achv-list.html?pageSort=create_time">时间</a></li>
+            <li data="1"><a href="/achv-list.html?pageSort=fav_num">收藏量</a></li>
+            <li data="2"><a href="/achv-list.html?pageSort=like_num">点赞量</a></li>
+<!--
+            <li data="3"><a href="/achv-list.html?pageSort=visit_num">浏览量</a></li>
+-->
         </ul>
-        <a class="p_play">边玩边学</a>
+        <a class="p_play" href="/student/createAchv.html">边玩边学</a>
     </div>
     <div class="clear"></div>
 </div>
@@ -60,16 +62,16 @@
             <img class="q_cover"
                  src="{{e.coverUrl}}"></a>
         <div class="p_title_like">
-            <p class="q_coverName">{{e.name}}</p><span class="p_like">1</span>
+            <p class="q_coverName">{{e.name}}</p>
+            <span class="p_like">{{e.likeNum}}</span>
             <span class="p_likeimg">
-                    <span
-                          class=" layui-icon layui-icon-praise"></span>
-                </span>
+                    <span  class=" layui-icon layui-icon-praise"></span>
+            </span>
         </div>
         <div class="q_worksCn">
             <img class="q_head" src="{{e.user.headUrl||'/style/back/image/tou_d.jpg'}}">
             <a href="{{e.user.id}}" class="q_works_user" title="{{e.user.nickName}}">{{e.user.nickName}}</a>
-            <span class="p_like">{{e.likeNum}}</span>
+            <span class="p_like">{{e.favNum}}</span>
             <span class="p_readimg">
                 <span class="layui-icon layui-icon-star"></span>
             </span>

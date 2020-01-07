@@ -40,6 +40,7 @@
         border-top: 1px solid #e9e9e9;
         margin-top: 10px;
         padding-top: 10px;
+        color: #FF5722;
     }
 
     .p_title {
@@ -81,7 +82,8 @@
             <div class="p_author">
                 教师:[[${detail.getUser()?.getNickName()}]] <i class="layui-badge">[[${detail.getUser()?.getPointLevel()}]]</i>
                 <th:block th:each="ul : ${user_list}">
-                    组员:[[${ul?.getUser()?.getNickName()}]] <i class="layui-badge">[[${ul.getUser()?.getPointLevel()}]]</i>
+                    组员:[[${ul?.getUser()?.getNickName()}]] <i
+                        class="layui-badge">[[${ul.getUser()?.getPointLevel()}]]</i>
                 </th:block>
             </div>
             <div class="intro" th:utext="${detail.getContent()}">
@@ -95,9 +97,10 @@
                     <div class="layui-timeline-content layui-text">
                         <h3 class="layui-timeline-title">
                             <a href="#" th:attr="data-id=${log.getUserId()}" th:text="${log.getUser()?.getNickName()}">陈踩踩</a>
-                            <time th:text="${#dates.format(log.getCreateTime(),'yyyy-MM-dd hh:mm:ss')}">2018-22-11</time>
+                            <time th:text="${#dates.format(log.getCreateTime(),'yyyy-MM-dd hh:mm:ss')}">2018-22-11
+                            </time>
                         </h3>
-                        <div class="content" th:utext="${log.getContent()}">
+                        <div class="content" th:utext="${log.getContent()}" style="    width: 80%;">
                             <p>
                                 layui 2.0 的一切准备工作似乎都已到位。发布之弦，一触即发。
                                 <br>不枉近百个日日夜夜与之为伴。因小而大，因弱而强。
@@ -105,12 +108,12 @@
                             </p>
                         </div>
                         <button th:attr="data-id=${log.getId()}" class="layui-btn layui-btn-primary"
-                                th:if="${userId==detail.getUserId()}">教师批复
+                                th:if="${userId==detail.getUserId()&&#strings.isEmpty(log.getComment())}">教师批复
                         </button>
                         <div class="layui-timeline-content-sub"
-                             th:if="${!#strings.isEmpty(log.getComment())}"
-                             th:utext="${log.getComment()}">
-                            <p>杜甫的思想核心是儒家的仁政思想，他有“<em>致君尧舜上，再使风俗淳</em>”的宏伟抱负。</p>
+                             th:if="${!#strings.isEmpty(log.getComment())}"  >
+                            <span>教师批复:</span>
+                            <th:block  th:utext="${log.getComment()}"></th:block>
                         </div>
                     </div>
                 </li>
@@ -132,7 +135,8 @@
             <h2 style="font-size: 20px;margin-bottom: 20px;">记录项目:</h2>
             <div class="log-cmt layui-form">
                 <input id="atvId" name="atvId" type="hidden" th:value="${detail.getId()}">
-                <input name="userId" type="hidden" th:value="${login_user?.getId()}" lay-verify="required" lay-reqtext="请登录后再试">
+                <input name="userId" type="hidden" th:value="${login_user?.getId()}" lay-verify="required"
+                       lay-reqtext="请登录后再试">
                 <textarea class="layui-textarea layui-hide" name="content" lay-verify="content"
                           id="LAY_demo_editor"></textarea>
                 <button class="layui-btn btn-primary" style="margin-top: 10px;" lay-submit lay-filter="log-btn">
@@ -185,48 +189,36 @@
         form.on('submit(log-btn)', function (data) {
             delete data.field.file;
             console.log(data.field);
-            js_tools.quick_post('/admin/api/activityLog/add',data.field,function (res) {
-               if (js_tools.isSucc(res)){
-                   layer.alert('成功!',function () {
-                       location.reload();
-                   });
-               }
+            js_tools.quick_post('/admin/api/activityLog/add', data.field, function (res) {
+                if (js_tools.isSucc(res)) {
+                    layer.alert('成功!', function () {
+                        location.reload();
+                    });
+                }
+            });
+        });
+
+        js_tools.get('ul.layui-timeline').on('click', 'button', function () {
+            var me = this;
+            //prompt层
+            layer.prompt({title: '对组员记录评价', formType: 2}, function (text, index) {
+                js_tools.quick_post('/teacher/api/activity/note', {
+                    id: js_tools.get(me).attr('data-id'),
+                    comment: text
+                }, function (res) {
+                    if (js_tools.isSucc(res)) {
+                        layer.alert('批复成功', function () {
+                            layer.closeAll();
+                            location.reload();
+                        })
+                    } else {
+                        layer.alert(res.msg);
+                    }
+                });
             });
         });
     });
 </script>
 <div th:include="view/frame/footer::p_foot"></div>
-
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

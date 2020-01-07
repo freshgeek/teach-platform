@@ -132,12 +132,12 @@
                             <div id="p_editor_c" style="" class="layui-form">
                                 <div class="p_editor_title">
                                     <p>标题:</p>
-                                    <input placeholder="填写标题" class="noticTitle" name="title" type="text">
+                                    <input placeholder="填写标题"  lay-verify="required"  class="noticTitle" name="title" type="text">
                                 </div>
                                 <div id="p_editor" style="">
                                     <p>问题:</p>
                                     <div style="padding: 0px; margin: 0px auto;">
-                                        <textarea name="content" placeholder="描述一下你的问题吧-.-"></textarea>
+                                        <textarea name="content"  lay-verify="required"  placeholder="描述一下你的问题吧-.-"></textarea>
                                     </div>
                                 </div>
                                 <a class="p_fawen" lay-submit lay-filter="ask-btn">发问</a>

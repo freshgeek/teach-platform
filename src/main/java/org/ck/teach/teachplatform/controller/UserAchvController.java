@@ -9,6 +9,7 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import org.ck.teach.teachplatform.common.BaseController;
@@ -39,7 +40,8 @@ import java.io.Serializable;
     @GetMapping("/page")
     @ApiOperation("分页")
     public Response getPages(UserAchv userAchv){
-        IPage page = userAchvService.page(userAchv.convertPage(),new QueryWrapper<UserAchv>(userAchv));
+        IPage page = userAchvService.page(userAchv.convertPage(),new QueryWrapper<UserAchv>(userAchv)
+                .orderByDesc(!StringUtils.isEmpty(userAchv.getPageSort()),userAchv.getPageSort()));
         return Response.parse(page);
     }
 

@@ -12,7 +12,7 @@
         <result column="content" property="content" />
         <result column="create_time" property="createTime" />
         <result column="like_num" property="likeNum" />
-        <result column="download_num" property="downloadNum" />
+        <result column="visit_num" property="visitNum" />
         <result column="fav_num" property="favNum" />
         <association property="user" column="user_id" select="org.ck.teach.teachplatform.mapper.UserDao.selectById"></association>
         <association property="userAchvType" column="type_id" select="org.ck.teach.teachplatform.mapper.UserAchvTypeDao.selectById"></association>

@@ -179,6 +179,7 @@
             js.loadData({
                 url: '/admin/api/userAchv/page',
                 param: {pageSize: 8},
+                async:true,
                 list: '#achv_list',
                 model: '#achv_model'
             });
@@ -186,6 +187,7 @@
             js.loadData({
                 url: '/admin/api/sysInfo/page',
                 param: {pageSize: 2},
+                async:true,
                 list: '#sys_info_div',
                 model: '#sys_info_model',
                 append: true
@@ -194,6 +196,7 @@
             js.loadData({
                 url: '/admin/api/course/page',
                 param: {pageSize: 8},
+                async:true,
                 list: '#course_list',
                 model: '#course_model'
             });

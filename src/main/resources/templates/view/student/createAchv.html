@@ -160,10 +160,12 @@
 
         form.on('submit(achv-btn)', function (data) {
             delete data.field.file;
+            data.field.content = layedit.getContent(editIndex);
             console.log(data.field);
             tools.quick_post('/admin/api/userAchv/add', data.field, function (res) {
                 if (res.code == tools.successCode) {
                     layer.alert('提交成功', {icon: 1});
+                    location.reload();
                 } else {
                     layer.alert(res.msg, {icon: 2});
                 }

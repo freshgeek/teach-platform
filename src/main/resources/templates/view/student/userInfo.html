@@ -93,9 +93,9 @@
                                     <label class="layui-form-label">用户身份</label>
                                     <div class="layui-input-block ">
                                         <input type="radio" name="roleId" value="1" title="学生" disabled
-                                               th:attr="checked=${login_user.getRoleId()=='1'?'true':'false'}">
+                                               th:attr="checked=${login_user.getRoleId()==1?'true':'false'}">
                                         <input type="radio" name="roleId" value="2" title="教师" disabled
-                                               th:attr="checked=${login_user.getRoleId()=='2'?'true':'false'}">
+                                               th:attr="checked=${login_user.getRoleId()==2?'true':'false'}">
                                     </div>
                                 </div>
 

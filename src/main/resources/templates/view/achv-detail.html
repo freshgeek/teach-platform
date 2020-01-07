@@ -91,7 +91,9 @@
                     <a class="p_worksdetail_discuss_username">{{e.user.nickName}}</a>
                     <p>{{e.content}}</p>
                     <span>{{e.createTime}}</span>
+<!--
                     <span><a data-user="{{e.userId}}" data-id="{{e.id}}">删除评论</a></span>
+-->
                 </div>
             </div>
             {{#   }) ;  }}
@@ -114,7 +116,7 @@
                         layer.msg(res.msg);
                         js.loadData({
                             url: '/admin/api/userAchvCmt/page',
-                            param: {resourceId: js.get('#achvId').val(), pageSize: 5},
+                            param: {achvId: js.get('#achvId').val(), pageSize: 5},
                             model: '#cmt-model',
                             list: '#cmt-list',
                             page: 'page',

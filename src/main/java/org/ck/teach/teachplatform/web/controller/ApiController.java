@@ -40,6 +40,14 @@ public class ApiController extends BaseController {
         Integer id = getSessionUser().getId();
         return Response.success();
     }
+    @PostMapping("/teacher/api/activity/note")
+    public  Response noteAct(ActivityLog activityLog){
+        ActivityLog byId = activityLogService.getById(activityLog.getId());
+        byId.setComment(activityLog.getComment());
+        byId.setCommentTime(new Date());
+        activityLogService.updateById(byId);
+        return Response.success();
+    }
     @GetMapping("/student/api/achv/list")
     public Response achvList() {
         UserAchv userAchv = new UserAchv();

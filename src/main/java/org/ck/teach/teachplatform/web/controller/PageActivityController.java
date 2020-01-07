@@ -39,7 +39,7 @@ public class PageActivityController extends BaseController {
 
         modelAndView.addObject("teach", userService.getById(activity.getUserId()));
         modelAndView.addObject("log_list", activityLogService.list(
-                new QueryWrapper<ActivityLog>().eq("atv_id", activity.getId())
+                new QueryWrapper<ActivityLog>().eq("atv_id", activity.getId()).orderByDesc("create_time")
         ));
         modelAndView.setViewName("view/act-detail");
         return modelAndView;

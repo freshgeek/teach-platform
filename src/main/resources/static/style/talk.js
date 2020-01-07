@@ -59,6 +59,7 @@ layui.use(['layer', 'form', 'jquery', 'laytpl', 'element', 'js_tools'], function
                 model: '#tie_model',
                 list: '#dy_list',
                 page: 'dy_p_taolun_left_more',
+                append:true,
                 layout: ['next'],
                 next: '载入更多'
             });
@@ -67,6 +68,7 @@ layui.use(['layer', 'form', 'jquery', 'laytpl', 'element', 'js_tools'], function
                 url: '/admin/api/tie/page',
                 param: {pageSize: 10, pageIndex: index,role:'0'},
                 model: '#tie_model',
+                append:true,
                 list: '#tie_list',
                 page: 'tie_p_taolun_left_more',
                 layout: ['next'],
@@ -86,6 +88,7 @@ layui.use(['layer', 'form', 'jquery', 'laytpl', 'element', 'js_tools'], function
         $('#tie_list>li').removeClass('discussLiClick').find('a').removeClass('discussAClick');
         $(this).addClass('discussAClick').parent('li').addClass('discussLiClick');
         $('.q_ask').hide();
+        $('.p_taolun_right').show();
         //帖子
         var tie = JSON.parse(unescape($(this).attr('value')));
         js_tools.tieID = tie.id;
@@ -102,6 +105,8 @@ layui.use(['layer', 'form', 'jquery', 'laytpl', 'element', 'js_tools'], function
         //点击效果
         $('#dy_list>li').removeClass('discussLiClick').find('a').removeClass('discussAClick');
         $(this).addClass('discussAClick').parent('li').addClass('discussLiClick');
+        $('.q_ask').hide();
+        $('.p_taolun_right').show();
         //帖子
         var tie = JSON.parse(unescape($(this).attr('value')));
         js_tools.tieID = tie.id;
@@ -125,7 +130,7 @@ layui.use(['layer', 'form', 'jquery', 'laytpl', 'element', 'js_tools'], function
     });
 
     // 添加帖子
-    $('.p_taolun_nav_question').on('click', function () {
+    $('.new_question').on('click', function () {
         $('.q_ask').show();
         $('.p_taolun_right').hide();
     });
@@ -134,7 +139,9 @@ layui.use(['layer', 'form', 'jquery', 'laytpl', 'element', 'js_tools'], function
     form.on('submit(ask-btn)', function (data) {
         //新建帖子
         js_tools.sync_post('/admin/api/tie/add', data.field, function (res) {
-            layer.alert(res.msg);
+            layer.alert(res.msg,function () {
+                location.reload();
+            });
         }, null);
         return false;
     })

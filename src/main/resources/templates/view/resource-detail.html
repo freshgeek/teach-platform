@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title th:text="${resource.getTitle()}+'-详情'">-详情</title>
+    <title th:text="${resource.getTitle()}+'-资源详情'"></title>
     <link href="/style/steam_front/reset.css" rel="stylesheet" type="text/css">
     <link href="/style/steam_front/diyWorks/css/diyWorksDetail.css" rel="stylesheet" type="text/css">
     <link href="/style/steam_front/common/css/common.css" rel="stylesheet" type="text/css">
@@ -23,6 +23,7 @@
         .p_main_content img {
             width: 65%;
         }
+
         .p_main_content p {
             padding-bottom: 10px;
         }
@@ -37,12 +38,12 @@
 <link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
 <link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css"/>
 <body>
-<div th:replace="view/frame/head :: head-div"  ></div>
-<div id="p_link" th:include="view/frame/links :: p_links(l1='/resource/page',name1='资源列表'
-,l2='#',name2=${resource.getTitle()})" >
+<div th:replace="view/frame/head :: head-div"></div>
+<div id="p_link" th:include="view/frame/links :: p_links(l1='/resource-list.html',name1='资源列表'
+,l2='#',name2=${resource.getTitle()})">
     <div class="p_fuhao"></div>
     <div class="p_link_a"><a href="/index">创客教育</a>&gt;
-        <a  ></a>&gt;
+        <a></a>&gt;
         <a id="f_course_name"></a></div>
 </div>
 
@@ -50,14 +51,14 @@
 
 <div class="p_worksdetail">
     <div class="p_title" th:text="${resource.getTitle()}">照顾盲人眼镜</div>
-    <div class="p_author" >
+    <div class="p_author">
         作者：<span th:text="${resource.getUser().getNickName()}"></span>
         <span class="layui-badge" th:text="${resource.getUser().getPointLevel()}"></span>
         <span>时间：[(${#dates.format(resource.getCreateTime(),'yyyy-MM-dd')})]</span>
-<!--
-        访问量:<span th:text="${resource.getVisitNum()}"></span>
-        <div class="q_like" data="1" th:text="${resource.getLikeNum()}">0</div>
--->
+        <!--
+                访问量:<span th:text="${resource.getVisitNum()}"></span>
+                <div class="q_like" data="1" th:text="${resource.getLikeNum()}">0</div>
+        -->
         <div class="clear"></div>
     </div>
     <div class="p_fenge"></div>
@@ -65,17 +66,19 @@
     <div class="p_main_content">
         <h2>资源简介:</h2>
         <p th:text="${resource.getIntro()}"></p>
-        <div  th:if="${resource.getTypeId()==1}">
+        <div th:if="${resource.getTypeId()==1}">
             [(${resource.getContent()})]
         </div>
-        <div  th:if="${resource.getTypeId()==2}">
-            <video  style="width: 100%;"   th:src="${resource.getContent()}" controls>
+        <div style="    text-align: center;" th:if="${resource.getTypeId()==2}">
+            <video style="width: 100%;" th:src="${resource.getContent()}" controls>
             </video>
         </div>
-        <div  th:if="${resource.getTypeId()==3}">
-            [(${resource.getContent()})]
+        <div style="    text-align: center;" th:if="${resource.getTypeId()==3}">
+            <iframe
+                    th:src="@{/PPT2HTML.html(url=${resource.getContent()})}" width="960px;"
+                    height="720px;"></iframe>
         </div>
-        <div  th:if="${resource.getTypeId()==1}">
+        <div style="    text-align: center;" th:if="${resource.getTypeId()==4}">
             <img style="width: auto;" src="" th:src="${resource.getContent()}">
         </div>
     </div>
@@ -85,9 +88,10 @@
     <!--评论区-->
     <div class="p_worksdetail">
         <div class="q_discussText layui-form">
-            <input th:value="${login_user?.getId()}" name="userId" type="hidden" lay-reqtext="请先登录!" lay-verify="required" >
+            <input th:value="${login_user?.getId()}" name="userId" type="hidden" lay-reqtext="请先登录!"
+                   lay-verify="required">
             <input name="resourceId" type="hidden" th:value="${resource.getId()}">
-            <textarea placeholder="写点评论支持下资源贡献者,注意字数不要超过70字 ~" name="content" lay-verify="required" ></textarea>
+            <textarea placeholder="写点评论支持下资源贡献者,注意字数不要超过70字 ~" name="content" lay-verify="required"></textarea>
             <div class="q_discussBt">
                 <a lay-submit lay-filter="cmt-btn">发表评论</a>
             </div>
@@ -104,46 +108,46 @@
         </div>
         <!-- p_worksdetail_discuss_list end -->
 
-<script id="cmt-model" type="text/html">
-{{#  layui.each(d.body,function(i,e){ }}
+        <script id="cmt-model" type="text/html">
+            {{#  layui.each(d.body,function(i,e){ }}
 
-<div class="q_detailModel" >
-    <div class="p_worksdetail_discuss_detail" data="{{e.id}}">
-        <a class="p_worksdetail_discuss_userimg">
-            <img src="{{e.user.headUrl}}">
-        </a>
-        <a class="p_worksdetail_discuss_username">{{e.user.nickName}}</a>
-        <p>{{e.content}}</p>
-        <span>{{e.createTime}}</span>
-        <span><a data-user="{{e.userId}}" data-id="{{e.id}}">删除评论</a></span>
-    </div>
-</div>
-{{#   }) ;  }}
+            <div class="q_detailModel">
+                <div class="p_worksdetail_discuss_detail" data="{{e.id}}">
+                    <a class="p_worksdetail_discuss_userimg">
+                        <img src="{{e.user.headUrl}}">
+                    </a>
+                    <a class="p_worksdetail_discuss_username">{{e.user.nickName}}</a>
+                    <p>{{e.content}}</p>
+                    <span>{{e.createTime}}</span>
+                    <span><a data-user="{{e.userId}}" data-id="{{e.id}}">删除评论</a></span>
+                </div>
+            </div>
+            {{#   }) ;  }}
 
-</script>
+        </script>
         <script th:inline="none">
-            layui.use(['form','js_tools','layer'],function () {
+            layui.use(['form', 'js_tools', 'layer'], function () {
                 var js = layui.js_tools;
                 var form = layui.form;
                 var layer = layui.layer;
                 js.loadData({
-                   url:'/admin/api/resourceCmt/page',
-                   param:{resourceId:js.get('#resourceId').val(),pageSize:5},
-                    model:'#cmt-model',
-                    list:'#cmt-list',
-                    page:'page'
+                    url: '/admin/api/resourceCmt/page',
+                    param: {resourceId: js.get('#resourceId').val(), pageSize: 5},
+                    model: '#cmt-model',
+                    list: '#cmt-list',
+                    page: 'page'
                 });
 
-                form.on('submit(cmt-btn)',function (data) {
-                    js.quick_post('/admin/api/resourceCmt/add',data.field,function (res) {
+                form.on('submit(cmt-btn)', function (data) {
+                    js.quick_post('/admin/api/resourceCmt/add', data.field, function (res) {
                         layer.msg(res.msg);
                         js.loadData({
-                            url:'/admin/api/resourceCmt/page',
-                            param:{resourceId:js.get('#resourceId').val(),pageSize:5},
-                            model:'#cmt-model',
-                            list:'#cmt-list',
-                            page:'page',
-                            refresh:true
+                            url: '/admin/api/resourceCmt/page',
+                            param: {resourceId: js.get('#resourceId').val(), pageSize: 5},
+                            model: '#cmt-model',
+                            list: '#cmt-list',
+                            page: 'page',
+                            refresh: true
                         });
                     })
                 })

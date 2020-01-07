@@ -75,8 +75,8 @@ public class UserAchv extends Request {
     private Integer likeNum;
 
     @ApiModelProperty(value = "下载数")
-    @TableField("download_num")
-    private Integer downloadNum;
+    @TableField("visit_num")
+    private Integer visitNum;
 
     @ApiModelProperty(value = "收藏数")
     @TableField("fav_num")
