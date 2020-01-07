@@ -43,20 +43,22 @@
 </div>
 
 <script type="text/html" id="model">
+    {{# layui.each(d.body,function(i,e){   }}
     <div class="layui-col-sm12 tip-item">
         <div class="layui-col-sm3">
-            2019-12-22 日
+            {{e.createTime}}
         </div>
 
         <div class="layui-col-sm9">
                         <span class="tiem">
                             查看
                         </span>
-            <a>
-                xxxx作品[实打实打算]
+            <a href="{{e.visitUrl}}">
+                {{e.name}}
             </a>
         </div>
     </div>
+    {{# }); }}
 </script>
 <script th:inline="none">
     layui.use(['laypage', 'js_tools', 'laytpl'], function () {
@@ -64,39 +66,12 @@
         var laypage = layui.laypage;
         var laytpl = layui.laytpl;
         var param = js_tools.getParam();
-
-        var page = {
-            elem: 'page'
-            , count: 10 //数据总数，从服务端得到
-            , limit: 12
-            , jump: function (obj, first) {
-                //obj包含了当前分页的所有参数，比如：
-                console.log(obj);
-                //首次不执行
-                if (!first) {
-                    param.pageIndex = obj.curr;
-                    js_tools.quick_get('/student/api/userVisitLog/page', param, function (res) {
-                        // 模板
-                        laytpl(js_tools.get('#model').html()).render(res, function (html) {
-                            js_tools.get('#list').html(html);
-                        });
-                        //分页
-                        page.count = res.total;
-                        laypage.render(page);
-                    });
-                }
-            }
-        };
-
-        js_tools.quick_get('/student/api/userVisitLog/page', param, function (res) {
-            // 模板
-            laytpl(js_tools.get('#model').html()).render(res, function (html) {
-                js_tools.get('#list').html(html);
-            });
-            //分页
-            page.count = res.total;
-            laypage.render(page);
-        });
+        param.pageSize=5;
+        js_tools.loadData({
+            url:'/student/api/userVisitLog/page',
+            param:param,
+            page:'page'
+        }) ;
 
     });
 </script>

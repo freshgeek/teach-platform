@@ -20,6 +20,20 @@ public @interface TipLog {
      */
     String format() default "";
 
+    /**
+     * 通知人
+     *
+     * @return
+     */
+    String userId() ;
+
+    /***
+     * 来源人
+     * @return
+     */
+    String resourceUserId() ;
+
+
     /***
      *  内容值
      * @return

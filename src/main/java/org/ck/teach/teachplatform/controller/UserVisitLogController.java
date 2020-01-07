@@ -39,7 +39,8 @@ import java.io.Serializable;
     @GetMapping("/page")
     @ApiOperation("分页")
     public Response getPages(UserVisitLog userVisitLog){
-        IPage page = userVisitLogService.page(userVisitLog.convertPage(),new QueryWrapper<UserVisitLog>(userVisitLog));
+        IPage page = userVisitLogService.page(userVisitLog.convertPage(),new QueryWrapper<UserVisitLog>(userVisitLog)
+                .orderByDesc("create_time"));
         return Response.parse(page);
     }
 

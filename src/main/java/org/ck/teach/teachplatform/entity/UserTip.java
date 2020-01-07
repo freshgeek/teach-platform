@@ -13,6 +13,7 @@ import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.ck.teach.teachplatform.util.WebUtils;
 
 /**
  * <p>
@@ -30,6 +31,16 @@ import lombok.experimental.Accessors;
 public class UserTip extends Request {
 
     private static final long serialVersionUID = 1L;
+
+    public static UserTip build(Integer resourceUserId,String content){
+        UserTip userTip = new UserTip();
+        userTip.setReaded("0");
+        userTip.setResourceUserId(((User)WebUtils.getLoginSessionUser()).getId());
+        userTip.setCreateTime(new Date());
+        userTip.setResourceUserId(resourceUserId);
+        userTip.setContent(content);
+        return userTip;
+    }
 
     @ApiModelProperty(value = "动态id")
     @TableId(value = "id", type = IdType.AUTO)

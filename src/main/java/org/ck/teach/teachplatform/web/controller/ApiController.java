@@ -48,6 +48,7 @@ public class ApiController extends BaseController {
         activityLogService.updateById(byId);
         return Response.success();
     }
+    
     @GetMapping("/student/api/achv/list")
     public Response achvList() {
         UserAchv userAchv = new UserAchv();

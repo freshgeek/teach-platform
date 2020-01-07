@@ -13,4 +13,11 @@ import java.lang.annotation.*;
 @Documented
 public @interface VisitLog {
 
+    /**
+     *  足迹内容
+     * @return
+     */
+    String value() default "";
+
+
 }

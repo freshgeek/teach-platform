@@ -2,6 +2,7 @@ package org.ck.teach.teachplatform.web.controller;
 
 import org.ck.teach.teachplatform.common.BaseController;
 import org.ck.teach.teachplatform.entity.Resource;
+import org.ck.teach.teachplatform.entity.UserVisitLog;
 import org.ck.teach.teachplatform.util.AppUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,17 +20,24 @@ public class PageResourceController extends BaseController {
 
     @GetMapping("/resource/detail/{type}/{id}")
     public ModelAndView toDetail(ModelAndView modelAndView,
-                                 @PathVariable(value = "type" , required = false) Integer typeId,
-                                 @PathVariable(value = "id",required = false) Integer id,
+                                 @PathVariable(value = "type", required = false) Integer typeId,
+                                 @PathVariable(value = "id", required = false) Integer id,
                                  Resource resource
-                                 ){
-        if (typeId!=null){
+    ) {
+        if (typeId != null) {
             resource.setTypeId(typeId);
         }
-        if (id!=null){
+        if (id != null) {
             resource.setId(id);
         }
-        modelAndView.addObject("resource",resourceService.getById(id));
+        Resource byId = resourceService.getById(id);
+        modelAndView.addObject("resource", byId);
+        if (getSessionUser() != null) {
+            UserVisitLog visitLog = UserVisitLog.build("访问资源[" + byId.getName() + "]详情",
+                    "/resource/detail/" + resource.getTypeId() + "/" + resource.getId());
+            userVisitLogService.save(visitLog);
+        }
+
         modelAndView.setViewName("view/resource-detail");
         return modelAndView;
     }

@@ -5,6 +5,7 @@ import org.ck.teach.teachplatform.common.BaseController;
 import org.ck.teach.teachplatform.entity.Activity;
 import org.ck.teach.teachplatform.entity.ActivityLog;
 import org.ck.teach.teachplatform.entity.ActivityUser;
+import org.ck.teach.teachplatform.entity.UserVisitLog;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +30,9 @@ public class PageActivityController extends BaseController {
         List<ActivityUser> userList = activityUserService.list(
                 new QueryWrapper<ActivityUser>().eq("atv_id", activity.getId())
         );
+
+        UserVisitLog visitLog = UserVisitLog.build("访问项目["+activity.getName()+"]详情","/activity/detail/"+id);
+        userVisitLogService.save(visitLog);
 
         modelAndView.addObject("user_list", userList);
         modelAndView.addObject("hasJoin", activityUserService.getOne(new QueryWrapper<ActivityUser>()

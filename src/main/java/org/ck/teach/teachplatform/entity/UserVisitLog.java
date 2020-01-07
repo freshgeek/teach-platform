@@ -13,6 +13,7 @@ import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.ck.teach.teachplatform.util.WebUtils;
 
 /**
  * <p>
@@ -31,6 +32,15 @@ public class UserVisitLog extends Request {
 
     private static final long serialVersionUID = 1L;
 
+    public static UserVisitLog build(String name,String url){
+        User user = WebUtils.getLoginSessionUser();
+        UserVisitLog log = new UserVisitLog();
+        log.setUserId(user.getId());
+        log.setCreateTime(new Date());
+        log.setName(name);
+        log.setVisitUrl(url);
+        return log;
+    }
     @ApiModelProperty(value = "足迹id")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;

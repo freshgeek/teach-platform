@@ -7,6 +7,7 @@ import org.ck.teach.teachplatform.common.BaseController;
 import org.ck.teach.teachplatform.common.Response;
 import org.ck.teach.teachplatform.entity.User;
 import org.ck.teach.teachplatform.entity.UserSign;
+import org.ck.teach.teachplatform.entity.UserVisitLog;
 import org.ck.teach.teachplatform.entity.form.UserLoginForm;
 import org.ck.teach.teachplatform.service.UserService;
 import org.ck.teach.teachplatform.util.AppUtils;
@@ -53,8 +54,9 @@ public class UserLoginController extends BaseController {
         if (one == null) {
             return Response.exception("账号或密码错误");
         }
-
         setSessionUser(one);
+        UserVisitLog visitLog = UserVisitLog.build("用户登录","#");
+        userVisitLogService.save(visitLog);
         return Response.success(one);
     }
 
@@ -110,6 +112,10 @@ public class UserLoginController extends BaseController {
         userSign.setSignDate(new Date());
         userSignService.save(userSign);
         addPoint(sessionUser.getId());
+
+        UserVisitLog visitLog = UserVisitLog.build("用户签到","#");
+        userVisitLogService.save(visitLog);
+
         return Response.success();
     }
 

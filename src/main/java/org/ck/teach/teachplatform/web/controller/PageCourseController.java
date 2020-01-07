@@ -64,6 +64,7 @@ public class PageCourseController extends BaseController {
         List<CourseLesson> courseLessons = courseLessonService.list(new QueryWrapper<>(courseLesson));
         modelAndView.addObject("lessons", courseLessons);
         modelAndView.setViewName("view/videoStudy");
+
         return modelAndView;
     }
 
