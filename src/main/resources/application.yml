@@ -1,42 +1,51 @@
-#本地文件存储路径
-staticFilePath: D://main/
-#staticFilePath: /tmp/
-
-server:
-  port: 80
-
 spring:
   datasource:
-    url: jdbc:mysql://192.168.35.3:3306/ck_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
-#    url: jdbc:mysql://data.autoss.top:3306/ck_db
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
   jackson:
     time-zone: Asia/Shanghai
     date-format: 'yyyy-MM-dd HH:mm:ss'
-  thymeleaf:
-    cache: false
-  resources:
-#    static-locations: file:/tmp/,classpath:/static/
-    static-locations: file:D://main/,classpath:/static/
-#  servlet:
-#    multipart:
-      #单个最大  b
+    #  servlet:
+    #    multipart:
+    #单个最大  b
     #  max-file-size: 50
-      #请求最大 b
+    #请求最大 b
     #  max-request-size: 100
-
-
-
+  profiles:
+    active: dev
 logging:
   level:
     org.ck.teach.teachplatform: debug
 debug: false
 
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://192.168.35.3:3306/ck_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+  resources:
+    static-locations: file:D://main/,classpath:/static/
+  thymeleaf:
+    cache: false
+server:
+  port: 80
+#本地文件存储路径
+staticFilePath: D://main/
 
-
-
+---
+spring:
+  profiles: prod
+  resources:
+    static-locations: file:/tmp/,classpath:/static/
+  datasource:
+    url: jdbc:mysql://db1.keepon.top:3306/ck_db
+  thymeleaf:
+    cache: true
+server:
+  port: 80
+#本地文件存储路径
+staticFilePath: /tmp/
 
 
 
