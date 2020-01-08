@@ -3,6 +3,8 @@ package org.ck.teach.teachplatform.mapper;
 import org.ck.teach.teachplatform.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import java.util.Map;
+
 /**
  * <p>
  * 用户表 Mapper 接口
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface UserDao extends BaseMapper<User> {
 
+    Map selectInfoCount(Integer id);
 }

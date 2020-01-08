@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Api;
 import org.ck.teach.teachplatform.annotation.TipLog;
+import org.ck.teach.teachplatform.entity.UserAchv;
+import org.ck.teach.teachplatform.entity.UserTip;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
@@ -48,6 +50,10 @@ import java.io.Serializable;
     @ApiOperation("新增")
     public Response add(UserAchvFav userAchvFav){
         userAchvFavService.save(userAchvFav);
+        UserAchv byId = userAchvService.getById(userAchvFav.getAchvId());
+        UserTip userTip = UserTip.build(byId.getUserId(),"用户收藏了你的作品");
+        userTipService.save(userTip);
+
         return Response.success(userAchvFav);
     }
 

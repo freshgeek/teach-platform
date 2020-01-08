@@ -1,6 +1,7 @@
 package org.ck.teach.teachplatform.web.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.google.common.io.Files;
 import org.ck.teach.teachplatform.common.BaseController;
@@ -11,9 +12,8 @@ import org.ck.teach.teachplatform.service.FileLogService;
 import org.ck.teach.teachplatform.service.ResourceService;
 import org.ck.teach.teachplatform.util.AppUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -35,20 +35,40 @@ public class ApiController extends BaseController {
     @Autowired
     private FileLogService fileLogService;
 
+    @PostMapping("/student/api/addTag")
+    public Response addTag(@RequestParam Map param) {
+        User userId = userService.getById(AppUtils.getMapStr(param, "userId"));
+        if (StringUtils.isEmpty(userId.getUserTag())){
+            userId.setUserTag(AppUtils.getMapStr(param,"tag"));
+        }else{
+            userId.setUserTag(userId.getUserTag()+","+AppUtils.getMapStr(param,"tag"));
+        }
+        userService.update(new UpdateWrapper<User>().set("user_tag",userId.getUserTag()).eq("id",userId.getId()));
+        return Response.success();
+    }
+
+
+    @GetMapping("/student/api/readTip/{id}")
+    public Response readTip(@PathVariable("id") Integer id) {
+        boolean update = userTipService.update(new UpdateWrapper<UserTip>().set("readed", "1").eq("id", id));
+        return update ? Response.success() : Response.exception();
+    }
+
     @GetMapping("/student/api/timer")
     public Response studentTimer() {
         Integer id = getSessionUser().getId();
         return Response.success();
     }
+
     @PostMapping("/teacher/api/activity/note")
-    public  Response noteAct(ActivityLog activityLog){
+    public Response noteAct(ActivityLog activityLog) {
         ActivityLog byId = activityLogService.getById(activityLog.getId());
         byId.setComment(activityLog.getComment());
         byId.setCommentTime(new Date());
         activityLogService.updateById(byId);
         return Response.success();
     }
-    
+
     @GetMapping("/student/api/achv/list")
     public Response achvList() {
         UserAchv userAchv = new UserAchv();
@@ -65,7 +85,8 @@ public class ApiController extends BaseController {
     @GetMapping("/student/api/userVisitLog/page")
     public Response userTipPage(UserVisitLog userVisitLog) {
         userVisitLog.setUserId(getSessionUser().getId());
-        return Response.parse(userVisitLogService.page(userVisitLog.convertPage(), new QueryWrapper<>(userVisitLog)));
+        return Response.parse(userVisitLogService.page(userVisitLog.convertPage(),
+                new QueryWrapper<>(userVisitLog).orderByDesc("create_time")));
     }
 
     @GetMapping("/student/achv/page")

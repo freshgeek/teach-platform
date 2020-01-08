@@ -7,6 +7,7 @@ import org.ck.teach.teachplatform.common.BaseController;
 import org.ck.teach.teachplatform.common.Response;
 import org.ck.teach.teachplatform.entity.User;
 import org.ck.teach.teachplatform.entity.UserSign;
+import org.ck.teach.teachplatform.entity.UserTip;
 import org.ck.teach.teachplatform.entity.UserVisitLog;
 import org.ck.teach.teachplatform.entity.form.UserLoginForm;
 import org.ck.teach.teachplatform.service.UserService;
@@ -89,6 +90,14 @@ public class UserLoginController extends BaseController {
         }
         User byId = userService.getById(sessionUser.getId());
         return Response.success(byId);
+    }
+
+    @GetMapping("/getNotify")
+    public Response getNotify() {
+        UserTip userTip = new UserTip();
+        userTip.setUserId(getSessionUser().getId());
+        userTip.setReaded("0");
+        return Response.success(userTipService.count(new QueryWrapper<>(userTip)));
     }
 
     @GetMapping("/getTodaySign")

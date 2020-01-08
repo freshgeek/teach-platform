@@ -2,9 +2,9 @@ package org.ck.teach.teachplatform.web.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.ck.teach.teachplatform.common.BaseController;
-import org.ck.teach.teachplatform.entity.Course;
-import org.ck.teach.teachplatform.entity.CourseUser;
-import org.ck.teach.teachplatform.entity.User;
+import org.ck.teach.teachplatform.entity.*;
+import org.ck.teach.teachplatform.mapper.UserDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,10 +26,27 @@ public class PageUserController extends BaseController {
         return modelAndView;
     }
 
+    @Autowired
+    private UserDao userDao;
+
     @GetMapping("/user/other/info/{id}")
     public ModelAndView info(ModelAndView modelAndView,@PathVariable("id") Integer id){
         modelAndView.setViewName("view/student/otherInfo");
-        setSessionUser(userService.getById(id));
+
+        UserTip userTip = UserTip.build(id,"用户访问了你的主页");
+        userTipService.save(userTip);
+        //刷新当前登录人
+        setSessionUser(userService.getById(getSessionUser().getId()));
+        //查询人
+        modelAndView.addObject("other_user",userService.getById(id));
+        //作品
+        modelAndView.addObject("other_achv_list",userAchvService.list(new QueryWrapper<UserAchv>()
+                .orderByDesc("create_time").last("limit 10")));
+        //动态
+        modelAndView.addObject("other_user_tip",userTipService.list(new QueryWrapper<UserTip>()
+                .orderByDesc("create_time").last("limit 10")));
+        //数据
+        modelAndView.addObject("count_num",userDao.selectInfoCount(id));
         return modelAndView;
     }
 

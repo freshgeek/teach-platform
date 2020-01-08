@@ -11,7 +11,9 @@
         .headImg {
             margin-right: 10px;
         }
-
+        .tag .layui-badge-rim{
+            margin-left: .3rem;
+        }
         .headImg img {
             width: 4.6rem;
             box-shadow: 0 0 0 4px rgba(0, 0, 0, .1);
@@ -115,11 +117,14 @@
 
 <link href="/webjars/layui/2.5.5/css/layui.css" rel="stylesheet" type="text/css"/>
 <script src="/webjars/layui/2.5.5/layui.js"></script>
+<!--/*@thymesVar id="other_user" type="org.ck.teach.teachplatform.entity.User"*/-->
 <!--/*@thymesVar id="login_user" type="org.ck.teach.teachplatform.entity.User"*/-->
 <link href="/style/jw/css/base.css" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" type="text/css" href="/style/blackbox/css/blackbox.css" media="screen"/>
 <link href="/style/basic/loadmask.css" rel="stylesheet" type="text/css"/>
 
+<input id="current_user" th:value="${login_user.getId()}" type="hidden">
+<input id="other_user" th:value="${other_user.getId()}" type="hidden">
 <div class="layui-fluid" style="padding-top: 20px;">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md2">
@@ -127,25 +132,32 @@
                 <div class="layui-card-body ">
                     <div class="head">
                         <div class="headImg">
-                            <img src="/style/back/image/tou_c.jpg">
+                            <img
+                                    th:src="${other_user.getHeadUrl()}"
+                                    src="/style/back/image/tou_c.jpg">
                         </div>
-                        <div class="name">cc</div>
+                        <div th:text="${other_user.getNickName()}"
+                             class="name">cc
+                        </div>
                         <div>
-                            <span class="layui-badge">暂露头角</span>
-                            200积分
+                            <span th:text="${other_user.getPointLevel()}"
+                                  class="layui-badge">暂露头角</span>
+                            <th:block th:text="${other_user.getPoint()}+'积分'">200积分</th:block>
                         </div>
                         <hr/>
-                        <h2>我的标签</h2>
+                        <h2 th:text="${other_user.getNickName()}+' 的标签'"></h2>
                         <div class="tag">
-                            <span class="layui-badge-rim">大佬</span>
-                            <span class="layui-badge-rim">leader</span>
-                            <span class="layui-badge-rim">Hot</span>
+                            <span
+                                    th:each="tag : ${#strings.arraySplit(other_user.getUserTag(),',')}"
+                                    th:text="${tag}"
+                                    class="layui-badge-rim">大佬</span>
+                            <span th:if="${#strings.isEmpty(other_user.getUserTag())}">还没有标签</span>
                             <span id="add-tag-btn" style="cursor: pointer" class="layui-badge-rim" title="你眼中的我">
                                 <i class="layui-icon layui-icon-add1">&#xe654;
                                 </i></span>
                         </div>
                         <h2>个性签名</h2>
-                        <div class="info">
+                        <div class="info" th:text="${other_user.getIntro()}">
                             快来一起参加xxxx项目吧~~~~
                             快来一起参加xxxx项目吧~~~~
                             快来一起参加xxxx项目吧~~~~
@@ -161,14 +173,16 @@
                 <div class="padding15">
                     <div class="user-create">
                         <span>
-                            200
+                            <th:block th:text="${count_num.get('achv_total')}">200</th:block>
                             <small>作品</small>
                         </span>
                         <span>
-                            <i class="layui-icon layui-icon-praise"></i>22
+                            <i class="layui-icon layui-icon-praise"></i>
+                            <th:block th:text="${count_num.get('achv_like')}">22</th:block>
                         </span>
                         <span>
-                            <i class="layui-icon layui-icon-star"></i> 2000
+                            <i class="layui-icon layui-icon-star"></i>
+                            <th:block th:text="${count_num.get('achv_fav')}">22</th:block>
                         </span>
                     </div>
                 </div>
@@ -176,64 +190,36 @@
             <div class="layui-row layui-col-space15">
                 <div class="layui-col-md9" id="dt-list">
                     <div class="layui-card">
-                        <div class="layui-card-body user-dt">
-                            <h2>他的动态</h2>
-                            <p>你觉得对就是对咯,你觉得对就是对咯你觉得对就是对咯你觉得对就是对咯你觉得对就是对咯你觉得对就是对咯</p>
-                            <span>2019-22-11</span>
+                        <div class="layui-card-header">他的动态(显示最近十条)</div>
+                        <div class="layui-card-body user-dt" th:each="tip:${other_user_tip}">
+                            <h2 th:text="${tip.getResourceUser()?.getNickName()}">他的动态</h2>
+                            <p th:text="${tip.getContent()}">你觉得对就是对咯,你觉得对就是对咯你觉得对就是对咯你觉得对就是对咯你觉得对就是对咯你觉得对就是对咯</p>
+                            <span th:text="${#dates.format(tip.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}">2019-22-11</span>
                         </div>
-                        <div class="layui-card-body user-dt">
-                            <h2>他的动态</h2>
-                            <p>你觉得对就是对咯,你觉得对就是对咯你觉得对就是对咯你觉得对就是对咯你觉得对就是对咯你觉得对就是对咯</p>
-                            <span>2019-22-11</span>
+                        <div class="layui-card-body user-dt" th:if="${#lists.isEmpty(other_user_tip)}">
+                            <p>用户还没有动态噢~</p>
                         </div>
                     </div>
                 </div>
                 <div class="layui-col-md3">
                     <div class="layui-card">
-                        <div class="layui-card-header">作品列表</div>
+                        <div class="layui-card-header">作品列表(显示最近十条)</div>
                         <div class="layui-card-body">
                             <div class="layui-row layui-col-space10 achv-list">
-                                <div class="layui-card layui-col-md6">
+                                <div class="layui-card layui-col-md6" th:each="item : ${other_achv_list}">
                                     <div class="layui-card-body">
-                                        <a href="/achv/detail/1">
-                                            <img src="/files/diyworks/2016-07-07/1467884208486077455.jpg">
+                                        <a href="/achv/detail/1" th:href="@{/achv/detail/{id}(id=${item.getId()})}">
+                                            <img src="/files/diyworks/2016-07-07/1467884208486077455.jpg"
+                                                 th:src="${item.getCoverUrl()}"
+                                            >
                                         </a>
                                     </div>
                                 </div>
-                                <div class="layui-card layui-col-md6">
-                                    <div class="layui-card-body">
-                                        <a href="/achv/detail/1">
-                                            <img src="/files/diyworks/2016-07-07/1467884208486077455.jpg">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="layui-card layui-col-md6">
-                                    <div class="layui-card-body">
-                                        <a href="/achv/detail/1">
-                                            <img src="/files/diyworks/2016-07-07/1467884208486077455.jpg">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="layui-card layui-col-md6">
-                                    <div class="layui-card-body">
-                                        <a href="/achv/detail/1">
-                                            <img src="/files/diyworks/2016-07-07/1467884208486077455.jpg">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="layui-card layui-col-md6">
-                                    <div class="layui-card-body">
-                                        <a href="/achv/detail/1">
-                                            <img src="/files/diyworks/2016-07-07/1467884208486077455.jpg">
-                                        </a>
-                                    </div>
-                                </div>
-
                             </div>
-                        </div>
+                        </div><!--
                         <div class="layui-card-footer">
                             <button class="layui-btn layui-btn-primary layui-btn-fluid">查看更多</button>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>
@@ -242,15 +228,33 @@
 
 </div>
 
-<script>
-    layui.use(['js_tools', 'upload', 'layedit', 'form', 'jquery'], function () {
-        var upload = layui.upload;
-        var $ = layui.jquery;
+<script th:inline="none">
+    //config的设置是全局的
+    layui.config({
+        base: '/layui/js/extends/' //假设这是你存放拓展模块的根目录
+    }).extend({ //设定模块别名
+        js_tools: 'js_tools'
+    }).use(['js_tools'], function () {
         var js_tools = layui.js_tools;
-        var form = layui.form;
-        var layedit = layui.layedit;
-
-    })
+        var userId = js_tools.get('#current_user').val();
+        js_tools.get('#add-tag-btn').on('click', function () {
+            layer.prompt({title: '输入你对他的印象,不超过4个字', formType: 2}, function (t, i) {
+                var v = {
+                    tag: t,
+                    userId: userId
+                }
+                if (t.length > 4) {
+                    layer.msg('不超过4个字');
+                    return false;
+                }
+//                layer.msg(JSON.stringify(v));
+                 js_tools.quick_post('/student/api/addTag', v, function (res) {
+                    layer.alert(res.msg);
+                    location.reload();
+                });
+            });
+        });
+    });
 </script>
 </body>
 </html>

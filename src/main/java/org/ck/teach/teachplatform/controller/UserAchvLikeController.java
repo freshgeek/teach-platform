@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Api;
+import org.ck.teach.teachplatform.entity.UserAchv;
+import org.ck.teach.teachplatform.entity.UserTip;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
@@ -47,6 +49,11 @@ import java.io.Serializable;
     @ApiOperation("新增")
     public Response add(UserAchvLike userAchvLike){
         userAchvLikeService.save(userAchvLike);
+
+        UserAchv byId = userAchvService.getById(userAchvLike.getAchvId());
+        UserTip userTip = UserTip.build(byId.getUserId(),"有用户给你点赞了");
+        userTipService.save(userTip);
+
         return Response.success(userAchvLike);
     }
 

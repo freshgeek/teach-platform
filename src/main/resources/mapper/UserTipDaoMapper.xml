@@ -10,8 +10,10 @@
         <result column="content" property="content" />
         <result column="create_time" property="createTime" />
         <result column="readed" property="readed" />
+        <association property="resourceUser" column="resource_user_id"
+                     select="org.ck.teach.teachplatform.mapper.UserDao.selectById">
+        </association>
     </resultMap>
-
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, resource_user_id, user_id, content, create_time, readed

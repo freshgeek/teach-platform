@@ -26,7 +26,7 @@ import org.ck.teach.teachplatform.util.WebUtils;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@TableName("t_user_tip")
+@TableName(value = "t_user_tip",resultMap = "BaseResultMap")
 @ApiModel(value="UserTip对象", description="用户动态")
 public class UserTip extends Request {
 
@@ -49,6 +49,9 @@ public class UserTip extends Request {
     @ApiModelProperty(value = "来源用户id")
     @TableField("resource_user_id")
     private Integer resourceUserId;
+
+    @TableField(exist = false)
+    private User resourceUser;
 
     @ApiModelProperty(value = "提醒用户id")
     @TableField("user_id")

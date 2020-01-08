@@ -70,6 +70,12 @@
                     $('#sign_btn').addClass('layui-btn-primary');
                 }
             });
+            js.quick_get('/getNotify', null, function (res) {
+                if (res.code == js.successCode && res.body) {
+                    $('#tip-btn span').text(res.body);
+                }
+            });
+
             $('#sign_btn').on('click', function () {
                 if (!$(this).hasClass('layui-btn-primary')) {
                     layer.msg('已经签到过了');
@@ -112,7 +118,7 @@
 <script type="text/html" id="tip-model">
     {{# layui.each(d.body,function(i,e){ }}
     <div class="tip" data-id="{{e.id}}">
-        <a>{{e.userId}}</a>
+        <a>{{e.resourceUser.nickName}}</a>
         <span>{{e.content}}</span>
         <span>{{e.createTime}}</span>
     </div>
@@ -121,11 +127,6 @@
 <div id="tip-content">
     <div></div>
     <div id="tip-list" style="display: none;">
-        <div class="tip" data-id="11">
-            <a> cc</a>
-            <span>在<a>社区帖子中</a>@了你</span>
-            <span>2019-22-11</span>
-        </div>
         <div class="tip" data-id="11">
             <a> cc</a>
             <span>在<a>社区帖子中</a>@了你</span>

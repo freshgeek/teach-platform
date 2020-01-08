@@ -99,16 +99,20 @@
                     -->
                 </div>
                 <div class="layui-form-item">
-                    <label for="content" class="layui-form-label">
+                    <label for="LAY_demo_editor" class="layui-form-label">
                         <!--必填开启-->
                         <!--<span class="we-red">*</span> -->
                         资讯内容
                     </label>
-                    <div class="layui-input-inline">
+                    <div class="layui-input-block">
                         <!--必填开启-->
                         <!--lay-verify="required" -->
-                        <input type="text" id="content" name="content"
-                               lay-verify="" autocomplete="off" class="layui-input">
+                        <textarea class="layui-textarea layui-hide" name="content" lay-verify="content"
+                                  id="LAY_demo_editor">
+                                  <h3>1.作品说明</h3><br><br>
+                                  <h3>2.详细描述</h3><br><br>
+                                  <h3>3.附带文件</h3><br><br>
+                                </textarea>
                     </div>
                     <!--
                         必填开启
@@ -142,7 +146,7 @@
                         <!--<span class="we-red">*</span> -->
                         资讯日期
                     </label>
-                    <div class="layui-input-inline">
+                    <div class="layui-input-block">
                         <!--必填开启-->
                         <!--lay-verify="required" -->
                         <input type="text" id="createTime" name="createTime"
@@ -168,10 +172,12 @@
         admin: '/layui/js/extends/admin',
         js_tools: '/layui/js/extends/js_tools'
     });
-    layui.use(['form', 'jquery', 'layer', 'js_tools', 'laydate'], function () {
+    layui.use(['form', 'jquery','layedit', 'layer', 'js_tools', 'laydate'], function () {
         var form = layui.form,
             $ = layui.jquery,
             laydate = layui.laydate,
+            layedit = layui.layedit,
+
             js_tools = layui.js_tools,
             layer = layui.layer;
 
@@ -180,6 +186,8 @@
             elem: '#createTime' //指定元素
             ,type: 'datetime'
         });
+        var editIndex = layedit.build('LAY_demo_editor');
+        js_tools.fill_select('/admin/api/sysInfoType/list', null, {elem: '#typeId'});
         form.render();
         //自定义验证规则
         form.verify({
@@ -200,6 +208,7 @@
             js_tools.quick_get("/admin/api/sysInfo/find/" + id, null, function (rs) {
                 if (rs.code == js_tools.successCode) {
                     form.val('form', rs.body);
+                    editIndex = layedit.build('LAY_demo_editor');
                 } else {
                     layer.alert(rs.msg);
                 }
@@ -211,6 +220,7 @@
         //监听提交
         form.on('submit(submit-btn)', function (data) {
             data.field.createTime = new Date(data.field.createTime);
+            data.field.content = layedit.getContent(editIndex);
 //            console.log(data);
             js_tools.quick_post("/admin/api/sysInfo/update", data.field, function (res) {
                 if (res.code == js_tools.successCode) {

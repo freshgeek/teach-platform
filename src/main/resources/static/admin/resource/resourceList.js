@@ -59,7 +59,7 @@ layui.use(['laydate','admin','form', 'jquery', 'table', 'js_tools'], function ()
             WeAdminEdit('编辑','./resourceEdit.htm',data.id);
         } else if (obj.event === 'del') {
             //删除功能
-            js_tools.quick_post("/admin/api/resource/delete",data,function (rs) {
+            js_tools.quick_post("/admin/api/resource/delete",{id:data.id},function (rs) {
                if (rs.code==js_tools.successCode){
                    table.reload('list');
                }else{
