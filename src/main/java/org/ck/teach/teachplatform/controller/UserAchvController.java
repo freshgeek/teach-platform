@@ -50,6 +50,7 @@ import java.io.Serializable;
     public Response add(UserAchv userAchv){
         userAchv.setUserId(getSessionUser().getId());
         userAchvService.save(userAchv);
+        userService.addPoint(userAchv.getUserId(),20,"上传作品获得20积分");
         return Response.success();
     }
 

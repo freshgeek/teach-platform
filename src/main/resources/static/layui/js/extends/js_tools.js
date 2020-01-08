@@ -8,7 +8,29 @@ layui.define(['layer', 'form', 'laytpl', 'laypage', 'jquery'], function (exports
         laypage = layui.laypage,
         laytpl = layui.laytpl,
         form = layui.form;
-
+    /**
+     *对Date的扩展，将 Date 转化为指定格式的String
+     *月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，
+     *年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)
+     *例子：
+     *(new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423
+     *(new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18
+     */
+    Date.prototype.format = function (fmt) {
+        var o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "h+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
     /****
      *
      * @param url
@@ -18,6 +40,61 @@ layui.define(['layer', 'form', 'laytpl', 'laypage', 'jquery'], function (exports
     var ws = {
         successCode: '0000',
         socket: null,
+        //开始学习
+        startStudy: function () {
+            ws.studentStudyKey = 'study'+ws.get('#user_id').val();
+            // 获取学习监控数据
+            var get = ws.localGet(ws.studentStudyKey);
+            get = get || {
+                lock:false,
+                timespace: 0,
+                currentDay:new Date().format('yyyy-MM-dd')
+            };
+            get = {
+                lock:get.lock||false,
+                timespace: get.timespace || 0,
+                currentDay:get.currentDay||new Date().format('yyyy-MM-dd')
+            }
+            // 如果不为今天, 则重新检测
+            if (get.currentDay!=new Date().format('yyyy-MM-dd')){
+                get = {
+                    lock:false,
+                    timespace: 0,
+                    currentDay:new Date().format('yyyy-MM-dd')
+                }
+            }
+            // 保存进本地
+            ws.localPut(ws.studentStudyKey,get);
+        },
+        checkStudy: function (s, func) {
+            var i = setInterval(function () {
+                var get = ws.localGet(ws.studentStudyKey);
+                // 如果锁定 则说明 以及达标
+                if (get.lock){//清除定时检测
+                    clearInterval(i);
+                    return;
+                }
+                // 每秒检测 加 1秒
+                get.timespace += 1000;
+                ws.localPut(ws.studentStudyKey,get);
+                console.log('当前时间='+get.timespace);
+                // 如果时间到 执行指定任务
+                if (get.timespace >= s) {
+                    func(get.timespace, i);
+                }
+            }, 1000);
+        },
+        pauseStudy: function () {
+            var get = ws.localGet(ws.studentStudyKey);
+            get.timespace += new Date().getTime() - get.time;
+            get.time = null;
+            ws.localPut(get);
+        },
+        stopStudy:function(){
+            var get = ws.localGet(ws.studentStudyKey);
+            get.lock=true;
+            ws.localPut(ws.studentStudyKey,get);
+        },
         localGet: function (k) {
             if (localStorage.getItem(k)) {
                 var t = JSON.parse(localStorage.getItem(k));
@@ -29,23 +106,23 @@ layui.define(['layer', 'form', 'laytpl', 'laypage', 'jquery'], function (exports
                 }
             }
         },
-        addText:function(e,n){
-          var t = e.text();
-          console.log(t);
-          if (!isNaN(t)){
-              e.text(parseInt(t)+n);
-          }
+        addText: function (e, n) {
+            var t = e.text();
+            console.log(t);
+            if (!isNaN(t)) {
+                e.text(parseInt(t) + n);
+            }
         },
         localPut: function (k, v) {
             localStorage.removeItem(k);
             localStorage.setItem(k, JSON.stringify(v));
         },
-        localArrAdd: function (k, e,size) {
+        localArrAdd: function (k, e, size) {
             if (ws.localGet(k)) {
                 var arr = ws.localGet(k);
                 arr.push(e);
-                if (size>0 && arr.length>size){
-                    arr.splice(0,arr.length-size);
+                if (size > 0 && arr.length > size) {
+                    arr.splice(0, arr.length - size);
                 }
                 ws.localPut(k, arr);
             } else {
@@ -95,12 +172,12 @@ layui.define(['layer', 'form', 'laytpl', 'laypage', 'jquery'], function (exports
                             //首次不执行
                             if (!first) {
                                 sets.param.pageIndex = obj.curr;
-                                delete  sets.refresh;
+                                delete sets.refresh;
                                 ws.loadData(sets);
                             }
                         }
                     }
-                    if (sets.layout){
+                    if (sets.layout) {
                         ws.loadPage[l].layout = sets.layout;
                         ws.loadPage[l].next = sets.next;
                     }

@@ -82,7 +82,8 @@ layui.use(['layer', 'form', 'obr', 'jquery', 'element', 'js_tools'], function ()
         }
     });
 
-//    wa.run();
+    wa.run();
+
     form.on('submit(submit-btn)', function (data) {
         js_tools.quick_post("/login", data.field, function (res) {
             if (res.code == js_tools.successCode) {
@@ -172,10 +173,17 @@ layui.use(['layer', 'form', 'obr', 'jquery', 'element', 'js_tools'], function ()
                 $('#wn ul').after('<li><a href="/teach/index.htm">教师管理</a></li>');
             }else if (res.body.roleId=='3') {
                 location.href = '/admin/index.htm';
+            }else{
+                js_tools.startStudy();
+                js_tools.checkStudy(1000*20,function (d,i) {
+                    console.log(d);
+                    layer.msg('你已经学习了['+20+']秒');
+                    clearInterval(i);
+                    js_tools.stopStudy();
+                });
             }
         }
     })
-
 
     window.checkLogin = function(){
         if (js_tools.loginUser){

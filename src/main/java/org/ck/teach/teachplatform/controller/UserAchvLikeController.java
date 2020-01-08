@@ -51,8 +51,9 @@ import java.io.Serializable;
         userAchvLikeService.save(userAchvLike);
 
         UserAchv byId = userAchvService.getById(userAchvLike.getAchvId());
-        UserTip userTip = UserTip.build(byId.getUserId(),"有用户给你点赞了");
-        userTipService.save(userTip);
+       /* UserTip userTip = UserTip.build(byId.getUserId(),"有用户给你点赞了");
+        userTipService.save(userTip);*/
+       userService.addPoint(byId.getUserId(),1,"给你作品点赞,增加1积分");
 
         return Response.success(userAchvLike);
     }

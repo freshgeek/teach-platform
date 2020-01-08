@@ -2,6 +2,7 @@ package org.ck.teach.teachplatform.service;
 
 import org.ck.teach.teachplatform.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.scheduling.annotation.Async;
 
 /**
  * <p>
@@ -13,4 +14,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface UserService extends IService<User> {
 
+    @Async
+    void addPoint(Integer userId, Integer addPoint, String content);
 }
