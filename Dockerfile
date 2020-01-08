@@ -1,5 +1,5 @@
 ### 基础镜像，使用alpine操作系统，openjkd使用8u201
-FROM openjdk:8u201-jdk-alpine3.9
+FROM frolvlad/alpine-oraclejdk8:slim
 
 #系统编码
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
