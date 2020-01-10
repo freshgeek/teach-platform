@@ -109,16 +109,23 @@
     {{#  layui.each(d.body,function(i,e){ }}
     <div class="list-item layui-col-sm12 ">
         <div class="layui-col-sm3 item-cover">
-            <img src="{{e.coverUrl}}">
+            <a target="_blank" href="/activity/detail/{{e.id}}">
+                <img src="{{e.coverUrl}}">
+            </a>
         </div>
         <div class="layui-row layui-col-sm8 item-content">
-            <div class="layui-col-sm12 " onclick="location.href='/activity/detail/{{e.id}}'">
+            <div class="layui-col-sm12 ">
+                <a target="_blank" href="/activity/detail/{{e.id}}">
+
                 <h1 class="title">{{e.name}}</h1>
                 <p class="intro">
                     {{e.intro}}
                 </p>
+                </a>
                 <p class="info">
-                    <span class="teach"><i class="layui-badge user-point">黄金大师{{e.userId}}</i> {{e.userId}}</span>
+                    <a target="_blank"  href="/user/other/info/{{e.userId}}">
+                        <span class="teach"><i class="layui-badge user-point">黄金大师 </i> {{e.user.nickName}}</span>
+                    </a>
                 </p>
             </div>
             <div class="badge">

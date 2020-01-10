@@ -259,7 +259,7 @@
     <li id="{{item.id}}">
         <div class="p_huifuqu" data="{{item.id}}">
             <div class="p_huifuqu_person">
-                <a href="/user/other/info/{{item.user.id}}">
+                <a target="_blank" href="/user/other/info/{{item.user.id}}">
                     <div class="p_huifuqu_person_img">
                         <img src="{{item.user.headUrl}}"
                              style="width:83px;height:83px;">
@@ -298,7 +298,7 @@
     <li id="{{item.id}}">
         <div class="p_huifuqu" data="{{item.id}}">
             <div class="p_huifuqu_person">
-                <a href="/user/other/info/{{item.user.id}}">
+                <a target="_blank"  href="/user/other/info/{{item.user.id}}">
                     <div class="p_huifuqu_person_img">
                         <img src="{{item.user.headUrl}}"
                              style="width:83px;height:83px;">
@@ -337,7 +337,8 @@
     <div class="p_wentiqu_title" title="{{d.title}}" data="{{d.id}}">{{d.title}}
     </div>
     <div class="p_wentiqu_intro">
-        讨论&nbsp;于<font>{{d.createTime}}</font>被<span data="{{d.userId}}">{{d.userId}}</span>
+        讨论&nbsp;于<font>{{d.createTime}}</font>被   <a target="_blank"  href="/user/other/info/{{d.userId}}">
+        <span data="{{d.userId}}">{{d.userId}}</span></a>
         发布&nbsp;共<strong>{{d.cmtNum}}</strong>条回复
     </div>
     <div class="p_wentiqu_huifu">

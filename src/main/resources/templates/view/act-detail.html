@@ -80,10 +80,17 @@
         <div class="layui-card-body">
             <h2 class="p_title" th:text="${detail.getName()}"> 项目标题</h2>
             <div class="p_author">
-                教师:[[${detail.getUser()?.getNickName()}]] <i class="layui-badge">[[${detail.getUser()?.getPointLevel()}]]</i>
+                教师: <a target="_blank"
+                       th:href="'/user/other/info/'+${detail.getUser()?.getId()}"
+                       th:text="${detail.getUser()?.getNickName()}"></a>
+                <i class="layui-badge">[[${detail.getUser()?.getPointLevel()}]]</i>
                 <th:block th:each="ul : ${user_list}">
-                    组员:[[${ul?.getUser()?.getNickName()}]] <i
+                    组员:
+                    <a th:href="'/user/other/info/'+${ul?.getUserId()}">
+                    [[${ul?.getUser()?.getNickName()}]]
+                    <i
                         class="layui-badge">[[${ul.getUser()?.getPointLevel()}]]</i>
+                    </a>
                 </th:block>
             </div>
             <div class="intro" th:utext="${detail.getContent()}">
