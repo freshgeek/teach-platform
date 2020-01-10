@@ -132,11 +132,21 @@ layui.use(['layer', 'form', 'jquery', 'laytpl', 'element', 'js_tools'], function
     // 添加帖子
     $('.new_question').on('click', function () {
         $('.q_ask').show();
-        $('.p_taolun_right').hide();
+        layer.open({
+            title:'我要发贴',
+            type: 1,
+            skin: 'layui-layer-rim', //加上边框
+            area: ['820px', '310px'], //宽高
+            content: $('.q_ask')
+        });
+     //   $('.p_taolun_right').hide();
     });
 
     // 提交帖子
     form.on('submit(ask-btn)', function (data) {
+        if ($('.layui-tab-title li:eq(1)').hasClass('layui-this')){
+            data.field.role='1';//答疑
+        }
         //新建帖子
         js_tools.sync_post('/admin/api/tie/add', data.field, function (res) {
             layer.alert(res.msg,function () {

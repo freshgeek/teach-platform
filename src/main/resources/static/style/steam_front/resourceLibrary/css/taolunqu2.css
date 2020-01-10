@@ -590,7 +590,7 @@ p.q_wf_nickname{
     overflow:hidden;
 }
 #p_editor_c,.p_editor_c{
-    width:840px;
+    width:800px;
     height:auto;
     margin: 0 auto 15px;
 
@@ -606,7 +606,7 @@ p.q_wf_nickname{
     line-height: 40px;
 }
 .p_editor_title input{
-    width: 830px;
+    width: 800px;
     height: 40px;
     padding-left:8px;
     border:1px solid #dddddd;'
@@ -615,7 +615,7 @@ border-radius:5px;
     -moz-border-radius:5px;
 }
 #p_editor{
-    width:840px;
+    width:800px;
     height:auto;
     margin:20px auto 20px auto;
     position:relative;
@@ -643,7 +643,7 @@ border-radius:5px;
     behavior:url(/style/steam_front/PIE.htc);
 }
 .q_ask{
-    width: 890px;
+    width: 800px;
     height: auto;
     float: left;
     margin-left: -1px;
