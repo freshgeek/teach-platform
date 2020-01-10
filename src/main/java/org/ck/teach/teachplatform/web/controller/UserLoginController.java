@@ -56,8 +56,7 @@ public class UserLoginController extends BaseController {
             return Response.exception("账号或密码错误");
         }
         setSessionUser(one);
-        UserVisitLog visitLog = UserVisitLog.build("用户登录","#");
-        userVisitLogService.save(visitLog);
+        userVisitLogService.logVisitService("用户登录","#");
         return Response.success(one);
     }
 
@@ -122,8 +121,7 @@ public class UserLoginController extends BaseController {
         userSignService.save(userSign);
         addPoint(sessionUser.getId());
 
-        UserVisitLog visitLog = UserVisitLog.build("用户签到","#");
-        userVisitLogService.save(visitLog);
+        userVisitLogService.logVisitService("用户签到","#");
 
         return Response.success();
     }

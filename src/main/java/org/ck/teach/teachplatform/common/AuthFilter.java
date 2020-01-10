@@ -13,8 +13,14 @@ public class AuthFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 
-        Object staff =   httpServletRequest.getSession().getAttribute(AppConst.USER_LOGIN_SESSION);
-
+        Object staff = httpServletRequest.getSession().getAttribute(AppConst.USER_LOGIN_SESSION);
+        if (httpServletRequest.getRequestURI().startsWith("/user/")
+                || httpServletRequest.getRequestURI().startsWith("/student/")) {
+            if (staff == null) {
+                httpServletResponse.sendRedirect("/login.html?url="+httpServletRequest.getRequestURI());
+                return ;
+            }
+        }
         chain.doFilter(request, response);
     }
 }

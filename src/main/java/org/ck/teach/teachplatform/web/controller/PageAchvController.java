@@ -36,8 +36,7 @@ public class PageAchvController extends BaseController {
             fav.setUserId(getSessionUser().getId());
             modelAndView.addObject("fav",userAchvFavService.getOne(new QueryWrapper<>(fav)));
 
-            UserVisitLog visitLog = UserVisitLog.build("访问作品["+byId.getName()+"]详情","/achv/detail/"+id);
-            userVisitLogService.save(visitLog);
+            userVisitLogService.logVisitService("访问作品["+byId.getName()+"]详情","/achv/detail/"+id);
 
         }
         modelAndView.setViewName("view/achv-detail");

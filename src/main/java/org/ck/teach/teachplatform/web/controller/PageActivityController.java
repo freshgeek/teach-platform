@@ -31,8 +31,7 @@ public class PageActivityController extends BaseController {
                 new QueryWrapper<ActivityUser>().eq("atv_id", activity.getId())
         );
 
-        UserVisitLog visitLog = UserVisitLog.build("访问项目["+activity.getName()+"]详情","/activity/detail/"+id);
-        userVisitLogService.save(visitLog);
+        userVisitLogService.logVisitService("访问项目["+activity.getName()+"]详情","/activity/detail/"+id);
 
         modelAndView.addObject("user_list", userList);
         modelAndView.addObject("hasJoin", activityUserService.getOne(new QueryWrapper<ActivityUser>()

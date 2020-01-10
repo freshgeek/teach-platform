@@ -239,11 +239,13 @@
     <li id="{{item.id}}">
         <div class="p_huifuqu" data="{{item.id}}">
             <div class="p_huifuqu_person">
-                <div class="p_huifuqu_person_img">
-                    <img src="{{item.user.headUrl}}"
-                         style="width:83px;height:83px;">
-                </div>
-                <span>{{item.user.nickName}}</span>
+                <a href="/user/other/info/{{item.user.id}}">
+                    <div class="p_huifuqu_person_img">
+                        <img src="{{item.user.headUrl}}"
+                             style="width:83px;height:83px;">
+                    </div>
+                    <span>{{item.user.nickName}}</span>
+                </a>
                 <!-- <p>经济学&nbsp;{position}</p> -->
             </div>
 <!--
@@ -276,11 +278,13 @@
     <li id="{{item.id}}">
         <div class="p_huifuqu" data="{{item.id}}">
             <div class="p_huifuqu_person">
+                <a href="/user/other/info/{{item.user.id}}">
                 <div class="p_huifuqu_person_img">
                     <img src="{{item.user.headUrl}}"
                          style="width:83px;height:83px;">
                 </div>
                 <span>{{item.user.nickName}}</span>
+                </a>
                 <!-- <p>经济学&nbsp;{position}</p> -->
             </div>
             <!--

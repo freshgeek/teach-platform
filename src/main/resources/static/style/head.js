@@ -83,11 +83,19 @@ layui.use(['layer', 'form', 'obr', 'jquery', 'element', 'js_tools'], function ()
     });
 
     wa.run();
+    var param1 = js_tools.getParam();
+    if (param1&&param1.url){
+        $('#ret-url').val(param1.url);
+    }
 
     form.on('submit(submit-btn)', function (data) {
         js_tools.quick_post("/login", data.field, function (res) {
             if (res.code == js_tools.successCode) {
                 layer.alert('登录成功', function () {
+                    if($('#ret-url').val()){
+                        location.href = $('#ret-url').val();
+                         return true;
+                    }
                     location.reload();
                 })
             } else {

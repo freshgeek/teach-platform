@@ -8,9 +8,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * 访问足迹 服务类
  * </p>
  *
- * @author 
+ * @author
  * @since 2019-12-26
  */
 public interface UserVisitLogService extends IService<UserVisitLog> {
 
+    void logVisitService(String name,String url);
 }

@@ -32,11 +32,8 @@ public class PageResourceController extends BaseController {
         }
         Resource byId = resourceService.getById(id);
         modelAndView.addObject("resource", byId);
-        if (getSessionUser() != null) {
-            UserVisitLog visitLog = UserVisitLog.build("访问资源[" + byId.getName() + "]详情",
-                    "/resource/detail/" + resource.getTypeId() + "/" + resource.getId());
-            userVisitLogService.save(visitLog);
-        }
+        userVisitLogService.logVisitService("访问资源[" + byId.getName() + "]详情",
+                "/resource/detail/" + resource.getTypeId() + "/" + resource.getId());
 
         modelAndView.setViewName("view/resource-detail");
         return modelAndView;

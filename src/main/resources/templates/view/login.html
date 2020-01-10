@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--/*@thymesVar id="index" type="java.lang.Integer"*/-->
+<div >
+    <link href="/webjars/layui/2.5.5/css/layui.css" rel="stylesheet" type="text/css"/>
+    <script src="/webjars/layui/2.5.5/layui.js"></script>
+    <link href="/style/steam_front/head/css/header.css" rel="stylesheet" type="text/css">
+
+    <style>
+        .layui-tab-card > .layui-tab-title .layui-this {
+            color: white;
+            /*
+                    background: url(/style/steam_front/student_space/images/55.gif) 100px 12px no-repeat;
+            */
+            background-color: #f5bb0b;
+        }
+
+        .layui-laypage .layui-laypage-curr .layui-laypage-em {
+            background-color: #808080;
+        }
+    </style>
+    <input id="user_role" type="hidden" value="" th:value="${login_user?.getRoleId()}">
+    <input id="user_id" type="hidden" value=""  th:value="${login_user?.getId()}">
+    <input id="nick_name" type="hidden" value=""  th:value="${login_user?.getNickName()}">
+    <input id="ret-url" type="hidden" value=""  th:value="${url}">
+
+
+    <div id="x_bg" style="background-color:black">
+        <div id="x_header_contain">
+            <div id="x_logo"><a href="/"></a></div>
+            <div id="x_nav">
+                <ul>
+                    <li id="x_shouye">
+                    <a th:classappend="(${index}==null)?'active':''"  href="/">首页</a></li>
+                    <li id="x_find"><a th:classappend="${index}==2?'active':''" href="/course">创客i学习</a></li>
+                    <li id=""><a  th:classappend="${index}==3?'active':''"  href="/act-list.html">创客部落</a></li>
+                    <li id="x_diyzuopin"><a  th:classappend="${index}==4?'active':''"  href="/talk">创客论坛</a></li>
+                    <li id="x_cont"><a  th:classappend="${index}==5?'active':''"  href="/achv-list.html">i分享</a></li>
+                    <li id="x_gongzuoshi" class="personal"><a  th:classappend="${index}==6?'active':''"  class="personal">个人中心</a></li>
+                </ul>
+            </div>
+            <div id="x_search_l" style=" height:30px;position:relative;">
+                <input id="x_search" type="text" value=""/>
+                <a style="position:absolute;right:0;">
+                    <div id="x_search_r"></div>
+                </a>
+                <div id="search_list" class="q_search" style="">
+                    <strong></strong>
+                    <ul id="search_kind">
+                        <li><span></span><a data-key="course">课程</a></li>
+                        <li><span></span><a data-key="resource">资源</a></li>
+                        <li><span></span><a data-key="sysinfo">资讯</a></li>
+                        <li><span></span><a data-key="achv">作品</a></li>
+                    </ul>
+                    <ul id="search_history">
+
+                    </ul>
+                    <ul>
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="p_head_self_photo">
+                <!--/*@thymesVar id="login_user" type="org.ck.teach.teachplatform.entity.User"*/-->
+                <a th:if="${login_user} == null" id="btn_login2" class="q_btLogin">登录</a>
+                <a th:if="${login_user} != null" class="q_headPortrait">
+                    <img th:src="${login_user.headUrl}==null?'/style/back/image/tou_c.jpg':${login_user.headUrl}"
+                         width="30" height="30/">
+                </a>
+            </div>
+
+            <div id="wn" class="q_option" style="right: -4px;"  >
+                <strong></strong>
+                <ul>
+                </ul>
+                <li><a href="/user/info">个人资料</a></li>
+                <li><a href="/logout">退&nbsp;&nbsp;出</a></li>
+            </div>
+            <div id="personalCenter" class="q_option" style="right: 385px;  ">
+                <strong></strong>
+                <ul>
+                    <li id="x_newProgramming"><a href="/student/createAchv.html">创意创作</a></li>
+                    <li><a href="/user/course">我的课程</a></li>
+                    <li><a href="/student/myAchv.html">我的作品</a></li>
+                    <li><a href="/student/my-resource-list.html">我的资源</a></li>
+                    <li><a href="/student/myFav.html">我的收藏</a></li>
+                    <li><a href="/user/info">个人信息</a></li>
+                </ul>
+            </div>
+             <link href="/style/steam_front/small_login/css/small_login.css" type="text/css" rel="stylesheet"/>
+            <link rel="stylesheet" type="text/css" href="/style/signin.css">
+            <div id="shelter"></div>
+            <div class="q_login" style="top: 42px; display: block;" ><!-- 小登录框 -->
+                <div class="signin layui-form">
+                    <div id="signin-close"><a>✘</a></div>
+                    <div class="signin-head"><img id="imageUrl" src="/style/back/image/tou_e.jpg"
+                                                  style="width:119px;height:119px" class="img-circle"></div>
+                    <div class="form-signin">
+
+                        <input id="login_form_phone" name="phone"
+                               type="text" class="form-control" placeholder="手机号码不能为空"
+                               lay-verify="phone"
+                               required="" autofocus="">
+                        <input id="login_form_passwd" name="password" value="" type="password" class="form-control"
+                               placeholder="密码" lay-verify="required">
+                        <p class="q_login_check">
+                            <input placeholder="输入验证码" id="login_form_code" name="code" lay-verify="required">
+                            <a class="check_bt"><img class="code_img" src="/imageCodeServlet"></a>
+                            <a class="reset_bt">换一张</a>
+                        </p>
+                        <p class="q_login_forget">
+                            <a class="q_forget_left" href="/userRegister.html">马上注册&gt;&gt;</a>
+                            <a class="q_forget_right" href="/forgetPassword.html">忘记密码</a>
+                        </p>
+                        <p id="q_login_bt">
+                            <a id="q_login_b" title="登录" lay-submit lay-filter="submit-btn">登&nbsp;&nbsp;&nbsp;录</a></p>
+                        <p class="q_login_error"></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="p_header_contain"></div>
+    <script src="/style/head.js"></script>
+</div>
+</body>
+</html>

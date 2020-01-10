@@ -25,8 +25,8 @@ public class PageContestController extends BaseController {
         Contest byId = contestService.getById(id);
         modelAndView.addObject("detail", byId);
         modelAndView.setViewName("view/contest-detail");
-        UserVisitLog visitLog = UserVisitLog.build("访问竞赛["+byId.getName()+"]详情","/contest/detail/"+id);
-        userVisitLogService.save(visitLog);
+        userVisitLogService.logVisitService("访问竞赛["+byId.getName()+"]详情","/contest/detail/"+id);
+
         return modelAndView;
     }
 
