@@ -2,17 +2,13 @@ package org.ck.teach.teachplatform.web.controller;
 
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import lombok.extern.slf4j.Slf4j;
 import org.ck.teach.teachplatform.common.AppConst;
 import org.ck.teach.teachplatform.common.BaseController;
-import org.ck.teach.teachplatform.service.SysInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.imageio.ImageIO;
@@ -20,7 +16,6 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
-import java.util.Set;
 
 /**
  * @author chen.chao
@@ -72,7 +67,7 @@ public class PageController extends BaseController {
 
     @GetMapping("/sys/detail/{id}")
     public ModelAndView infoDetail(@PathVariable("id") Integer id, ModelAndView modelAndView) {
-        modelAndView.setViewName("/view/notify-detail");
+        modelAndView.setViewName("view/notify-detail");
         modelAndView.addObject("detail", sysInfoService.getById(id));
         return modelAndView;
     }

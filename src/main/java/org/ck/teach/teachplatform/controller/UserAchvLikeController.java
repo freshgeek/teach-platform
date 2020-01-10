@@ -2,21 +2,15 @@ package org.ck.teach.teachplatform.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Api;
-import org.ck.teach.teachplatform.entity.UserAchv;
-import org.ck.teach.teachplatform.entity.UserTip;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
-
-import org.springframework.web.bind.annotation.*;
-
+import io.swagger.annotations.ApiOperation;
 import org.ck.teach.teachplatform.common.BaseController;
 import org.ck.teach.teachplatform.common.Response;
-import org.ck.teach.teachplatform.service.UserAchvLikeService;
+import org.ck.teach.teachplatform.entity.UserAchv;
 import org.ck.teach.teachplatform.entity.UserAchvLike;
+import org.ck.teach.teachplatform.service.UserAchvLikeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
 
