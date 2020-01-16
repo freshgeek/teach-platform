@@ -12,6 +12,5 @@ ADD teach-platform-0.0.1-SNAPSHOT.jar /app/jar/app.jar
 ADD /src/main/resources/application.yml /app/jar/config/
 #启动容器时的进程
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-Dspring.config.location=/app/jar/config/application.yml","-jar","/app/jar/app.jar"]
-
 #暴露80端口
 EXPOSE 80

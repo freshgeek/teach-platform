@@ -286,6 +286,10 @@
             <div class="p_huifuqu_time">
                 <font>{{item.createTime}}</font>&nbsp;&nbsp;|&nbsp;&nbsp;
                 <a data="{{item.id}}" userId="{{item.userId}}" href="#C4">回复</a>
+                {{# if(d.userRole=='2'){ }}
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="#" onclick="delTieCmt({{item.id}})">删除此回复</a>
+                {{# } }}
             </div>
             <div class="clear"></div>
         </div>
@@ -325,6 +329,11 @@
             <div class="p_huifuqu_time">
                 <font>{{item.createTime}}</font>&nbsp;&nbsp;|&nbsp;&nbsp;
                 <a data="{{item.id}}" userId="{{item.userId}}" href="#C5">回复</a>
+                {{# if(d.userRole=='2'){ }}
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="#" onclick="delTieCmt({{item.id}})">删除此回复</a>
+                {{# } }}
+
             </div>
             <div class="clear"></div>
         </div>
@@ -341,7 +350,11 @@
         <span data="{{d.userId}}">{{d.userId}}</span></a>
         发布&nbsp;共<strong>{{d.cmtNum}}</strong>条回复
     </div>
+    {{# if(d.userRole=='2'){ }}
+    <a class="layui-btn layui-btn-primary" style="float: right; margin-left: 10px;" onclick="delTie({{d.id}});" href="javascript:void(0);">删除此帖</a>
+    {{# } }}
     <div class="p_wentiqu_huifu">
+
         {{# if(d.role=='1'){ }}
         <a href="#C5">我来回复</a>
         {{# }else{ }}

@@ -481,7 +481,9 @@ p.q_wf_nickname{
 }
 .p_huifuqu_time{
     float:right;
+    /*
     width:170px;
+    */
     font-size:12px;
     line-height:14px;
     color:#969696;

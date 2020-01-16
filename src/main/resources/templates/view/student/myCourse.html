@@ -36,12 +36,20 @@
                 <div class="p_course_list_contain" th:each="item : ${user_course_page.getRecords() } "
                      th:with="course=${item.getCourse()}">
                     <div class="p_course_list_contain_img">
+                        <a th:href="'/courseDetail/'+${item.getCourse()?.getId()}">
+
                         <img
                                 th:src="${course.getCoverUrl()}"
-                                src="/files/courseCover/2017-06-05/2a303148-994a-41dc-b90c-b2ecaac5306b.png"></div>
+                                src="/files/courseCover/2017-06-05/2a303148-994a-41dc-b90c-b2ecaac5306b.png" />
+                        </a>
+
+                    </div>
                     <div class="p_course_list_contain_title">
-                        <span th:text="${course.getTitle()}">scratch教学</span>
-                        <p class="x_course_libSort" th:text="${course.getCourseType().getName()}">Labplus编程</p></div>
+                        <a th:href="'/courseDetail/'+${item.getCourse()?.getId()}">
+                            <span th:text="${course.getTitle()}">scratch教学</span>
+                            <p class="x_course_libSort" th:text="${course.getCourseType().getName()}">Labplus编程</p>
+                        </a>
+                    </div>
                     <div class="p_course_list_contain_intro"><p th:text="${course.getIntro()}"></p></div>
                     <div class="p_course_list_contain_renshu">
                         <div class="q_property">

@@ -67,9 +67,19 @@
                               th:text="${course.getCreateUser()?.getPointLevel()}"></span>
                     </p>
                 </div>
+
                 <div class="x_join" style="padding-left:0px;">
                     <p>
                         <button class="layui-btn layui-btn-primary" id="add-course-btn" title="加入到我的课程中">学习</button>
+                        <input id="url" th:value="'http://ck.keepon.site/courseDetail/'+${course.getId()}" type="hidden" >
+                        <button class="layui-btn layui-btn-primary" id="share-course-btn" title="分享课程"
+                                onClick="url.select();document.execCommand('Copy')"
+                        >
+                            <i class="layui-icon">&#xe677;</i>
+                            <i class="layui-icon">&#xe676;</i>
+                            <i class="layui-icon">&#xe675;</i>
+                            分享
+                        </button>
                     </p>
                 </div>
                 <div class="clear"></div>

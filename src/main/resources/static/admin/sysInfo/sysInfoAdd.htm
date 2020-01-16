@@ -87,8 +87,17 @@
             <div class="layui-input-inline">
                 <!--必填开启-->
                 <!--lay-verify="required" -->
-                <input type="text" id="coverUrl" name="coverUrl"
+                <input type="hidden" id="coverUrl" name="coverUrl"
                        lay-verify="" autocomplete="off" class="layui-input">
+                <div class="layui-upload-drag" id="test10">
+                    <i class="layui-icon">&#xe64a;
+                    </i>
+                    <p>点击上传，或将文件拖拽到此处</p>
+                </div>
+                <div>
+                    <img src="" id="showCover" alt="" title="" style="width: 250px;">
+                </div>
+
             </div>
             <!--
                 必填开启
@@ -170,9 +179,10 @@
         js_tools: '/layui/js/extends/js_tools'
     });
 
-    layui.use(['form', 'layedit', 'layer', 'js_tools', 'laydate', 'jquery'], function () {
+    layui.use(['form', 'layedit', 'layer','upload', 'js_tools', 'laydate', 'jquery'], function () {
         var form = layui.form,
             laydate = layui.laydate,
+            upload = layui.upload,
             layedit = layui.layedit,
             $ = layui.jquery,
             js_tools = layui.js_tools,
@@ -181,6 +191,17 @@
         laydate.render({
             elem: '#createTime' //指定元素
             , type: 'datetime'
+        });
+
+        //拖拽上传
+        upload.render({
+            elem: '#test10'
+            , url: '/upload'
+            , done: function (res) {
+                console.log(res)
+                $('#coverUrl').val(res.body.path);
+                $('#showCover').attr('src', res.body.path);
+            }
         });
 
         layedit.set({

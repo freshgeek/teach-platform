@@ -85,12 +85,21 @@
                         <!--<span class="we-red">*</span> -->
                         资讯封面
                     </label>
-                    <div class="layui-input-inline">
+                    <div class="layui-input-block">
                         <!--必填开启-->
                         <!--lay-verify="required" -->
-                        <input type="text" id="coverUrl" name="coverUrl"
+                        <input type="hidden" id="coverUrl" name="coverUrl"
                                lay-verify="" autocomplete="off" class="layui-input">
+                        <div class="layui-upload-drag" id="test10">
+                            <i class="layui-icon">&#xe64a;
+                            </i>
+                            <p>点击上传，或将文件拖拽到此处</p>
+                        </div>
+                        <div>
+                            <img  src="" id="showCover" alt="" title="" style="width: 250px;">
+                        </div>
                     </div>
+
                     <!--
                         必填开启
                     <div class="layui-form-mid layui-word-aux">
@@ -172,14 +181,26 @@
         admin: '/layui/js/extends/admin',
         js_tools: '/layui/js/extends/js_tools'
     });
-    layui.use(['form', 'jquery','layedit', 'layer', 'js_tools', 'laydate'], function () {
+    layui.use(['form', 'jquery','layedit', 'upload','layer', 'js_tools', 'laydate'], function () {
         var form = layui.form,
             $ = layui.jquery,
             laydate = layui.laydate,
             layedit = layui.layedit,
+            upload = layui.upload,
 
             js_tools = layui.js_tools,
             layer = layui.layer;
+
+        //拖拽上传
+        upload.render({
+            elem: '#test10'
+            , url: '/upload'
+            , done: function (res) {
+                console.log(res)
+                $('#coverUrl').val(res.body.path);
+                $('#showCover').attr('src', res.body.path);
+            }
+        });
 
         <!--  资讯日期 laydate实例-->
         laydate.render({
@@ -208,6 +229,7 @@
             js_tools.quick_get("/admin/api/sysInfo/find/" + id, null, function (rs) {
                 if (rs.code == js_tools.successCode) {
                     form.val('form', rs.body);
+                    $('#showCover').attr('src',rs.body.coverUrl);
                     editIndex = layedit.build('LAY_demo_editor');
                 } else {
                     layer.alert(rs.msg);

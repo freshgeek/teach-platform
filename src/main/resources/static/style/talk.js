@@ -91,6 +91,7 @@ layui.use(['layer', 'form', 'jquery', 'laytpl', 'element', 'js_tools'], function
         $('.p_taolun_right').show();
         //帖子
         var tie = JSON.parse(unescape($(this).attr('value')));
+        tie.userRole = $('#user_role').val();
         js_tools.tieID = tie.id;
         js_tools.tieCmtID = null;
         laytpl($('#tie_detail_model').html()).render(tie, function (html) {
@@ -109,6 +110,7 @@ layui.use(['layer', 'form', 'jquery', 'laytpl', 'element', 'js_tools'], function
         $('.p_taolun_right').show();
         //帖子
         var tie = JSON.parse(unescape($(this).attr('value')));
+        tie.userRole = $('#user_role').val();
         js_tools.tieID = tie.id;
         js_tools.tieCmtID = null;
         laytpl($('#tie_detail_model').html()).render(tie, function (html) {
@@ -139,13 +141,38 @@ layui.use(['layer', 'form', 'jquery', 'laytpl', 'element', 'js_tools'], function
             area: ['820px', '310px'], //宽高
             content: $('.q_ask')
         });
-     //   $('.p_taolun_right').hide();
     });
 
+    window.delTie = function(id){
+  //      layer.alert('删除'+id);
+        js_tools.quick_get('/teacher/api/tie/del/'+id,null,function (res) {
+            if (js_tools.isSucc(res)){
+                layer.alert('成功',function () {
+                    location.reload();
+                })
+            }else{
+                layer.alert(res.msg);
+            }
+        })
+    }
+    window.delTieCmt = function(id){
+        js_tools.quick_get('/teacher/api/tieCmt/del/'+id,null,function (res) {
+            if (js_tools.isSucc(res)){
+                layer.alert('成功',function () {
+                    location.reload();
+                })
+            }else{
+                layer.alert(res.msg);
+            }
+        })
+    }
     // 提交帖子
     form.on('submit(ask-btn)', function (data) {
         if ($('.layui-tab-title li:eq(1)').hasClass('layui-this')){
             data.field.role='1';//答疑
+        }
+        if(!checkLogin()){
+          return;
         }
         //新建帖子
         js_tools.sync_post('/admin/api/tie/add', data.field, function (res) {

@@ -69,6 +69,18 @@ public class ApiController extends BaseController {
         return Response.success();
     }
 
+    @GetMapping("/teacher/api/tie/del/{id}")
+    public Response delTie(@PathVariable("id") Integer id){
+        tieService.removeById(id);
+        return Response.success();
+    }
+
+    @GetMapping("/teacher/api/tieCmt/del/{id}")
+    public Response delTieCmt(@PathVariable("id") Integer id){
+        tieCmtService.removeById(id);
+        return Response.success();
+    }
+
     @GetMapping("/student/api/achv/list")
     public Response achvList() {
         UserAchv userAchv = new UserAchv();

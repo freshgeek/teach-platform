@@ -94,9 +94,8 @@ a{
 .x_join{
     float:left;
     padding-left:37px;
-    margin:20px 56px 13px 10px;
-    width:190px;
-    _width:170px;
+    margin:20px 45px 13px 10px;
+    width:235px;
 }
 #x_join1{
     background:url(../images/mi_06.gif) left center no-repeat;
