@@ -39,7 +39,7 @@ import java.io.Serializable;
     @GetMapping("/page")
     @ApiOperation("分页")
     public Response getPages(Resource resource){
-        IPage page = resourceService.page(resource.convertPage(),new QueryWrapper<Resource>(resource));
+        IPage page = resourceService.page(resource.convertPage(),new QueryWrapper<Resource>(resource).orderByDesc("top"));
         return Response.parse(page);
     }
 

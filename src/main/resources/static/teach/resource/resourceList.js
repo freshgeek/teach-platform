@@ -15,40 +15,33 @@ layui.use(['laydate','admin','form', 'jquery', 'table', 'js_tools'], function ()
         form = layui.form,
         js_tools = layui.js_tools,
         table = layui.table;
-            <!--  上传时间 筛选-->
-    //执行一个laydate实例
-    laydate.render({
-        elem: '#createTimeStart' //指定元素
-        ,type: 'datetime'
-    });
-
-    //执行一个laydate实例
-    laydate.render({
-        elem: '#createTimeEnd' //指定元素
-        ,type: 'datetime'
-    });
-
     var option = js_tools.getTableTemplate();
     option.url = "/admin/api/resource/page";
     option.cols = [[
-        {fixed: 'left',checkbox: true},
+      /*  {fixed: 'left',checkbox: true},
         {field: 'id', title: '资源id'},
-        {field: 'typeId', title: '资源分类'},
-        {field: 'userId', title: '上传资源人'},
+      */  {field: 'typeId', title: '资源分类',templet:'<div>{{d.resourceType.name}}</div>'},
+        {field: 'userId', title: '上传资源人',templet:'<div><a href="/user/other/info/{{d.user.id}}"' +
+                ' target="_blank">{{d.user.nickName}}</a></div>'},
         {field: 'name', title: '资源名'},
         {field: 'title', title: '资源标题'},
         {field: 'content', title: '资源内容'},
         {field: 'intro', title: '资源简介'},
         {field: 'size', title: '资源大小'},
         {field: 'createTime', title: '上传时间'},
-        {field: 'top', title: '资源置顶'},
         {field: 'status', title: '状态'},
         {field: 'visitNum', title: '访问量'},
         {field: 'likeNum', title: '点赞量'},
+        {fixed: 'right',field: 'top', title: '置顶',templet: '#switchTpl'},
         {fixed: 'right',title:'操作', width:150, align:'center', toolbar: '#list_btn'} //这里的toolbar值是模板元素的选择器
     ]];
 
     window.resourceListIns = table.render(option);
+
+    //监听性别操作
+    form.on('switch(switchDemo)', function(obj){
+        js_tools.quick_post('/admin/api/resource/update',{id:this.value,top:obj.elem.checked?'1':'0'},null);
+    });
 
     //监听工具条
     table.on('tool(list)', function (obj) {
