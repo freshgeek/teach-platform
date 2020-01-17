@@ -12,7 +12,6 @@
         <result column="create_time" property="createTime" />
         <association property="user" column="user_id"
                      select="org.ck.teach.teachplatform.mapper.UserDao.selectById">
-
         </association>
     </resultMap>
 

@@ -45,8 +45,12 @@
 <!--/*@thymesVar id="item" type="org.ck.teach.teachplatform.entity.Course"*/-->
 <div style="width:100%;height:100%;display:inline-block;background:#f3f5f7;padding-bottom:30px;">
     <div class="outer_div">
-        <div id="typeChoose" style="margin-top:50px;">
+        <div id="typeChoose" style="margin-top:50px;min-height:300px;">
             <ul>
+                <li th:if="${course_page.getTotal()<=0}"
+                        class="typeChoose-outer-li" >
+                    <p>还没有添加此类课程,尽请期待</p>
+                </li>
                 <li class="typeChoose-outer-li" th:each="item : ${course_page.getRecords()}">
                     <a th:href="'/courseDetail/'+${item.getId()}">
                         <div class="course-big-div">
@@ -80,10 +84,14 @@
             <a th:href="'/course?pageIndex='+${course_page.getCurrent()}+(${course.typeId}==null?'':'&typeId='+${course.typeId})"
                th:text="${course_page.getCurrent()}"
                class="active text-page-tag">1</a>
-            <a th:href="'/course?pageIndex='+${course_page.getCurrent()+1}+(${course.typeId}==null?'':'&typeId='+${course.typeId})"
+            <a
+            th:if="${course_page.getPages()>course_page.getCurrent()}"
+            th:href="'/course?pageIndex='+${course_page.getCurrent()+1}+(${course.typeId}==null?'':'&typeId='+${course.typeId})"
                th:text="${course_page.getCurrent()+1}"
                class="text-page-tag">3</a>
-            <a th:href="'/course?pageIndex='+${course_page.getCurrent()+2}+(${course.typeId}==null?'':'&typeId='+${course.typeId})"
+            <a
+                    th:if="${course_page.getPages()>course_page.getCurrent()+1}"
+                    th:href="'/course?pageIndex='+${course_page.getCurrent()+2}+(${course.typeId}==null?'':'&typeId='+${course.typeId})"
                th:text="${course_page.getCurrent()+2}"
                class="text-page-tag back_pageNo">4</a>
 

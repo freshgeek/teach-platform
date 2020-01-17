@@ -48,6 +48,8 @@ import java.io.Serializable;
     @PostMapping("/add")
     @ApiOperation("新增")
     public Response add(TieCmt tieCmt){
+        tieCmt.setUserId(getSessionUser().getId());
+
         tieCmtService.save(tieCmt);
 
         Tie byId = tieService.getById(tieCmt.getTieId());

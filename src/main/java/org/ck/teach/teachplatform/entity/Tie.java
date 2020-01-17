@@ -25,7 +25,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@TableName("t_tie")
+@TableName(value = "t_tie",resultMap = "BaseResultMap")
 @ApiModel(value="Tie对象", description="讨论帖子")
 public class Tie extends Request {
 
@@ -38,6 +38,9 @@ public class Tie extends Request {
     @ApiModelProperty(value = "发帖人id")
     @TableField("user_id")
     private Integer userId;
+
+    @TableField(exist = false)
+    private User user;
 
     @ApiModelProperty(value = "帖标签")
     @TableField(value = "tag",whereStrategy = FieldStrategy.NOT_EMPTY)

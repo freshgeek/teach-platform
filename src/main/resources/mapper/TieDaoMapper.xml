@@ -12,6 +12,11 @@
         <result column="role" property="role" />
         <result column="create_time" property="createTime" />
         <result column="cmt_num" property="cmtNum" />
+
+        <association property="user" column="user_id"
+                     select="org.ck.teach.teachplatform.mapper.UserDao.selectById">
+        </association>
+
     </resultMap>
 
     <!-- 通用查询结果列 -->

@@ -92,6 +92,7 @@ layui.use(['layer', 'form', 'jquery', 'laytpl', 'element', 'js_tools'], function
         //帖子
         var tie = JSON.parse(unescape($(this).attr('value')));
         tie.userRole = $('#user_role').val();
+        tie.loginUserId = $('#user_id').val();
         js_tools.tieID = tie.id;
         js_tools.tieCmtID = null;
         laytpl($('#tie_detail_model').html()).render(tie, function (html) {
@@ -111,6 +112,7 @@ layui.use(['layer', 'form', 'jquery', 'laytpl', 'element', 'js_tools'], function
         //帖子
         var tie = JSON.parse(unescape($(this).attr('value')));
         tie.userRole = $('#user_role').val();
+        tie.loginUserId = $('#user_id').val();
         js_tools.tieID = tie.id;
         js_tools.tieCmtID = null;
         laytpl($('#tie_detail_model').html()).render(tie, function (html) {

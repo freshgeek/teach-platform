@@ -286,7 +286,7 @@
             <div class="p_huifuqu_time">
                 <font>{{item.createTime}}</font>&nbsp;&nbsp;|&nbsp;&nbsp;
                 <a data="{{item.id}}" userId="{{item.userId}}" href="#C4">回复</a>
-                {{# if(d.userRole=='2'){ }}
+                {{# if(d.userRole=='2'||item.user.id==d.loginUserId){ }}
                 &nbsp;&nbsp;|&nbsp;&nbsp;
                 <a href="#" onclick="delTieCmt({{item.id}})">删除此回复</a>
                 {{# } }}
@@ -329,7 +329,7 @@
             <div class="p_huifuqu_time">
                 <font>{{item.createTime}}</font>&nbsp;&nbsp;|&nbsp;&nbsp;
                 <a data="{{item.id}}" userId="{{item.userId}}" href="#C5">回复</a>
-                {{# if(d.userRole=='2'){ }}
+                {{# if(d.userRole=='2'||item.user.id==d.loginUserId){ }}
                 &nbsp;&nbsp;|&nbsp;&nbsp;
                 <a href="#" onclick="delTieCmt({{item.id}})">删除此回复</a>
                 {{# } }}
@@ -347,10 +347,10 @@
     </div>
     <div class="p_wentiqu_intro">
         讨论&nbsp;于<font>{{d.createTime}}</font>被   <a target="_blank"  href="/user/other/info/{{d.userId}}">
-        <span data="{{d.userId}}">{{d.userId}}</span></a>
+        <span data="{{d.userId}}">{{d.user.nickName}}</span></a>
         发布&nbsp;共<strong>{{d.cmtNum}}</strong>条回复
     </div>
-    {{# if(d.userRole=='2'){ }}
+    {{# if(d.userRole=='2'||d.userId==d.loginUserId){ }}
     <a class="layui-btn layui-btn-primary" style="float: right; margin-left: 10px;" onclick="delTie({{d.id}});" href="javascript:void(0);">删除此帖</a>
     {{# } }}
     <div class="p_wentiqu_huifu">

@@ -59,6 +59,11 @@
                 -->
 
                 <div class="x_join" style="padding-left:0px;">
+
+                    <a href="#"
+                       th:href="'/user/other/info/'+${course.getCreateUser()?.getId()}"
+                       target="_blank" >
+
                     <p><img id="x_teach_tou" src="/style/back/image/tou_e.jpg"
                             th:src="${course.getCreateUser()?.getHeadUrl()}">
                         <span style="margin-left:-11px;" id="x_teach_name"
@@ -66,6 +71,8 @@
                         <span class="layui-badge" style="height: 24px;"
                               th:text="${course.getCreateUser()?.getPointLevel()}"></span>
                     </p>
+                    </a>
+
                 </div>
 
                 <div class="x_join" style="padding-left:0px;">

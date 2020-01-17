@@ -68,7 +68,7 @@
                 <!--/*@thymesVar id="login_user" type="org.ck.teach.teachplatform.entity.User"*/-->
                 <a th:if="${login_user} == null" id="btn_login2" class="q_btLogin">登录</a>
                 <a th:if="${login_user} != null" class="q_headPortrait">
-                    <img th:src="${login_user.headUrl}==null?'/style/back/image/tou_c.jpg':${login_user.headUrl}"
+                    <img th:alt-title="${login_user.getNickName()}" th:src="${login_user.headUrl}==null?'/style/back/image/tou_c.jpg':${login_user.headUrl}"
                          width="30" height="30/">
                 </a>
             </div>

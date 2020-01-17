@@ -201,6 +201,7 @@ layui.define(['layer', 'form', 'laytpl', 'laypage', 'jquery'], function (exports
                 },
                 success: function (d) {
                     d.userRole = $('#user_role').val();
+                    d.loginUserId = $('#user_id').val();
                     laytpl($(m).html()).render(d, function (h) {
                         var l = $(sets.list || '#list');
                         if (sets.append) {

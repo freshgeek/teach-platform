@@ -32,15 +32,23 @@ layui.define(['layer', 'jquery'], function (exports) {
         }
 
         //键鼠触发重新计时
-        // 键鼠触发
-        $('body').on('mousemove mousedown keydown keypress', function () {
+        var events = 'mousemove mousedown keydown keypress';
+        var evfn = function () {
             console.log("signal()");
             if (m.taskID) {
                 stop();
                 start();
             }
-        });
+        };
+        // 键鼠触发
+        $('body').on(events, evfn);
 
+        var i = setInterval(function () {
+            if ($('iframe').length > 0) {
+                $($('iframe')[0].contentDocument).on(events, evfn);
+                clearInterval(i);
+            }
+        }, 1000);
         // 给 外部暴露调用接口
         this.run = start;
     }
