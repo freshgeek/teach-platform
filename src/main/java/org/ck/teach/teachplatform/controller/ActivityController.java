@@ -46,6 +46,7 @@ import java.io.Serializable;
     @PostMapping("/add")
     @ApiOperation("新增")
     public Response add(Activity activity){
+        activity.setUserId(getSessionUser().getId());
         activityService.save(activity);
         return Response.success();
     }

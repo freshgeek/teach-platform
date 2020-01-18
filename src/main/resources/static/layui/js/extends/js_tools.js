@@ -318,6 +318,16 @@ layui.define(['layer', 'form', 'laytpl', 'laypage', 'jquery'], function (exports
                 }
             })
         },
+        quick_async_get: function (url, param, rs) {
+            $.ajax({
+                url: url,
+                type: "GET",
+                async: true,
+                data: param,
+                success: rs,
+                dataType: "json"
+            });
+        },
         quick_get: function (url, param, rs) {
             $.ajax({
                 url: url,

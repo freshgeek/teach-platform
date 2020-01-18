@@ -180,7 +180,7 @@ layui.use(['layer', 'form', 'obr', 'jquery', 'element', 'js_tools'], function ()
             if (res.body.roleId=='2'){
                 $('#wn ul').after('<li><a href="/teach/index.htm">教师管理</a></li>');
             }else if (res.body.roleId=='3') {
-                location.href = '/admin/index.htm';
+                $('#wn ul').after('<li><a href="/admin/index.htm">管理员管理</a></li>');
             }else{
                 js_tools.startStudy();
                 js_tools.checkStudy(1000*20,function (d,i) {

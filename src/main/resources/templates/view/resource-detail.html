@@ -137,7 +137,7 @@
                     list: '#cmt-list',
                     page: 'page'
                 });
-
+                js.quick_async_get('/api/resource/visit/'+js.get('#resourceId').val(),null,null);
                 form.on('submit(cmt-btn)', function (data) {
                     js.quick_post('/admin/api/resourceCmt/add', data.field, function (res) {
                         layer.msg(res.msg);

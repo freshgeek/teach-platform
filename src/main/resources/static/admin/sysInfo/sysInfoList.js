@@ -33,7 +33,7 @@ layui.use(['laydate','admin','form', 'jquery', 'table', 'js_tools'], function ()
     option.cols = [[
         {fixed: 'left',checkbox: true},
         {field: 'id', title: 'id'},
-        {field: 'typeId', title: '资讯类型'},
+        {field: 'typeId', title: '资讯类型',templet:'<div>{{d.sysInfoType.name}}</div>'},
         {field: 'upUser', title: '上传人'},
         {field: 'title', title: '资讯标题'},
         {field: 'coverUrl', title: '资讯封面'},

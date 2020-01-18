@@ -35,6 +35,12 @@ public class ApiController extends BaseController {
     @Autowired
     private FileLogService fileLogService;
 
+    @GetMapping("/api/resource/visit/{id}")
+    public Response visitId(@PathVariable("id") Integer id){
+        resourceService.update(new UpdateWrapper<Resource>().setSql("visit_num = visit_num + 1").eq("id",id));
+        return Response.success();
+    }
+
     @PostMapping("/student/api/addTag")
     public Response addTag(@RequestParam Map param) {
         User userId = userService.getById(AppUtils.getMapStr(param, "userId"));

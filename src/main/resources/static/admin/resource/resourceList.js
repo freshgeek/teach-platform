@@ -41,10 +41,10 @@ layui.use(['laydate','admin','form', 'jquery', 'table', 'js_tools'], function ()
         {field: 'intro', title: '资源简介'},
         {field: 'size', title: '资源大小'},
         {field: 'createTime', title: '上传时间'},
-        {field: 'top', title: '资源置顶'},
         {field: 'status', title: '状态'},
         {field: 'visitNum', title: '访问量'},
         {field: 'likeNum', title: '点赞量'},
+        {fixed: 'right',field: 'top', title: '置顶',templet: '#switchTpl'},
         {fixed: 'right',title:'操作', width:150, align:'center', toolbar: '#list_btn'} //这里的toolbar值是模板元素的选择器
     ]];
 
@@ -70,6 +70,9 @@ layui.use(['laydate','admin','form', 'jquery', 'table', 'js_tools'], function ()
             //其他功能
 
         }
+    });
+    form.on('switch(switchDemo)', function(obj){
+        js_tools.quick_post('/admin/api/resource/update',{id:this.value,top:obj.elem.checked?'1':'0'},null);
     });
 
     //表格筛选监听
