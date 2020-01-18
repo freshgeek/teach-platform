@@ -24,10 +24,10 @@
     </sql>
     <select id="selectInfoCount" resultType="java.util.Map" parameterType="integer">
         SELECT
-	COUNT(1) AS achv_total ,
-	SUM(ua.like_num) AS achv_like,
-	SUM(ua.fav_num) AS achv_fav
-FROM t_user_achv ua WHERE ua.user_id = #{value}
+            COUNT(1) AS achv_total ,
+            ifnull(SUM(ua.like_num),0) AS achv_like,
+            ifnull(	SUM(ua.fav_num),0) AS achv_fav
+        FROM t_user_achv ua WHERE ua.user_id = #{value}
     </select>
 
 </mapper>

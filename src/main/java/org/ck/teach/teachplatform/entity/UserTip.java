@@ -37,7 +37,7 @@ public class UserTip extends Request {
         userTip.setReaded("0");
         userTip.setResourceUserId(((User)WebUtils.getLoginSessionUser()).getId());
         userTip.setCreateTime(new Date());
-        userTip.setResourceUserId(resourceUserId);
+        userTip.setUserId(resourceUserId);
         userTip.setContent(content);
         return userTip;
     }

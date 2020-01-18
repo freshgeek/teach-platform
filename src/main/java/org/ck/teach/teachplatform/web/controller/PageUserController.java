@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 /**
  * @author chen.chao
  * @version 1.0
@@ -40,11 +42,19 @@ public class PageUserController extends BaseController {
         //查询人
         modelAndView.addObject("other_user",userService.getById(id));
         //作品
-        modelAndView.addObject("other_achv_list",userAchvService.list(new QueryWrapper<UserAchv>()
-                .orderByDesc("create_time").last("limit 10")));
+        modelAndView.addObject("other_achv_list",userAchvService.list(new QueryWrapper<UserAchv>().eq("user_id", id)
+                        .orderByDesc("create_time").last("limit 10"))
+                );
         //动态
-        modelAndView.addObject("other_user_tip",userTipService.list(new QueryWrapper<UserTip>()
-                .orderByDesc("create_time").last("limit 10")));
+        List<UserTip> list = userTipService.list(new QueryWrapper<UserTip>()
+                .orderByDesc("create_time").last("limit 10"));
+        if (getSessionUser()==null|| !getSessionUser().getId().equals(id)){
+            list.forEach(t->{
+                t.setContent(t.getContent().replaceAll("[你]","他"));
+            });
+        }
+
+        modelAndView.addObject("other_user_tip",list   );
         //数据
         modelAndView.addObject("count_num",userDao.selectInfoCount(id));
         return modelAndView;

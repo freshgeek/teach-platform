@@ -188,20 +188,7 @@
                 </div>
             </div>
             <div class="layui-row layui-col-space15">
-                <div class="layui-col-md9" id="dt-list">
-                    <div class="layui-card">
-                        <div class="layui-card-header">他的动态(显示最近十条)</div>
-                        <div class="layui-card-body user-dt" th:each="tip:${other_user_tip}">
-                            <h2 th:text="${tip.getResourceUser()?.getNickName()}">他的动态</h2>
-                            <p th:text="${tip.getContent()}">你觉得对就是对咯,你觉得对就是对咯你觉得对就是对咯你觉得对就是对咯你觉得对就是对咯你觉得对就是对咯</p>
-                            <span th:text="${#dates.format(tip.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}">2019-22-11</span>
-                        </div>
-                        <div class="layui-card-body user-dt" th:if="${#lists.isEmpty(other_user_tip)}">
-                            <p>用户还没有动态噢~</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="layui-col-md3">
+                <div class="layui-col-md9">
                     <div class="layui-card">
                         <div class="layui-card-header">作品列表(显示最近十条)</div>
                         <div class="layui-card-body">
@@ -222,6 +209,23 @@
                         </div>-->
                     </div>
                 </div>
+
+                <div class="layui-col-md3" id="dt-list">
+                    <div class="layui-card">
+                        <div class="layui-card-header">他的动态(显示最近十条)</div>
+                        <div class="layui-card-body user-dt" th:each="tip:${other_user_tip}">
+                            <h2 th:text="${tip.getResourceUser()?.getNickName()}">他的动态</h2>
+                            <p th:text="${tip.getContent()}"></p>
+                            <span th:text="${#dates.format(tip.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}">
+
+                            </span>
+                        </div>
+                        <div class="layui-card-body user-dt" th:if="${#lists.isEmpty(other_user_tip)}">
+                            <p>用户还没有动态噢~</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -237,11 +241,13 @@
     }).use(['js_tools'], function () {
         var js_tools = layui.js_tools;
         var userId = js_tools.get('#current_user').val();
+        var otherId = js_tools.get('#other_user').val();
+
         js_tools.get('#add-tag-btn').on('click', function () {
-            layer.prompt({title: '输入你对他的印象,不超过4个字', formType: 2}, function (t, i) {
+            layer.prompt({title: userId==otherId?'输入你对自己的印象,不超过4个字':'输入你对他的印象,不超过4个字', formType: 2}, function (t, i) {
                 var v = {
                     tag: t,
-                    userId: userId
+                    userId: otherId
                 }
                 if (t.length > 4) {
                     layer.msg('不超过4个字');
