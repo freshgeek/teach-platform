@@ -78,9 +78,8 @@
                 <div class="x_join" style="padding-left:0px;">
                     <p>
                         <button class="layui-btn layui-btn-primary" id="add-course-btn" title="加入到我的课程中">学习</button>
-                        <input id="url" th:value="'http://ck.keepon.site/courseDetail/'+${course.getId()}" type="hidden" >
+                        <input id="url" th:value="'/courseDetail/'+${course.getId()}" style='opacity: 0;position: absolute;' type="text">
                         <button class="layui-btn layui-btn-primary" id="share-course-btn" title="分享课程"
-                                onClick="url.select();document.execCommand('Copy')"
                         >
                             <i class="layui-icon">&#xe677;</i>
                             <i class="layui-icon">&#xe676;</i>
@@ -185,6 +184,19 @@
                 layer.alert('请先登录后再添加');
                 js.get('.q_login').toggle();
             }
+        });
+
+        js.get('#share-course-btn').on('click',function () {
+            var url = js.get('#url')[0];
+            url.value=location.href;
+            url.select();
+            var b = document.execCommand('Copy');
+            if (b){
+                layer.msg('复制分享成功,去别处分享吧~');
+            }else{
+                layer.alert('您的浏览器不支持分享,请手动复制['+js.get('#url').val()+']');
+            }
+
         });
     })
 </script>
