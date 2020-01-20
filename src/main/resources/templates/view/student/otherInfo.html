@@ -212,9 +212,9 @@
 
                 <div class="layui-col-md3" id="dt-list">
                     <div class="layui-card">
-                        <div class="layui-card-header">他的动态(显示最近十条)</div>
+                        <div class="layui-card-header">动态(显示最近十条)</div>
                         <div class="layui-card-body user-dt" th:each="tip:${other_user_tip}">
-                            <h2 th:text="${tip.getResourceUser()?.getNickName()}">他的动态</h2>
+                            <h2 th:text="${tip.getResourceUser()?.getNickName()}">动态</h2>
                             <p th:text="${tip.getContent()}"></p>
                             <span th:text="${#dates.format(tip.getCreateTime(),'yyyy-MM-dd HH:mm:ss')}">
 
