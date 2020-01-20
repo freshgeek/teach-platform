@@ -36,7 +36,8 @@
 <div class="p_worksdetail">
     <div class="p_title" th:text="${detail?.getName()}">照顾盲人眼镜</div>
     <div class="p_author">
-        作者：[(${detail.getUser().getNickName()})]
+        作者：<a target="_blank" th:href="'/user/other/info/'+${detail.getUser()?.getId()}"
+              th:text="${detail.getUser()?.getNickName()}"></a>
         <span>时间：[(${#dates.format(detail.getCreateTime(),'yyyy-MM-dd')})]</span>
         <div class="q_like"
              th:attr="data-id=${like?.getId()}"
@@ -85,10 +86,12 @@
             {{#  layui.each(d.body,function(i,e){ }}
             <div class="q_detailModel">
                 <div class="p_worksdetail_discuss_detail" data="{{e.id}}">
-                    <a class="p_worksdetail_discuss_userimg">
+                    <a
+                            target="_blank" href="/user/other/info/{{e.user.id}}"
+                            class="p_worksdetail_discuss_userimg">
                         <img src="{{e.user.headUrl}}">
                     </a>
-                    <a class="p_worksdetail_discuss_username">{{e.user.nickName}}</a>
+                    <a target="_blank" href="/user/other/info/{{e.user.id}}" class="p_worksdetail_discuss_username">{{e.user.nickName}}</a>
                     <p>{{e.content}}</p>
                     <span>{{e.createTime}}</span>
 <!--

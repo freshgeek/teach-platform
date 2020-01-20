@@ -66,7 +66,7 @@
             , {field: 'top', align: 'center', title: '置顶资源', width: '10%'}
             , {
                 field: 'status', align: 'center', title: '状态', width: '10%', templet: function (d) {
-                    return d.status == '0' ? '审核中' : '正常';
+                    return d.status != '0' ? '审核中' : '正常';
                 }
             }
             , {field: 'likeNum', align: 'center', title: '点赞数', width: '10%'}

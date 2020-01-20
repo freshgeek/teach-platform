@@ -37,15 +37,15 @@ staticFilePath: D://main/
 spring:
   profiles: prod
   resources:
-    static-locations: file:/app/data/,classpath:/static/
+    static-locations: file:/tmp/,classpath:/static/
   datasource:
-    url: jdbc:mysql://db1.keepon.top:3306/ck_db
+    url: jdbc:mysql://ck.keepon.top:3306/ck_db
   thymeleaf:
     cache: true
 server:
   port: 80
 #本地文件存储路径
-staticFilePath: /app/data/
+staticFilePath: /tmp/
 
 
 

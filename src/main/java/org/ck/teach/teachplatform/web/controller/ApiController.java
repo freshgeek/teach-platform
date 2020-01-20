@@ -130,7 +130,7 @@ public class ApiController extends BaseController {
         return Response.parse(resourceService.page(resource.convertPage(), new QueryWrapper<>(resource)));
     }
 
-    @GetMapping("/student/api/resource/add")
+    @PostMapping("/student/api/resource/add")
     public Response addResource(Resource resource) {
         resource.setUserId(getSessionUser().getId());
         return Response.parse(resourceService.page(resource.convertPage(), new QueryWrapper<>(resource)));

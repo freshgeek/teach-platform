@@ -138,7 +138,7 @@
         <div class="q_works">
             <div class="p_bag1">
                 <div class=" layui-card layui-row">
-                    <div class="layui-card-body" id="list">
+                    <div class="layui-card-body" id="list" style="min-height:300px;">
 
                     </div>
                 </div>
@@ -198,6 +198,7 @@
         var laypage = layui.laypage;
         var laytpl = layui.laytpl;
         var param = js_tools.getParam();
+   //     param.status = '1';
         js_tools.quick_get('/admin/api/resourceType/list', null, function (res) {
             var b = res.body;
             var html = [];
