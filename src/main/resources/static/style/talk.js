@@ -27,8 +27,8 @@ layui.use(['layer', 'form', 'jquery', 'laytpl', 'element', 'js_tools'], function
         if (role=='1'){
             //帖子回复
             js_tools.loadData({
-                url: '/admin/api/tieCmt/page',
-                param: {tieId: tieId, pageIndex: index, pageSize: 5},
+                url: '/api/tieCmt/page',
+                param: {id: tieId, pageIndex: index, pageSize: 5},
                 model: '#dy_cmt_page_model',
                 list: '#dy_cmt_page',
                 page: 'dy_cmt_pages',
@@ -36,8 +36,8 @@ layui.use(['layer', 'form', 'jquery', 'laytpl', 'element', 'js_tools'], function
         }else{
             //帖子回复
             js_tools.loadData({
-                url: '/admin/api/tieCmt/page',
-                param: {tieId: tieId, pageIndex: index, pageSize: 5},
+                url: '/api/tieCmt/page',
+                param: {id: tieId, pageIndex: index, pageSize: 5},
                 model: '#tie_cmt_page_model',
                 list: '#tie_cmt_page',
 //            append:true,
@@ -124,12 +124,12 @@ layui.use(['layer', 'form', 'jquery', 'laytpl', 'element', 'js_tools'], function
 
     //回复其他人
     $('#tie_cmt_page').on('click', '.p_huifuqu .p_huifuqu_time a', function () {
-        tieCmtID = $(this).attr('data');
+        js_tools.tieCmtID = $(this).attr('data');
         $('#cmt_content').val('[@' + $(this).attr('userId') + ']');
     });
     // 答疑 回复他人
     $('#dy_cmt_page').on('click', '.p_huifuqu .p_huifuqu_time a', function () {
-        tieCmtID = $(this).attr('data');
+        js_tools.tieCmtID = $(this).attr('data');
         $('#dy_cmt_content').val('[@' + $(this).attr('userId') + ']');
     });
 

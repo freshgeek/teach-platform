@@ -465,6 +465,20 @@
     min-height:150px;
     position:relative;
 }
+.p_huifuqu_contain .sub-cmt{
+    margin-bottom: 20px;
+}
+.p_huifuqu_contain .sub-cmt a,span,time,div{
+    margin: 5px;
+}
+.p_huifuqu_contain .sub-cmt time{
+    float: right;
+    font-size: 12px;
+    color: #969696;
+}
+.p_huifuqu_contain .sub-cmt div{
+    margin-left: 15px;
+}
 .q_works .p_huifuqu_contain{
     min-height:77px;
 }

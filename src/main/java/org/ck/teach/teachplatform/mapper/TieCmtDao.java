@@ -1,7 +1,11 @@
 package org.ck.teach.teachplatform.mapper;
 
-import org.ck.teach.teachplatform.entity.TieCmt;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import org.ck.teach.teachplatform.entity.Tie;
+import org.ck.teach.teachplatform.entity.TieCmt;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +16,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2019-12-26
  */
 public interface TieCmtDao extends BaseMapper<TieCmt> {
+
+    List<TieCmt> listsByCmtId(Integer cmtId);
+
+    List<TieCmt> pageByCmtList(IPage page, Tie tie);
 
 }

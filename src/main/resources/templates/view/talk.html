@@ -281,15 +281,23 @@
             -->
             <div class="p_huifuqu_contain">
                 <p>{{addTargetLink(item.content)}}</p>
-            </div>
-            <div class="clear"></div>
-            <div class="p_huifuqu_time">
-                <font>{{item.createTime}}</font>&nbsp;&nbsp;|&nbsp;&nbsp;
-                <a data="{{item.id}}" userId="{{item.userId}}" href="#C4">回复</a>
-                {{# if(d.userRole=='2'||item.user.id==d.loginUserId){ }}
-                &nbsp;&nbsp;|&nbsp;&nbsp;
-                <a href="#" onclick="delTieCmt({{item.id}})">删除此回复</a>
-                {{# } }}
+                <div class="clear"></div>
+                <div class="p_huifuqu_time">
+                    <font>{{item.createTime}}</font>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a data="{{item.id}}" userId="{{item.userId}}" href="#C4">回复</a>
+                    {{# if(d.userRole=='2'||item.user.id==d.loginUserId){ }}
+                    &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <a href="#" onclick="delTieCmt({{item.id}})">删除此回复</a>
+                    {{# } }}
+                </div>
+                <hr />
+                {{#  layui.each(item.subTieCmts, function(i, it){ }}
+                <div class="sub-cmt">
+                    <a target="_blank" href="/user/other/info/{{it.user.id}}"><span>{{it.user.nickName}}</span>:</a>
+                    <time>{{it.createTime}}</time>
+                    <div>{{addTargetLink(it.content)}}</div>
+                </div>
+                {{#  });  }}
             </div>
             <div class="clear"></div>
         </div>

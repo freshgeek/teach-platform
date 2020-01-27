@@ -13,11 +13,30 @@
         <association property="user" column="user_id"
                      select="org.ck.teach.teachplatform.mapper.UserDao.selectById">
         </association>
+        <collection property="subTieCmts" ofType="org.ck.teach.teachplatform.entity.TieCmt">
+            <id column="id" property="id" />
+            <result column="cmt_id" property="cmtId" />
+            <result column="tie_id" property="tieId" />
+            <result column="user_id" property="userId" />
+            <result column="content" property="content" />
+            <result column="create_time" property="createTime" />
+        </collection>
+
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, cmt_id, tie_id, user_id, content, create_time
     </sql>
+
+    <select id="listsByCmtId" resultMap="BaseResultMap" parameterType="integer">
+        select * from t_tie_cmt where cmt_id = #{value}
+    </select>
+
+    <select id="pageByCmtList" resultType="org.ck.teach.teachplatform.entity.TieCmt">
+        select tc.      id, tc.cmt_id, tc.tie_id, tc.user_id, tc.content, tc.create_time,
+        tcs.      id, tcs.cmt_id, tcs.tie_id, tcs.user_id, tcs.content, tcs.create_time
+         from t_tie_cmt tc , t_tie_cmt tcs where tc.id = tcs.cmt_id
+    </select>
 
 </mapper>

@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import org.ck.teach.teachplatform.common.Request;
 import java.util.Date;
+import java.util.List;
+
 import com.baomidou.mybatisplus.annotation.Version;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -49,6 +51,9 @@ public class TieCmt extends Request {
 
     @TableField(exist = false)
     private User user;
+
+    @TableField(exist = false)
+    private List<TieCmt> subTieCmts;
 
     @ApiModelProperty(value = "内容")
     @TableField(value = "content",whereStrategy = FieldStrategy.NOT_EMPTY)

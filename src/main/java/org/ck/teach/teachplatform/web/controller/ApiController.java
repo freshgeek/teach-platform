@@ -3,11 +3,13 @@ package org.ck.teach.teachplatform.web.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.io.Files;
 import org.ck.teach.teachplatform.common.BaseController;
 import org.ck.teach.teachplatform.common.PlatException;
 import org.ck.teach.teachplatform.common.Response;
 import org.ck.teach.teachplatform.entity.*;
+import org.ck.teach.teachplatform.mapper.TieCmtDao;
 import org.ck.teach.teachplatform.service.FileLogService;
 import org.ck.teach.teachplatform.service.ResourceService;
 import org.ck.teach.teachplatform.util.AppUtils;
@@ -18,10 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @author chen.chao
@@ -34,6 +33,22 @@ public class ApiController extends BaseController {
 
     @Autowired
     private FileLogService fileLogService;
+
+    @GetMapping("/api/tieCmt/page")
+    public Response tieCmtPage(Tie tie){
+        IPage tie_id = tieCmtService.page(tie.convertPage(), new QueryWrapper<TieCmt>()
+                .eq("tie_id", tie.getId())
+        .eq("cmt_id",0));
+
+        List<TieCmt> records = tie_id.getRecords();
+
+        records.forEach(s->{
+            List<TieCmt> id = tieCmtService.list(new QueryWrapper<TieCmt>().eq("cmt_id", s.getId()));
+            s.setSubTieCmts(id);
+        });
+
+        return Response.parse(tie_id);
+    }
 
     @GetMapping("/api/resource/visit/{id}")
     public Response visitId(@PathVariable("id") Integer id){
@@ -133,7 +148,8 @@ public class ApiController extends BaseController {
     @PostMapping("/student/api/resource/add")
     public Response addResource(Resource resource) {
         resource.setUserId(getSessionUser().getId());
-        return Response.parse(resourceService.page(resource.convertPage(), new QueryWrapper<>(resource)));
+        resourceService.save(resource);
+        return Response.success();
     }
 
     @PostMapping("/uploadEditor")
